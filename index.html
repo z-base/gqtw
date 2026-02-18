@@ -99,6 +99,14 @@
         <a href="#conformance-classes">Conformance Classes</a>.
       </p>
       <p>
+        Unless explicitly overridden, data-model terms such as
+        <a>list</a>, <a>set</a>, <a>tuple</a>, and <a>byte sequence</a>
+        are interpreted according to Infra
+        <a href="#ref-infra">[INFRA]</a>. JSON payload and array semantics
+        are interpreted according to
+        <a href="#ref-rfc8259">[RFC8259]</a>.
+      </p>
+      <p>
         End-to-end machine verifiability is mandatory: any acceptance decision,
         legal-status claim, or policy-compatibility claim MUST be backed by
         machine-verifiable artifacts and explicit source references, not UI
@@ -134,8 +142,9 @@
           GQSCD-class;
         </li>
         <li>
-          open-participation decentralized event-log publication and verifier
-          conflict resolution rules.
+          publication of verification material to one or more decentralized host
+          profiles, while keeping GDIS identity-binding semantics independent
+          from host-transport internals.
         </li>
       </ul>
       <p>This specification does not:</p>
@@ -182,6 +191,24 @@
           <span class="mono">/.well-known/gidas/</span>.
         </dd>
 
+        <dt><dfn>list</dfn></dt>
+        <dd>
+          Data concept used as defined by Infra
+          <a href="#ref-infra">[INFRA]</a>.
+        </dd>
+
+        <dt><dfn>set</dfn></dt>
+        <dd>
+          Data concept used as defined by Infra
+          <a href="#ref-infra">[INFRA]</a>.
+        </dd>
+
+        <dt><dfn>byte sequence</dfn></dt>
+        <dd>
+          Data concept used as defined by Infra
+          <a href="#ref-infra">[INFRA]</a>.
+        </dd>
+
         <dt><dfn>tuple</dfn></dt>
         <dd>
           Data concept used as defined by Infra
@@ -204,8 +231,13 @@
 
         <dt><dfn>PID field set</dfn></dt>
         <dd>
-          A list or set of PID requirement entries for a governance area. Each
-          entry identifies a physical identity item field (as extracted from
+          A <a>list</a> of PID requirement entries for a governance area,
+          serialized as a JSON array
+          <a href="#ref-rfc8259">[RFC8259]</a>. Membership semantics are a
+          <a>set</a> keyed by
+          <span class="mono">fieldId</span> (that is,
+          <span class="mono">fieldId</span> values are unique). Each entry
+          identifies a physical identity item field (as extracted from
           MRZ-compatible data), whether it is required, and the regular
           expression constraint that determines syntactic validity.
         </dd>
@@ -251,14 +283,15 @@
 
         <dt><dfn>decentralized event log</dfn></dt>
         <dd>
-          Open-participation append-only event replication layer used to publish
-          and gossip GDIS verification material across many origins.
+          Open-participation publication layer used to replicate GDIS
+          verification material across many origins.
         </dd>
 
         <dt><dfn>GDIS host</dfn></dt>
         <dd>
           An origin participating in the <a>decentralized event log</a> by
-          storing, serving, and gossiping signed events.
+          storing and serving GDIS publication material according to a declared
+          host profile.
         </dd>
 
         <dt><dfn>mandatory minimum hosts</dfn></dt>
@@ -271,6 +304,13 @@
         <dd>
           Union of mandatory governance hosts and person-selected additional
           hosts to which a subject's materials are published.
+        </dd>
+
+        <dt><dfn>asOf query parameter</dfn></dt>
+        <dd>
+          URI query parameter whose value is an RFC 3339 date-time selecting
+          the policy version that was effective at that instant
+          <a href="#ref-rfc3339">[RFC3339]</a>.
         </dd>
 
         <dt><dfn>evidence artifact</dfn></dt>
@@ -537,21 +577,13 @@
       <section id="event-log-model">
         <h3>Decentralized Event Log Model</h3>
         <p>
-          GDIS event material is published as signed append-only events. Any
-          origin MAY join as a <a>GDIS host</a> by implementing this profile's
-          host API and verification rules.
+          GDIS requires publication of verification material, but transport,
+          replication, ordering, and distribution semantics are delegated to the
+          declared host profile. This specification defines publication
+          obligations and identity-binding semantics; it does not define host
+          network internals.
+          <a href="#ref-gqts-core">[GQTS-CORE]</a>
         </p>
-        <pre class="example"><code class="json">{
-  "eventId": "SHA-256:U3k09Myg3XcBOA4XkIj0ydD41GPWcrBnI_aLI8D_Q-k",
-  "pidHash": "SHA-256:vt151fJDA8-99wxkuspvQf_8BquoKDe-nz9JdlEGWk8",
-  "type": "BINDING_CREATED",
-  "sequence": 1,
-  "prev": [],
-  "createdAt": "2026-02-17T12:00:00Z",
-  "issuer": "did:example:governance-issuer",
-  "payload": {"credentialDigest": "SHA-256:FU53SOqpSyT9PJEgkKoHf7XyyJxQP7OdqpMpbZIsZkA"},
-  "signature": {"alg": "EdDSA", "value": "..."}
- }</code></pre>
       </section>
     </section>
 
@@ -580,7 +612,7 @@
               issuer, subject DID, <a>PID hash</a>, endpoint reference, proof
             </td>
             <td>Issuer</td>
-            <td>Verifier, Host (on ingest)</td>
+            <td>Verifier</td>
             <td>Retain until superseded or revoked.</td>
           </tr>
           <tr>
@@ -591,22 +623,16 @@
             <td>MUST satisfy verifier freshness policy at decision time.</td>
           </tr>
           <tr>
-            <td>Event publication artifact</td>
+            <td>Publication evidence artifact</td>
             <td>
-              event id (<span class="mono"
-                >SHA-256:&lt;base64url-no-padding&gt;</span
-              >), sequence, predecessor refs, signature
+              hostProfileId, publication target URI, published artifact digest,
+              and publication receipt proof (profile-defined)
             </td>
-            <td>Issuer or Host</td>
-            <td>Host, Verifier</td>
-            <td>MUST remain append-only and auditable.</td>
-          </tr>
-          <tr>
-            <td>Key rotation artifact</td>
-            <td>new key reference, prior authority signature chain</td>
-            <td>Issuer or delegated authority</td>
-            <td>Host, Verifier</td>
-            <td>MUST be processed before accepting dependent events.</td>
+            <td>Issuer or Subject agent</td>
+            <td>Verifier</td>
+            <td>
+              MUST be verifiable against the declared host profile semantics.
+            </td>
           </tr>
           <tr>
             <td>Verification transcript artifact</td>
@@ -660,6 +686,12 @@
             <a>PID field set</a> from the <a>PID identification endpoint</a> (or
             from an equivalently signed cached copy) before deriving
             <a>PID hash</a>.
+          </li>
+          <li>
+            This specification <em class="rfc2119">MUST NOT</em> define a
+            universal canonical PID field set. Canonical PID input for a
+            jurisdiction is defined by that jurisdiction's
+            <a>PID identification endpoint</a>.
           </li>
           <li>
             For each required field in the governance <a>PID field set</a>,
@@ -751,8 +783,23 @@
           <li>
             The PID identification endpoint response
             <em class="rfc2119">MUST</em> provide a normative
-            <a>PID field set</a> as a machine-readable list or set, where each
-            entry includes at minimum:
+            <a>PID field set</a> as a machine-readable JSON payload
+            <a href="#ref-rfc8259">[RFC8259]</a> with at least:
+            <span class="mono"
+              >governanceArea, policyId, profileVersion, effectiveFrom,
+              pidFieldSet</span
+            >.
+          </li>
+          <li>
+            <span class="mono">pidFieldSet</span>
+            <em class="rfc2119">MUST</em> be serialized as a JSON array (a
+            <a>list</a>) and <em class="rfc2119">MUST</em> have unique
+            <span class="mono">fieldId</span> members (a
+            <a>set</a> constraint).
+          </li>
+          <li>
+            Each <span class="mono">pidFieldSet</span> entry
+            <em class="rfc2119">MUST</em> include at least:
             <span class="mono"
               >fieldId, mrzSource, required, regexp, regexpProfileVersion</span
             >.
@@ -773,7 +820,33 @@
           <li>
             Endpoint responses <em class="rfc2119">MUST</em> declare media type,
             schema version, and profile version so verifiers can apply
-            deterministic parsing and policy rules.
+            deterministic parsing and policy rules. JSON responses
+            <em class="rfc2119">MUST</em> use
+            <span class="mono">application/json</span>
+            <a href="#ref-rfc9110">[RFC9110]</a>
+            <a href="#ref-rfc8259">[RFC8259]</a>.
+          </li>
+          <li>
+            The PID identification endpoint <em class="rfc2119">MUST</em>
+            support optional
+            <span class="mono">asOf</span>
+            <a>asOf query parameter</a> selection via URI query components
+            <a href="#ref-rfc3986">[RFC3986]</a>. If
+            <span class="mono">asOf</span> is supplied, the endpoint
+            <em class="rfc2119">MUST</em> return the policy version effective at
+            that instant, or HTTP
+            <span class="mono">404</span> with a machine-readable JSON error
+            object
+            <span class="mono">{"code": "...", "message": "..."}</span>
+            <a href="#ref-rfc9110">[RFC9110]</a>
+            <a href="#ref-rfc8259">[RFC8259]</a>.
+          </li>
+          <li>
+            PID policy responses <em class="rfc2119">MUST</em> be
+            cryptographically signed or integrity-protected by equivalent
+            profile-defined means so verifiers can validate publisher
+            authenticity and policy integrity using declared verification
+            material.
           </li>
           <li>
             Implementations <em class="rfc2119">MUST NOT</em> require non-<span
@@ -796,7 +869,10 @@
         </ul>
         <pre class="example"><code class="json">{
   "governanceArea": "EX-GOV-001",
+  "policyId": "urn:gidas:pid-policy:EX-GOV-001:2026-02",
   "profileVersion": "2026-02",
+  "effectiveFrom": "2026-02-01T00:00:00Z",
+  "effectiveUntil": null,
   "pidFieldSet": [
     {
       "fieldId": "documentNumber",
@@ -819,7 +895,12 @@
       "regexp": "^[0-9]{6}$",
       "regexpProfileVersion": "iregexp-rfc9485-v1"
     }
-  ]
+  ],
+  "signature": {
+    "alg": "EdDSA",
+    "kid": "did:example:gov#policy-2026-02",
+    "value": "..."
+  }
 }</code></pre>
       </section>
 
@@ -849,12 +930,20 @@
         </ul>
       </section>
 
-      <section id="req-event-log">
-        <h3>5. Event Log Replication and Openness</h3>
+      <section id="req-publication-profile">
+        <h3>5. Publication Profile Binding</h3>
         <ul>
           <li>
-            Replication participation <em class="rfc2119">MUST</em> be open: any
-            operator MAY run a <a>GDIS host</a>.
+            GDIS issuers and verifiers <em class="rfc2119">MUST</em> process
+            publication evidence bound to <a>PID hash</a> under a declared host
+            profile identifier.
+          </li>
+          <li>
+            This specification <em class="rfc2119">MUST NOT</em> define
+            transport-level replication, ordering, distribution, or anti-abuse
+            mechanisms. Those semantics are defined by the declared host profile
+            (for example GQTS)
+            <a href="#ref-gqts-core">[GQTS-CORE]</a>.
           </li>
           <li>
             A governance profile MAY define <a>mandatory minimum hosts</a>.
@@ -871,103 +960,8 @@
         </ul>
       </section>
 
-      <section id="req-ordering">
-        <h3>6. Event Ordering, Integrity, and Rotation</h3>
-        <ul>
-          <li>
-            Each event <em class="rfc2119">MUST</em> include content digest,
-            signature, <a>PID hash</a>, sequence number, and predecessor
-            references.
-          </li>
-          <li>
-            Key rotation <em class="rfc2119">MUST</em> be represented as a
-            signed rotation event, ideally signed by prior authority key(s).
-          </li>
-          <li>
-            Revocation <em class="rfc2119">MUST</em> be represented as explicit
-            status events and reflected in verifier status output.
-          </li>
-          <li>
-            <span class="mono">eventId</span>
-            <em class="rfc2119">MUST</em> be computed from a deterministic
-            canonical event envelope (excluding the
-            <span class="mono">eventId</span> field itself and excluding raw
-            signature bytes) and <em class="rfc2119">MUST NOT</em> be mutable by
-            non-semantic serialization differences
-            <a href="#ref-rfc8785">[RFC8785]</a>.
-          </li>
-          <li>
-            <span class="mono">eventId</span>
-            <em class="rfc2119">MUST</em> use the same digest identifier
-            representation profile defined in Section 2, including 256-bit
-            digest length and Base64URL encoding constraints
-            <a href="#ref-rfc4648">[RFC4648]</a>.
-          </li>
-          <li>
-            <span class="mono">createdAt</span> metadata MAY be used for
-            freshness validation but <em class="rfc2119">MUST NOT</em> be used
-            as the primary event-ordering key.
-          </li>
-        </ul>
-      </section>
-
-      <section id="req-conflicts">
-        <h3>7. Mechanical Conflict Resolution Rules</h3>
-        <p>
-          Verifiers <em class="rfc2119">MUST</em> execute the following
-          deterministic process for each <a>PID hash</a> conflict set:
-        </p>
-        <ol>
-          <li>
-            Discard events with invalid signatures, unsupported schema versions,
-            or invalid timestamps.
-          </li>
-          <li>
-            Build branches from predecessor links and discard branches with
-            broken ancestry.
-          </li>
-          <li>
-            Determine authoritative issuer key state from latest valid
-            key-rotation lineage.
-          </li>
-          <li>
-            For same semantic field and sequence value, choose the candidate
-            with lexicographically smaller <span class="mono">eventId</span>.
-          </li>
-          <li>
-            Any valid revocation event at or after effective binding sequence
-            sets status to revoked.
-          </li>
-        </ol>
-        <p>
-          Verifiers <em class="rfc2119">MUST</em> derive candidate histories by
-          DAG ancestry traversal and <em class="rfc2119">MUST</em> evaluate
-          signatures against the active key state resolved from valid
-          key-rotation lineage. Implementations MAY optimize traversal strategy
-          and asymptotic performance, but outputs MUST remain behaviorally
-          equivalent.
-        </p>
-      </section>
-
-      <section id="req-host-api">
-        <h3>8. Minimum Host API</h3>
-        <p>Conforming hosts <em class="rfc2119">MUST</em> expose:</p>
-        <ul>
-          <li>
-            <span class="mono">GET /.well-known/gidas/events/{pidHash}</span>
-          </li>
-          <li>
-            <span class="mono">GET /.well-known/gidas/event/{eventId}</span>
-          </li>
-          <li><span class="mono">POST /.well-known/gidas/gossip</span></li>
-          <li>
-            <span class="mono">GET /.well-known/gidas/status/{pidHash}</span>
-          </li>
-        </ul>
-      </section>
-
       <section id="req-replay">
-        <h3>9. Replay and Freshness Controls</h3>
+        <h3>6. Replay and Freshness Controls</h3>
         <ul>
           <li>
             Verification payloads <em class="rfc2119">MUST</em> include nonce or
@@ -985,7 +979,7 @@
       </section>
 
       <section id="req-crypto-agility">
-        <h3>10. Cryptographic Agility and Profile Constraints</h3>
+        <h3>7. Cryptographic Agility and Profile Constraints</h3>
         <ul>
           <li>
             This specification <em class="rfc2119">MUST</em> remain
@@ -1057,29 +1051,8 @@
           </li>
           <li>
             The issuer MUST sign issuance artifacts with currently authoritative
-            keys and publish events compatible with host acceptance rules.
-          </li>
-        </ol>
-      </section>
-
-      <section id="processing-host">
-        <h3>Host Processing Rules</h3>
-        <ol>
-          <li>
-            A host MUST validate event schema version, signature, sequence, and
-            predecessor references before persisting an event.
-          </li>
-          <li>
-            A host MUST reject events with invalid signatures, broken ancestry,
-            or unsupported version markers.
-          </li>
-          <li>
-            A host MUST expose deterministic event retrieval results for the
-            same local view and request parameters.
-          </li>
-          <li>
-            A host SHOULD persist rejection reasons for operational audit and
-            interoperability debugging.
+            keys and publish verification material with publication evidence
+            compatible with the declared host profile.
           </li>
         </ol>
       </section>
@@ -1087,28 +1060,27 @@
       <section id="processing-verifier">
         <h3>Verifier Processing Rules and Output Contract</h3>
         <p>
-          A verifier MUST execute requirements from sections 3, 5, 6, 7, and 9
+          A verifier MUST execute requirements from sections 3, 5, 6, and 7
           before returning a decision. The verifier output MUST be explicit and
           machine-consumable.
         </p>
         <ol>
           <li>
-            The verifier MUST build branch candidates by DAG predecessor
-            traversal from observed heads toward prior ancestors.
+            The verifier MUST validate the credential proof material and issuer
+            authenticity according to the declared cryptographic suites.
           </li>
           <li>
-            The verifier MUST resolve active verification material from valid
-            key-rotation lineage before accepting dependent signatures.
+            The verifier MUST resolve applicable governance PID policy and
+            validate required extracted fields against declared regular
+            expressions before accepting derived PID claims.
           </li>
           <li>
-            The verifier MUST verify that required PID fields used by issuer
-            derivation satisfy governance regular-expression constraints
-            published by the PID identification endpoint policy in force for the
-            evaluated profile version.
+            The verifier MUST validate publication evidence using the declared
+            host profile semantics.
           </li>
           <li>
-            The verifier MUST apply deterministic conflict-resolution rules and
-            freshness checks before producing final decision output.
+            The verifier MUST apply replay and freshness checks before producing
+            final decision output.
           </li>
           <li>
             Implementations MAY use different internal algorithms and data
@@ -1126,9 +1098,9 @@
     "endpointOk": true,
     "withinPolicyWindow": true
   },
-  "eventResolution": {
-    "selectedHead": "SHA-256:U3k09Myg3XcBOA4XkIj0ydD41GPWcrBnI_aLI8D_Q-k",
-    "branchCount": 2
+  "publicationEvidence": {
+    "hostProfileId": "https://z-base.github.io/gqts/",
+    "accepted": true
   },
   "replayCheck": {
     "nonceBound": true,
@@ -1173,13 +1145,13 @@
             <td>Verifier</td>
           </tr>
           <tr>
-            <td>Sections 5-7 Event consistency</td>
-            <td>Signed event log chain</td>
-            <td>Issuer and Hosts</td>
-            <td>Host and Verifier</td>
+            <td>Section 5 Publication profile binding</td>
+            <td>Publication evidence artifact</td>
+            <td>Issuer</td>
+            <td>Verifier</td>
           </tr>
           <tr>
-            <td>Section 9 Replay/freshness</td>
+            <td>Section 6 Replay/freshness</td>
             <td>Verifier transcript artifact</td>
             <td>Verifier</td>
             <td>Auditor or policy authority</td>
@@ -1201,17 +1173,13 @@
           <tr>
             <td>GDIS Issuer</td>
             <td>
-              1, 2, 3, 4, 5, 6, 8, 9, 10 and issuance evidence production.
+              1, 2, 3, 4, 5, 6, 7 and issuance evidence production.
             </td>
-          </tr>
-          <tr>
-            <td>GDIS Host</td>
-            <td>5, 6, 8 and host-side event-signature validation.</td>
           </tr>
           <tr>
             <td>GDIS Verifier</td>
             <td>
-              3, 5, 6, 7, 9, 10 plus endpoint freshness and conflict-resolution
+              3, 5, 6, 7 plus endpoint freshness and publication-evidence
               output.
             </td>
           </tr>
@@ -1227,9 +1195,13 @@
       </p>
       <ul>
         <li>
-          declared conformance class (Issuer, Host, Verifier, or multiple);
+          declared conformance class (Issuer, Verifier, or multiple);
         </li>
         <li>supported profile and schema versions;</li>
+        <li>
+          if publication evidence is evaluated, declared host profile URI(s) and
+          version pinning for publication semantics (for example GQTS);
+        </li>
         <li>declared mandatory cryptographic suites and key constraints;</li>
         <li>implemented requirement units and any documented exclusions;</li>
         <li>
@@ -1359,9 +1331,9 @@
       </p>
       <p>
         At minimum, conforming designs MUST model key exfiltration attempts,
-        endpoint spoofing, replay attempts, event-log inconsistency, and policy
-        abuse where governance minimum host requirements are misused as maximum
-        exclusivity constraints.
+        endpoint spoofing, replay attempts, and policy abuse where governance
+        minimum host requirements are misused as maximum exclusivity
+        constraints.
       </p>
       <table class="simple tight">
         <thead>
@@ -1386,11 +1358,6 @@
             <td>Replay of proof artifacts</td>
             <td>Nonce/audience/timestamp checks</td>
             <td>Verifier transcript and challenge log</td>
-          </tr>
-          <tr>
-            <td>Registry manipulation</td>
-            <td>Multi-host reconciliation + deterministic conflict rules</td>
-            <td>Host receipts and reconciled event view</td>
           </tr>
           <tr>
             <td>Adversarial or compromised issuer</td>
@@ -1446,9 +1413,8 @@
           high-linkability artifacts and SHOULD be minimized where feasible.
         </li>
         <li>
-          If publicly reachable hosts are used, profiles SHOULD define
-          anti-enumeration controls such as query controls, abuse detection, and
-          auditable access policy.
+          If publicly reachable hosts are used, anti-enumeration and abuse
+          controls SHOULD be defined by the declared host profile.
         </li>
         <li>
           Profiles SHOULD support blinded or scope-bound identifier derivatives
@@ -1459,36 +1425,6 @@
           cross-context linkability.
         </li>
       </ul>
-    </section>
-
-    <section id="open-issues" class="informative">
-      <h2>Open Issues</h2>
-      <p class="issue">
-        Define a compact canonical PID field set for v1 that is stable across
-        passport and national ID form factors while keeping jurisdiction mapping
-        explicit.
-      </p>
-      <p class="issue">
-        Define a portable host gossip anti-spam model that preserves open host
-        admission and does not require centralized host approval.
-      </p>
-      <p class="issue">
-        Define optional pairwise identifier blinding mode that preserves global
-        deduplication properties needed by governance profiles.
-      </p>
-      <p class="issue">
-        Define canonical eventId commitment boundaries and time-evidence policy
-        so deterministic ordering remains manipulation-resistant across hosts.
-      </p>
-      <p class="issue">
-        Define recovery and compromise-recovery requirements for subject control
-        keys, including audited recovery events and verifier processing rules.
-      </p>
-      <p class="issue">
-        Decide whether v1 transport profile includes only HTTP(S) or also
-        content-addressed publication channels (for example IPFS) as first-class
-        options.
-      </p>
     </section>
 
     <section class="appendix informative" id="references">
@@ -1519,6 +1455,11 @@
               >[RFC3986] Uniform Resource Identifier (URI): Generic Syntax</a
             >
           </li>
+          <li id="ref-rfc3339">
+            <a href="https://www.rfc-editor.org/rfc/rfc3339"
+              >[RFC3339] Date and Time on the Internet: Timestamps</a
+            >
+          </li>
           <li id="ref-rfc4648">
             <a href="https://www.rfc-editor.org/rfc/rfc4648"
               >[RFC4648] The Base16, Base32, and Base64 Data Encodings</a
@@ -1532,6 +1473,12 @@
           <li id="ref-rfc8785">
             <a href="https://www.rfc-editor.org/rfc/rfc8785"
               >[RFC8785] JSON Canonicalization Scheme (JCS)</a
+            >
+          </li>
+          <li id="ref-rfc8259">
+            <a href="https://www.rfc-editor.org/rfc/rfc8259"
+              >[RFC8259] The JavaScript Object Notation (JSON) Data
+              Interchange Format</a
             >
           </li>
           <li id="ref-rfc9110">
@@ -1746,6 +1693,12 @@
           <li id="ref-gqscd-core">
             <a href="https://z-base.github.io/gqscd/"
               >[GQSCD-CORE] Globally Qualified Signature Creation Device
+              (framework item)</a
+            >
+          </li>
+          <li id="ref-gqts-core">
+            <a href="https://z-base.github.io/gqts/"
+              >[GQTS-CORE] GQTS host and trust-transport profile
               (framework item)</a
             >
           </li>
