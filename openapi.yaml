@@ -17,7 +17,7 @@ info:
     name: MIT
     url: https://opensource.org/license/mit
   x-document-authority:
-    status: editor-draft
+    status: unofficial-draft
     note: Not an adopted ETSI deliverable and not a W3C Recommendation.
 
 servers:
@@ -475,6 +475,8 @@ components:
         - policyId
         - profileVersion
         - effectiveFrom
+        - subjectBindingProfile
+        - publicHandlePolicy
         - pidFieldSet
         - signature
       properties:
@@ -495,6 +497,39 @@ components:
             - type: string
               format: date-time
             - type: 'null'
+        subjectBindingProfile:
+          type: string
+          minLength: 1
+          description: |
+            Profile identifier defining deterministic subject-binding derivation,
+            proof verification behavior, and failure semantics.
+        publicHandlePolicy:
+          type: string
+          enum:
+            - verifier-scoped-by-default
+            - blinded-by-default
+            - policy-defined
+          description: |
+            Declares whether publicly visible subject handles are verifier-scoped
+            or otherwise privacy-preserving by default.
+        nonRevocationModel:
+          type: object
+          additionalProperties: false
+          required:
+            - requiredAtVerification
+            - mode
+          properties:
+            requiredAtVerification:
+              type: boolean
+            mode:
+              type: string
+              enum:
+                - status-list-proof
+                - accumulator-proof
+                - policy-defined
+          description: |
+            Declares how non-revocation is verified without requiring global
+            person-correlating identifiers.
         pidFieldSet:
           type: array
           minItems: 1

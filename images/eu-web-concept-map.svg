@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">EU to Web Conceptual Mapping</title>
+  <desc id="desc">Concept bridge between EU signature and seal terminology and web-native DID and VC expressions.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7faf8; }
+      .lane { fill: #ffffff; stroke: #275c3d; stroke-width: 2; }
+      .left { fill: #275c3d; font: 700 22px sans-serif; }
+      .right { fill: #1d3557; font: 700 22px sans-serif; }
+      .boxL { fill: #eaf4ee; stroke: #275c3d; stroke-width: 1.8; rx: 10; ry: 10; }
+      .boxR { fill: #eef3fb; stroke: #1d3557; stroke-width: 1.8; rx: 10; ry: 10; }
+      .txt { fill: #1f2d3d; font: 16px sans-serif; }
+      .arrow { stroke: #556b7f; stroke-width: 2.2; marker-end: url(#m); fill: none; }
+    </style>
+    <marker id="m" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L10,3 L0,6 z" fill="#556b7f"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="520"/>
+  <rect class="lane" x="30" y="30" width="540" height="460"/>
+  <rect class="lane" x="630" y="30" width="540" height="460"/>
+
+  <text class="left" x="55" y="70">EU Concepts</text>
+  <text class="right" x="655" y="70">Web/GIDAS Concepts</text>
+
+  <rect class="boxL" x="55" y="100" width="490" height="78"/>
+  <text class="txt" x="75" y="130">Electronic Signature (person intent act)</text>
+  <text class="txt" x="75" y="155">Signer intent + sole-control semantics</text>
+
+  <rect class="boxR" x="655" y="100" width="490" height="78"/>
+  <text class="txt" x="675" y="130">DID-controller signing act</text>
+  <text class="txt" x="675" y="155">with user-intent and challenge binding</text>
+
+  <rect class="boxL" x="55" y="205" width="490" height="78"/>
+  <text class="txt" x="75" y="235">Electronic Seal (issuer/entity integrity act)</text>
+  <text class="txt" x="75" y="260">Issuer authority + artifact integrity</text>
+
+  <rect class="boxR" x="655" y="205" width="490" height="78"/>
+  <text class="txt" x="675" y="235">Issuer proof over VC or signed artifact</text>
+  <text class="txt" x="675" y="260">VC is container; proof is sealing act</text>
+
+  <rect class="boxL" x="55" y="310" width="490" height="78"/>
+  <text class="txt" x="75" y="340">Electronic Attestation of Attributes</text>
+  <text class="txt" x="75" y="365">Attribute assertions with issuer liability</text>
+
+  <rect class="boxR" x="655" y="310" width="490" height="78"/>
+  <text class="txt" x="675" y="340">VC claims + verifier-checkable evidence</text>
+  <text class="txt" x="675" y="365">and explicit policy separation</text>
+
+  <rect class="boxL" x="55" y="415" width="490" height="58"/>
+  <text class="txt" x="75" y="448">Qualified status remains policy/legal output</text>
+
+  <rect class="boxR" x="655" y="415" width="490" height="58"/>
+  <text class="txt" x="675" y="448">Recognition-status derived from trust registries</text>
+
+  <line class="arrow" x1="545" y1="139" x2="655" y2="139"/>
+  <line class="arrow" x1="545" y1="244" x2="655" y2="244"/>
+  <line class="arrow" x1="545" y1="349" x2="655" y2="349"/>
+  <line class="arrow" x1="545" y1="444" x2="655" y2="444"/>
+</svg>

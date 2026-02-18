@@ -79,15 +79,16 @@
       </p>
       <p>
         GDIS does not claim automatic legal recognition in any jurisdiction. It
-        defines how to derive a stable subject key from MRZ-extracted PID hash
-        material, bind that key to governance verification endpoints, issue the
-        binding as a VC to a DID controlled by a GQSCD-class device, and publish
-        verification material in an open decentralized publication network.
+        defines how to derive deterministic subject-binding evidence from
+        MRZ-extracted PID material, bind that evidence to governance verification
+        endpoints, issue the binding as a VC to a DID controlled by a
+        GQSCD-class device, and publish verification material in an open
+        decentralized publication network.
       </p>
     </section>
 
     <section id="sotd">
-      <p>This is an Editor's Draft.</p>
+      <p>This is an unofficial draft.</p>
       <p>
         AI assistance disclosure: this draft used OpenAI GPT-5 Codex for
         drafting support, structure proposals, and editorial rewrites. Human
@@ -139,6 +140,11 @@
         outputs are produced for equivalent inputs.
       </p>
       <p>
+        Conformance in this specification is outcome-based: required verifier
+        outputs and security/privacy invariants are normative; implementation
+        strategy is a competitive concern.
+      </p>
+      <p>
         This document does not define programming-language implementations or
         API usage recipes; it defines interoperable data contracts and verifier
         behavior.
@@ -161,8 +167,8 @@
           with governance legitimacy modeled as an external fact;
         </li>
         <li>
-          deterministic MRZ-extracted PID hash derivation and governance
-          verification endpoint binding;
+          deterministic MRZ-extracted PID processing and governance verification
+          endpoint binding outcomes;
         </li>
         <li>
           credential binding as a VC issued to a DID where the DID controller is
@@ -402,17 +408,19 @@
           standards contexts.
         </dd>
 
-        <dt><dfn>PID hash</dfn></dt>
+        <dt><dfn>PID binding value</dfn></dt>
         <dd>
-          A cryptographic hash over canonicalized <a>PID</a> fields extracted
-          from MRZ-compatible document data, represented as a hash
-          <a>tuple expression</a>.
+          Deterministic subject-binding value derived from canonicalized
+          <a>PID</a> fields extracted from MRZ-compatible document data.
+          Profiles MAY realize this value as a hash, commitment, or hidden proof
+          input, provided verifier outcomes are deterministic and auditable.
         </dd>
 
         <dt><dfn>GDIS binding credential</dfn></dt>
         <dd>
-          A verifiable credential binding a <a>PID hash</a> to a subject DID,
-          issuer evidence, and governance verification material.
+          A verifiable credential binding a <a>PID binding value</a> (or
+          equivalent hidden proof input) to a subject DID, issuer evidence, and
+          governance verification material.
         </dd>
 
         <dt><dfn>GDIS subject DID</dfn></dt>
@@ -603,23 +611,24 @@
             under governance verification procedures.
           </li>
           <li>
-            PID fields are extracted from MRZ-compatible data, canonicalized,
-            and hashed into a single claim value.
+            PID fields are extracted from <a>MRZ</a>-compatible data, canonicalized,
+            and transformed into profile-defined subject-binding evidence.
           </li>
           <li>
-            Governance verification endpoint data is normalized and hashed.
+            Governance verification endpoint data is normalized and transformed
+            into profile-defined endpoint-binding evidence.
           </li>
           <li>
-            The derived <a>PID hash</a> is bound to endpoint evidence for issuer
-            and verifier checks.
+            The derived <a>PID binding value</a> is bound to endpoint evidence
+            for issuer and verifier checks.
           </li>
           <li>
             An issuer creates a <a>GDIS binding credential</a> addressed to a
             <a>GDIS subject DID</a> with GQSCD controller evidence.
           </li>
           <li>
-            PID-hash key material and verification material are published to a
-            <a>publication set</a> in the selected
+            Verification material, status material, and publication proofs are
+            published to a <a>publication set</a> in the selected
             <a>host profile</a> network.
           </li>
           <li>
@@ -630,19 +639,65 @@
         </ol>
       </section>
 
-      <section id="identifier-derivation">
-        <h3>PID Hash and Endpoint Binding</h3>
+      <section id="lifecycle-high-level" class="informative">
+        <h3>High-Level End-to-End Walkthrough (Informative)</h3>
+        <figure>
+          <img
+            src="./images/gdis-lifecycle.svg"
+            alt="High-level GIDAS lifecycle from governance issuance to verifier decision and revocation handling."
+            style="width: 100%; height: auto"
+          />
+          <figcaption>
+            End-to-end flow overview. Host replication semantics remain defined
+            by the declared host profile.
+          </figcaption>
+        </figure>
+        <ol>
+          <li>
+            A governance-recognized issuer validates PID evidence from a
+            physical identity item and binds it to a user-controlled
+            GQSCD-class controller context.
+          </li>
+          <li>
+            The issuer outputs a binding credential addressed to a subject DID,
+            with issuer proof material and governance-policy references needed by
+            independent verifiers.
+          </li>
+          <li>
+            DID resolution material, status material, and key-history evidence
+            are published across replicated hosts under the declared host profile
+            (for example GQTS), enabling cross-origin consistency checks.
+          </li>
+          <li>
+            The user wallet executes signing and presentation flows from the
+            end-user device boundary; verifier transactions check proof validity,
+            freshness, and policy inputs.
+          </li>
+          <li>
+            Revocation and key-state transitions are published as signed,
+            timestamped status events so verifiers can reject claims outside the
+            valid interval.
+          </li>
+        </ol>
         <p>
-          GDIS v1 defines the binding input tuple as:
-          <span class="mono">(pidHash, endpointHash)</span>.
+          Scope boundary: this walkthrough describes technical evidence flow in
+          GDIS. Legal qualification outcomes are external policy-layer decisions.
+        </p>
+      </section>
+
+      <section id="identifier-derivation">
+        <h3>Subject and Endpoint Binding Outcomes</h3>
+        <p>
+          GDIS v1 defines binding outcomes, not one mandated implementation.
+          Conforming profiles MUST define deterministic verifier behavior for the
+          binding tuple:
+          <span class="mono">(subjectBindingValue, endpointBindingValue)</span>.
         </p>
         <p>
-          Hash identifiers in this specification are serialized as a
-          two-component <a>tuple expression</a>:
-          <span class="mono">algorithm:value</span>, where
-          <span class="mono">algorithm</span> is the canonical algorithm token
-          and <span class="mono">value</span> is the Base64URL-encoded digest
-          value.
+          If a profile uses hash-derived identifiers, it MUST define
+          deterministic serialization (for example
+          <a>tuple expression</a> format), canonicalization rules, and verifier
+          failure semantics.
         </p>
         <ol>
           <li>
@@ -651,53 +706,30 @@
             document data.
           </li>
           <li>
-            Canonicalize PID JSON using JCS
-            <a href="#ref-rfc8785">[RFC8785]</a>. Compute SHA-256 digest bytes
-            using the canonical WebCrypto algorithm token
-            <span class="mono">"SHA-256"</span>
-            <a href="#ref-webcrypto2">[WEBCRYPTO-L2]</a>
-            <a href="#ref-fips180-4">[FIPS180-4]</a>. Encode digest bytes using
-            unpadded Base64URL <a href="#ref-rfc4648">[RFC4648]</a>, then
-            serialize:
-            <span class="mono">pidHash = "SHA-256:" + base64urlDigestValue</span
-            >.
+            Derive <span class="mono">subjectBindingValue</span> from
+            canonicalized PID input using a profile-declared deterministic
+            construction.
           </li>
           <li>
-            Normalize endpoint URI per RFC 3986
-            <a href="#ref-rfc3986">[RFC3986]</a>. Compute SHA-256 digest bytes
-            and serialize:
-            <span class="mono"
-              >endpointHash = "SHA-256:" + base64urlDigestValue</span
-            >
-            <a href="#ref-webcrypto2">[WEBCRYPTO-L2]</a>
-            <a href="#ref-fips180-4">[FIPS180-4]</a>
-            <a href="#ref-rfc4648">[RFC4648]</a>.
+            Derive <span class="mono">endpointBindingValue</span> from
+            normalized endpoint input using a profile-declared deterministic
+            construction.
           </li>
           <li>
-            Compute binding digest bytes from
-            <span class="mono"
-              >UTF8("gdis:v1") || pidDigestBytes || endpointDigestBytes</span
-            >, then serialize:
-            <span class="mono"
-              >bindingDigest = "SHA-256:" + base64urlDigestValue</span
-            >.
+            Produce verifiable binding evidence that ties
+            <span class="mono">subjectBindingValue</span> and
+            <span class="mono">endpointBindingValue</span> to issuer identity,
+            governance policy version, and issuance time.
           </li>
           <li>
-            Publish <span class="mono">pidHash</span> as the primary subject key
-            and include <span class="mono">bindingDigest</span> as optional
-            integrity metadata. Profiles MAY additionally define blinded or
-            scope-bound aliases derived from <span class="mono">pidHash</span>
-            for privacy-preserving publication.
+            Publicly replicated artifacts MUST NOT require globally reusable
+            person-identifying handles for verifier correctness. Profiles SHOULD
+            use blinded or verifier-scoped handles by default.
           </li>
           <li>
-            Parsers <em class="rfc2119">MUST</em> split hash tuple expressions
-            on the first <span class="mono">:</span>. Component index
-            <span class="mono">0</span> is the canonical algorithm token (<span
-              class="mono"
-              >"SHA-256"</span
-            >
-            in v1) and component index <span class="mono">1</span> is the
-            Base64URL digest value.
+            Profiles MUST publish deterministic verifier algorithms and test
+            vectors that yield behaviorally equivalent outputs for equivalent
+            inputs, independent of implementation internals.
           </li>
         </ol>
       </section>
@@ -720,9 +752,12 @@
   "issuer": "did:example:governance-issuer",
   "credentialSubject": {
     "id": "did:example:subject",
-    "pidHash": "SHA-256:vt151fJDA8-99wxkuspvQf_8BquoKDe-nz9JdlEGWk8",
+    "subjectBinding": {
+      "mode": "profile-defined-hidden-binding",
+      "policyId": "EX-GOV-001-pid-v4"
+    },
     "endpoint": "https://registry.example.gov/.well-known/gidas/verify",
-    "bindingDigest": "SHA-256:FU53SOqpSyT9PJEgkKoHf7XyyJxQP7OdqpMpbZIsZkA",
+    "endpointBindingValue": "profile:v1:K7xJ8G2y9N....",
     "governanceArea": "EX-GOV-001"
   },
   "evidence": [{
@@ -737,7 +772,8 @@
       <section id="event-log-model">
         <h3>Decentralized Publication Model</h3>
         <p>
-          GDIS requires publication of verification material, but transport,
+          GDIS requires publication of verification material to a
+          <a>decentralized event log</a>, but transport,
           replication, ordering, and distribution semantics are delegated to the
           declared host profile. This specification defines publication
           obligations and identity-binding semantics; it does not define host
@@ -769,7 +805,8 @@
           <tr>
             <td>Binding credential artifact</td>
             <td>
-              issuer, subject DID, <a>PID hash</a>, endpoint reference, proof
+              issuer, subject DID, subject-binding evidence reference, endpoint
+              reference, proof
             </td>
             <td>Issuer</td>
             <td>Verifier</td>
@@ -833,25 +870,27 @@
       <section id="req-mrz-pid">
         <h3>
           <span id="REQ-GDIS-02" class="mono">REQ-GDIS-02</span>
-          2. MRZ-Derived PID Hash Requirements
+          2. MRZ-Derived Subject Binding Requirements
         </h3>
         <ul>
           <li>
             Implementations <em class="rfc2119">MUST</em> derive
-            <a>PID hash</a> from PID fields extracted from MRZ data defined by
-            ICAO Doc 9303 structures
+            <a>PID binding value</a> from PID fields extracted from MRZ data
+            defined by ICAO Doc 9303 structures
             <a href="#ref-icao-doc9303">[ICAO-9303]</a>.
           </li>
           <li>
-            <a>PID hash</a> input fields <em class="rfc2119">MUST</em> be
-            explicitly versioned and canonicalized before hashing
+            <a>PID binding value</a> input fields
+            <em class="rfc2119">MUST</em> be
+            explicitly versioned and canonicalized before binding-value
+            derivation
             <a href="#ref-rfc8785">[RFC8785]</a>.
           </li>
           <li>
             Implementations <em class="rfc2119">MUST</em> resolve the governance
             <a>PID field set</a> from the <a>PID identification endpoint</a> (or
             from an equivalently signed cached copy) before deriving
-            <a>PID hash</a>.
+            <a>PID binding value</a>.
           </li>
           <li>
             This specification <em class="rfc2119">MUST NOT</em> define a
@@ -862,7 +901,7 @@
           <li>
             For each required field in the governance <a>PID field set</a>,
             implementations <em class="rfc2119">MUST</em> include that field in
-            PID derivation input and <em class="rfc2119">MUST</em> validate the
+            PID derivation input and <em class="rfc2119">MUST</em> validate each
             extracted value against the declared field regular expression.
           </li>
           <li>
@@ -872,32 +911,22 @@
             <em class="rfc2119">MUST NOT</em> proceed.
           </li>
           <li>
-            Digest computation for hash-derived identifiers in this
-            specification (<span class="mono">pidHash</span>,
-            <span class="mono">endpointHash</span>,
-            <span class="mono">bindingDigest</span>,
-            <span class="mono">eventId</span>, and
-            <span class="mono">*Digest</span> fields)
-            <em class="rfc2119">MUST</em> use SHA-256 with the Web Crypto API
-            algorithm parameter value <span class="mono">"SHA-256"</span>, or a
-            byte-for-byte equivalent cryptographic implementation
-            <a href="#ref-webcrypto2">[WEBCRYPTO-L2]</a>
-            <a href="#ref-fips180-4">[FIPS180-4]</a>.
+            This specification defines required outcomes for subject-binding
+            verification; it does not mandate one subject-binding cryptographic
+            construction. Profiles MAY use hash-derived identifiers,
+            commitments, or zero-knowledge-bound hidden messages if verifier
+            outputs remain deterministic and auditable.
           </li>
           <li>
-            Hash-derived identifiers <em class="rfc2119">MUST</em> be
-            represented as
-            <span class="mono">SHA-256:&lt;base64url-no-padding&gt;</span>,
-            where the Base64URL payload encodes exactly 32 digest bytes (256
-            bits), producing exactly 43 Base64URL characters
-            <a href="#ref-rfc4648">[RFC4648]</a>.
+            Profiles <em class="rfc2119">MUST</em> specify deterministic
+            canonicalization, cryptographic input construction, proof
+            verification, error semantics, and conformance tests for
+            subject-binding verification.
           </li>
           <li>
-            For hash tuple parsing, component index
-            <span class="mono">0</span> <em class="rfc2119">MUST</em> equal the
-            canonical algorithm token <span class="mono">"SHA-256"</span> and
-            component index <span class="mono">1</span>
-            <em class="rfc2119">MUST</em> contain the Base64URL digest value.
+            If a profile uses hash tuple expressions, parser behavior,
+            algorithm-token handling, and byte-serialization rules
+            <em class="rfc2119">MUST</em> be explicitly defined by that profile.
           </li>
           <li>
             Raw MRZ strings and raw PID fields
@@ -905,16 +934,23 @@
             publication layer.
           </li>
           <li>
-            <a>PID hash</a> <em class="rfc2119">MUST</em> be treated as a
-            sensitive pseudonymous identifier because it can be linkable across
-            contexts.
+            Any globally reusable identifier derived from PID material
+            <em class="rfc2119">MUST</em> be treated as a high-linkability
+            artifact and <em class="rfc2119">MUST NOT</em> be required for
+            public verification in the baseline web profile.
           </li>
           <li>
             Where publication targets include publicly reachable hosts,
             implementations <em class="rfc2119">SHOULD</em> use profile-defined
-            blinded or scope-bound identifiers in addition to, or instead of,
-            directly queryable global identifiers, so long as verifier
-            correctness and governance requirements remain satisfied.
+            blinded or scope-bound identifiers instead of directly queryable
+            global identifiers, so long as verifier correctness and governance
+            requirements remain satisfied.
+          </li>
+          <li>
+            Verifier transactions <em class="rfc2119">MUST</em> support
+            challenge/audience binding and SHOULD support verifier-scoped
+            subject handles or equivalent unlinkability-preserving proof
+            constructions.
           </li>
         </ul>
       </section>
@@ -939,7 +975,8 @@
           </li>
           <li>
             Endpoint URIs <em class="rfc2119">MUST</em> use HTTPS and
-            <em class="rfc2119">MUST</em> be normalized before hashing
+            <em class="rfc2119">MUST</em> be normalized before endpoint-binding
+            derivation
             <a href="#ref-rfc3986">[RFC3986]</a>
             <a href="#ref-rfc9110">[RFC9110]</a>.
           </li>
@@ -966,6 +1003,14 @@
             <span class="mono">GdisPidIdentificationPolicy</span> and
             <span class="mono">GdisPidFieldRequirement</span> schemas in
             <span class="mono">openapi.yaml</span>.
+          </li>
+          <li>
+            PID policy responses <em class="rfc2119">MUST</em> declare
+            subject-binding outcome metadata (at minimum
+            <span class="mono">subjectBindingProfile</span> and
+            <span class="mono">publicHandlePolicy</span>) so verifiers can
+            evaluate conformance outcomes without assuming one cryptographic
+            implementation.
           </li>
           <li>
             PID field regular-expression checks declared by the PID policy
@@ -1045,8 +1090,8 @@
         <ul>
           <li>
             GDIS issuers and verifiers <em class="rfc2119">MUST</em> process
-            publication evidence bound to <a>PID hash</a> under a declared host
-            profile identifier.
+            publication evidence bound to credential or proof artifacts under a
+            declared host profile identifier.
           </li>
           <li>
             GDIS does not define an independent host role. Host-role semantics
@@ -1071,6 +1116,12 @@
           <li>
             Subjects <em class="rfc2119">MUST</em> be able to add
             person-selected hosts beyond mandatory minimum hosts.
+          </li>
+          <li>
+            Status and revocation semantics published through host profiles
+            <em class="rfc2119">MUST</em> permit verifier freshness and
+            non-revocation decisions without forcing public disclosure of a
+            globally reusable person identifier.
           </li>
         </ul>
       </section>
@@ -1162,12 +1213,12 @@
             The issuer MUST resolve the governance
             <a>PID identification endpoint</a> policy, include all required
             fields, and validate each extracted field value against its declared
-            regular expression before PID hash derivation.
+            regular expression before subject-binding derivation.
           </li>
           <li>
-            The issuer MUST compute <a>PID hash</a> and endpoint-binding values
-            exactly as defined in
-            <a href="#identifier-derivation">PID Hash and Endpoint Binding</a>.
+            The issuer MUST compute <a>PID binding value</a> and
+            endpoint-binding values exactly as defined by the active profile's
+            deterministic binding rules.
           </li>
           <li>
             The issuer MUST include enough evidence references for a verifier to
@@ -1191,8 +1242,8 @@
           <span class="mono"
             >REQ-GDIS-03, REQ-GDIS-05, REQ-GDIS-06, and REQ-GDIS-07</span
           >
-          before returning a decision. The verifier output MUST be explicit and
-          machine-consumable.
+          before returning a decision. The verifier output MUST be an explicit,
+          machine-consumable <a>verification result</a>.
         </p>
         <ol>
           <li>
@@ -1202,7 +1253,7 @@
           <li>
             The verifier MUST resolve applicable governance PID policy and
             validate required extracted fields against declared regular
-            expressions before accepting derived PID claims.
+            expressions before accepting derived subject-binding claims.
           </li>
           <li>
             The verifier MUST validate publication evidence using the declared
@@ -1219,7 +1270,8 @@
           </li>
         </ol>
         <pre class="example"><code class="json">{
-  "pidHash": "SHA-256:vt151fJDA8-99wxkuspvQf_8BquoKDe-nz9JdlEGWk8",
+  "subjectHandle": "aud:merchant.example:2f1f7e6f9a3e",
+  "linkabilityClass": "verifier-scoped",
   "decision": "valid",
   "status": "active",
   "evaluatedAt": "2026-02-17T12:34:56Z",
@@ -1263,8 +1315,8 @@
             <td>Verifier</td>
           </tr>
           <tr>
-            <td>REQ-GDIS-02 MRZ-derived PID hash</td>
-            <td>Canonicalization and hash transcript</td>
+            <td>REQ-GDIS-02 MRZ-derived subject binding</td>
+            <td>Canonicalization and binding transcript</td>
             <td>Issuer</td>
             <td>Verifier</td>
           </tr>
@@ -1392,7 +1444,7 @@
         <h3>Primary Web Profile</h3>
         <p>
           Implementations <em class="rfc2119">MUST</em> treat web standards as
-          the primary interoperability baseline:
+          the primary interoperability baseline (<a>web profile</a>):
         </p>
         <ul>
           <li>DID Core <a href="#ref-did-core">[DID-CORE]</a>;</li>
@@ -1424,8 +1476,9 @@
       <section id="eu-compat-profile">
         <h3>EU Compatibility Profile</h3>
         <p>
-          EU-specific requirements are mapping layers on top of the primary web
-          profile and do not replace web-profile baseline semantics.
+          <a>EU compatibility profile</a> requirements are mapping layers on top
+          of the primary <a>web profile</a> and do not replace web-profile
+          baseline semantics.
         </p>
         <table class="simple tight">
           <thead>
@@ -1481,6 +1534,82 @@
             </tr>
           </tbody>
         </table>
+
+        <section id="eu-web-conceptual-mapping" class="informative">
+          <h4>EU to Web Conceptual Mapping (Informative)</h4>
+          <p>
+            This subsection is a discussion aid for cross-community alignment.
+            It is conceptual and does not, by itself, establish legal status.
+          </p>
+          <figure>
+            <img
+              src="./images/eu-web-concept-map.svg"
+              alt="Concept bridge showing EU signature, seal, and attestation concepts mapped to DID and VC expressions."
+              style="width: 100%; height: auto"
+            />
+            <figcaption>
+              Conceptual bridge only. Legal qualification remains an external
+              policy decision.
+            </figcaption>
+          </figure>
+          <table class="simple tight">
+            <thead>
+              <tr>
+                <th>EU Concept</th>
+                <th>Closest Web/GIDAS Expression</th>
+                <th>Important Boundary</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Electronic Signature (natural-person intent act)</td>
+                <td>
+                  DID-controller signing act with explicit user-intent evidence
+                  (for example GQSCD-class controller evidence and verifier
+                  challenge binding).
+                </td>
+                <td>
+                  Signature is an act by a signing subject. A DID-based proof
+                  can represent this act if intent and key-control evidence are
+                  present.
+                </td>
+              </tr>
+              <tr>
+                <td>Electronic Seal (issuer/legal-entity integrity act)</td>
+                <td>
+                  Issuer proof over a VC or other signed artifact, where issuer
+                  identity and key authority are independently verifiable.
+                </td>
+                <td>
+                  A VC is a data container; the proof over it is the
+                  cryptographic act that is closest to sealing.
+                </td>
+              </tr>
+              <tr>
+                <td>Electronic Attestation of Attributes</td>
+                <td>
+                  VC claims bound to issuer proof material and verifier-checkable
+                  evidence references.
+                </td>
+                <td>
+                  Attribute semantics and legal effect remain policy-layer
+                  outputs, separate from cryptographic validity.
+                </td>
+              </tr>
+              <tr>
+                <td>Qualified status labels (QES/QSeal/EAA qualification)</td>
+                <td>
+                  Recognition-status output derived from trusted lists,
+                  supervisory registries, and profile policy inputs.
+                </td>
+                <td>
+                  Cryptographic validity is necessary but not sufficient for
+                  legal qualification status.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
       </section>
     </section>
     <section id="threat-model">
@@ -1568,9 +1697,9 @@
           transactions.
         </li>
         <li>
-          Stable globally reusable identifiers (including plain
-          <span class="mono">pidHash</span> publication) SHOULD be treated as
-          high-linkability artifacts and SHOULD be minimized where feasible.
+          Stable globally reusable identifiers derived from PID material SHOULD
+          be treated as high-linkability artifacts and SHOULD be minimized where
+          feasible.
         </li>
         <li>
           If publicly reachable hosts are used, anti-enumeration and abuse
