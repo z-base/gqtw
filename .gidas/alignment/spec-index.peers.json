@@ -326,247 +326,189 @@
         "clause_id": "REQ-GQSCD-54",
         "anchor": "#req-gqscd-54",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "2c0835f04f4db4ec40a9c3712c7d40ee568b9ca017b5767158914635ff525e22"
       },
       {
         "clause_id": "REQ-GQSCD-55",
         "anchor": "#req-gqscd-55",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "2d53cb82cd749963cf9921c33febd2b69c405d8618e53dc8686197a91dcb5a95"
       },
       {
         "clause_id": "REQ-GQSCD-01",
         "anchor": "#req-gqscd-01",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "f2f9a2854d2679acdf8f2c33b38211ffc2b5500d36ea552152efc69d1c21abcd"
       },
       {
         "clause_id": "REQ-GQSCD-02",
         "anchor": "#req-gqscd-02",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "09266312ef61b04c953003ca4f9b39d9568c24ab872dcdcf227f07297cd23aa1"
       },
       {
         "clause_id": "REQ-GQSCD-03",
         "anchor": "#req-gqscd-03",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "650a0d48d7ff52bf19d657975228d4bdb1ccd601ab9ff7acf978d7a3b949485e"
       },
       {
         "clause_id": "REQ-GQSCD-04",
         "anchor": "#req-gqscd-04",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "bb93697d576eaa5319dfd32f9c6ff203e44005dd512a44d1666045eb1ea7d079"
       },
       {
         "clause_id": "REQ-GQSCD-05",
         "anchor": "#req-gqscd-05",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "82ae7799fcc3460761f120a52166abe98959f5fdb5b1a15f27ce4b794b97124f"
       },
       {
         "clause_id": "REQ-GQSCD-06",
         "anchor": "#req-gqscd-06",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "f6a00093bc2b52c0dbe231698911a1177a053b89ad14a0e63f81a95bfcea6309"
       },
       {
         "clause_id": "REQ-GQSCD-07",
         "anchor": "#req-gqscd-07",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "1c2f82a53bf82d5dd6d03b6f3023278c61255bfa97d652afe2e5976e1987167b"
       },
       {
         "clause_id": "REQ-GQSCD-08",
         "anchor": "#req-gqscd-08",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "fc310946a05b92681c46af9bd60b1d01c39255f45dd59cc1a79017ba763fc3e7"
       },
       {
         "clause_id": "REQ-GQSCD-09",
         "anchor": "#req-gqscd-09",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "74d49e533b099328304157c5d1029c068f57d3c7575a73de892f94dc9c0eee63"
       },
       {
         "clause_id": "REQ-GQSCD-10",
         "anchor": "#req-gqscd-10",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST",
-          "MUST NOT"
-        ],
+        "normative_keywords_used": ["MUST", "MUST NOT"],
         "text_excerpt_hash": "d90e25be0a115193c924d8b1255e7c93d557433014d3b7c9ff82bec03c623010"
       },
       {
         "clause_id": "REQ-GQSCD-11",
         "anchor": "#req-gqscd-11",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST",
-          "MUST NOT"
-        ],
+        "normative_keywords_used": ["MUST", "MUST NOT"],
         "text_excerpt_hash": "e8c1ad5af28c03b007c0def42264a823ac955383e713dbfdfb99086a6c2b756e"
       },
       {
         "clause_id": "REQ-GQSCD-12",
         "anchor": "#req-gqscd-12",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "2b999d2af554456b655cf88175000477147196eabd67757497ce164884dbc9c4"
       },
       {
         "clause_id": "REQ-GQSCD-13",
         "anchor": "#req-gqscd-13",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST",
-          "MUST NOT"
-        ],
+        "normative_keywords_used": ["MUST", "MUST NOT"],
         "text_excerpt_hash": "9307b96ed10cdced647f10458f5b22bb6f8fe73929bb93eeba3d4a740e9ecab8"
       },
       {
         "clause_id": "REQ-GQSCD-14",
         "anchor": "#req-gqscd-14",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "d2b57d0b7d64b54b9da919630457d945e86b0ec5045087488aba4dc752932dc8"
       },
       {
         "clause_id": "REQ-GQSCD-15",
         "anchor": "#req-gqscd-15",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "ea587dded5e4bcbc811074c42cdb31494d9b90c6fd935c37c960057005bbfa5c"
       },
       {
         "clause_id": "REQ-GQSCD-16",
         "anchor": "#req-gqscd-16",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "9a34cd517dd53bbd0c29dfab3a0dd08410c96dda8e3fa8de7a84ff3bad3d84f6"
       },
       {
         "clause_id": "REQ-GQSCD-17",
         "anchor": "#req-gqscd-17",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "b2c9d8e4345ba1430a1194185e880be66d6a347d6f2d669e41ef70ef11ea2e9e"
       },
       {
         "clause_id": "REQ-GQSCD-18",
         "anchor": "#req-gqscd-18",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "14be0c092c18c1ee1dfb85209c16c80242154221c25b51de5e65713ec18cf8b5"
       },
       {
         "clause_id": "REQ-GQSCD-19",
         "anchor": "#req-gqscd-19",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "19f20d9dd450b78cca60589b54e72588e7f6febb57709725c6240309ade73505"
       },
       {
         "clause_id": "REQ-GQSCD-20",
         "anchor": "#req-gqscd-20",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "342cfbcc9be10fb777b286f715af6cd5c433d875f8cc557e36335a7408ce07e2"
       },
       {
         "clause_id": "REQ-GQSCD-21",
         "anchor": "#req-gqscd-21",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "ec68e9b6d6228671a09b8a761800ed57e689fd3173179b844db3f9d1236530fc"
       },
       {
         "clause_id": "REQ-GQSCD-22",
         "anchor": "#req-gqscd-22",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "156fe545946b1414e9959372c987477852536641aa17347a1d565c9671e2ec75"
       },
       {
         "clause_id": "REQ-GQSCD-23",
         "anchor": "#req-gqscd-23",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "SHOULD"
-        ],
+        "normative_keywords_used": ["SHOULD"],
         "text_excerpt_hash": "1b288b79f2e682d762ae82bc9f2f8ea3fac79848485fb54ac6a6802a53e677a5"
       },
       {
         "clause_id": "REQ-GQSCD-24",
         "anchor": "#req-gqscd-24",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST",
-          "MAY"
-        ],
+        "normative_keywords_used": ["MUST", "MAY"],
         "text_excerpt_hash": "83249f0133114385e7c3857a7b0a630a306d8a4e0f975578258ab0fa5e83bb26"
       },
       {
         "clause_id": "REQ-GQSCD-25",
         "anchor": "#req-gqscd-25",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "SHOULD"
-        ],
+        "normative_keywords_used": ["SHOULD"],
         "text_excerpt_hash": "2fca88123b4cfb5aee0d6024471e5d62f3e509da6320a9d0c4d0094cdc3fb4d4"
       },
       {
@@ -601,220 +543,168 @@
         "clause_id": "REQ-GQSCD-30",
         "anchor": "#req-gqscd-30",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "4a3af4b98a9740d054a131d287dfe7bb16709520130fb9788e4c79d273cfe20d"
       },
       {
         "clause_id": "REQ-GQSCD-31",
         "anchor": "#req-gqscd-31",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "ba6525ef3546d13125d643cde6e3e2b01d506ec03c0093c5e7708b6c5474d905"
       },
       {
         "clause_id": "REQ-GQSCD-32",
         "anchor": "#req-gqscd-32",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "199f589c87f882771a68873be72dec1b17ed1b533b37f11f30684f724158ec98"
       },
       {
         "clause_id": "REQ-GQSCD-33",
         "anchor": "#req-gqscd-33",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "SHOULD",
-          "MAY"
-        ],
+        "normative_keywords_used": ["SHOULD", "MAY"],
         "text_excerpt_hash": "8dd9c18390f7d77b6739ae753bbab10f42333b1469f16500d8bbd0657a048cd8"
       },
       {
         "clause_id": "REQ-GQSCD-34",
         "anchor": "#req-gqscd-34",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MAY"
-        ],
+        "normative_keywords_used": ["MAY"],
         "text_excerpt_hash": "794f86e3535564ea1371604e7eee208ffd72ebb637c5e20bfea61e9e79577857"
       },
       {
         "clause_id": "REQ-GQSCD-35",
         "anchor": "#req-gqscd-35",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "d0f9a8703e63694ab811166e2baf4adbd73a2dd86b06b08ed1b8863294d87793"
       },
       {
         "clause_id": "REQ-GQSCD-36",
         "anchor": "#req-gqscd-36",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "3ca74fbc200f234266e88d1ce05d8325424bb137366ff0622217a92f54ec2ea5"
       },
       {
         "clause_id": "REQ-GQSCD-37",
         "anchor": "#req-gqscd-37",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST",
-          "MUST NOT"
-        ],
+        "normative_keywords_used": ["MUST", "MUST NOT"],
         "text_excerpt_hash": "465e0f2a21cffd4ccfbf6a61b1947dfe544c5bfb13985dd8b2566b19c2dbfb9a"
       },
       {
         "clause_id": "REQ-GQSCD-38",
         "anchor": "#req-gqscd-38",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "430bccdbb4f86ea0f872b89b08c5487836197390b9baa88c9c98017dbff7b29c"
       },
       {
         "clause_id": "REQ-GQSCD-39",
         "anchor": "#req-gqscd-39",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "398501341ac08f5ceb00bef5b21e25093e803a55f6cc524d3269fc5f91585ad7"
       },
       {
         "clause_id": "REQ-GQSCD-40",
         "anchor": "#req-gqscd-40",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST",
-          "MUST NOT"
-        ],
+        "normative_keywords_used": ["MUST", "MUST NOT"],
         "text_excerpt_hash": "fd97dc3904d3883c69b02d920d2434be52ba69421abbfa95c509c2428be60fe2"
       },
       {
         "clause_id": "REQ-GQSCD-41",
         "anchor": "#req-gqscd-41",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "f996dea48e175ea75027a7ac09a8be9daf022a86211eff7b5a6058c1af40370b"
       },
       {
         "clause_id": "REQ-GQSCD-42",
         "anchor": "#req-gqscd-42",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "d90d35a02d719fac827ff0b8230b2bc58776931a6afa7b592a6fdc7e89271a6a"
       },
       {
         "clause_id": "REQ-GQSCD-43",
         "anchor": "#req-gqscd-43",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "0a14493e3dc87b29bd43c0158ca927f7433c7561107fb33c65193b3a959ee309"
       },
       {
         "clause_id": "REQ-GQSCD-44",
         "anchor": "#req-gqscd-44",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "4a0cbdf1ae56fa761f9305600bc0dfc18379938353321eedd68b423d809a3a89"
       },
       {
         "clause_id": "REQ-GQSCD-45",
         "anchor": "#req-gqscd-45",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "4a4d000db77823d8c39b456234185f192119a73e8b31e0c27ac2754ee49be01e"
       },
       {
         "clause_id": "REQ-GQSCD-46",
         "anchor": "#req-gqscd-46",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "9ebf0bf46feb92c70f7528d29eac3c97bc453289d738882e61d8e431af46d39f"
       },
       {
         "clause_id": "REQ-GQSCD-47",
         "anchor": "#req-gqscd-47",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "95f7ff48a128c90cd6ab42c88f21630619e94059afbd311cf3b585ffd8fc92e4"
       },
       {
         "clause_id": "REQ-GQSCD-48",
         "anchor": "#req-gqscd-48",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "c7f26cf237d426bfc789534787fff7f4ef17c7e16d6d46781b2804a6dbeb90b1"
       },
       {
         "clause_id": "REQ-GQSCD-49",
         "anchor": "#req-gqscd-49",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "715a2cae9199cdb1dd91548be6acc06a5063101b4daada497eaab5249cdac607"
       },
       {
         "clause_id": "REQ-GQSCD-50",
         "anchor": "#req-gqscd-50",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "aefaee85ece41d0594085f6555f84d80edf01e057f705c3e61f4881a66cb1291"
       },
       {
         "clause_id": "REQ-GQSCD-51",
         "anchor": "#req-gqscd-51",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST",
-          "MUST NOT"
-        ],
+        "normative_keywords_used": ["MUST", "MUST NOT"],
         "text_excerpt_hash": "4e23b9813ebf8c8a927a6dc7262e444124df052503fe4812b000b022e0aee030"
       },
       {
         "clause_id": "REQ-GQSCD-52",
         "anchor": "#req-gqscd-52",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "b03c3e224fecba2bcfa5d4c8f47d83ccc75a83b291b97820c093100bd535298b"
       },
       {
         "clause_id": "REQ-GQSCD-53",
         "anchor": "#req-gqscd-53",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "d3c7ce829af2db22544dcbd1c184cf657a9e397e37bec033b0b83dde82166983"
       }
     ],
@@ -977,63 +867,49 @@
         "clause_id": "REQ-GQTS-01",
         "anchor": "#req-gqts-01",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "b1208167f39ff9b4a19af2fe8dfeca251a29afbe780fec153f41316b3aa42df2"
       },
       {
         "clause_id": "REQ-GQTS-02",
         "anchor": "#req-gqts-02",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "20f0ee684a402ac34182e93d01d50d2fec3e3a63d18ab736cd79cb50b9303a13"
       },
       {
         "clause_id": "REQ-GQTS-03",
         "anchor": "#req-gqts-03",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "783a304989c2d55e48f5723d898baeaef8791c7c1e2ac1d7305cc65a3fc7290e"
       },
       {
         "clause_id": "REQ-GQTS-04",
         "anchor": "#req-gqts-04",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "SHOULD"
-        ],
+        "normative_keywords_used": ["SHOULD"],
         "text_excerpt_hash": "2586058286c976332a44837ecf78c092751b46426db038952d6c6c44f3fc4495"
       },
       {
         "clause_id": "REQ-GQTS-05",
         "anchor": "#req-gqts-05",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "45e3ec2d5040f837ab42a1bd4ccd057f541458a1150771b8593749d08da9a536"
       },
       {
         "clause_id": "REQ-GQTS-06",
         "anchor": "#req-gqts-06",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "e6874729d374c7e884cc150fefd34626f75249e9e9c20960cce9bc14575747ed"
       },
       {
         "clause_id": "REQ-GQTS-07",
         "anchor": "#req-gqts-07",
         "kind": "requirement",
-        "normative_keywords_used": [
-          "MUST"
-        ],
+        "normative_keywords_used": ["MUST"],
         "text_excerpt_hash": "9cf8c5e83282abf6c5c8d4cf93f6217ee55e08a3135e668659e8235e89ca76e1"
       }
     ],
@@ -1063,14 +939,8 @@
           "path": "/.well-known/gidas/gqts/scheme/{governanceCode}",
           "requirement_key": "x-gqts-requirement",
           "x_requirement": "REQ-GQTS-01",
-          "media_types": [
-            "application/gqts.scheme+json",
-            "application/json"
-          ],
-          "schema_refs": [
-            "SchemeDescriptor",
-            "SchemeDescriptor"
-          ],
+          "media_types": ["application/gqts.scheme+json", "application/json"],
+          "schema_refs": ["SchemeDescriptor", "SchemeDescriptor"],
           "operation_contract_hash": "eb261882d3fd63334b14867c013db40bc7c5639767ba6729655c5665cfffb846"
         },
         {
@@ -1083,10 +953,7 @@
             "application/gqts.endpoint-kinds+json",
             "application/json"
           ],
-          "schema_refs": [
-            "EndpointKindCatalog",
-            "EndpointKindCatalog"
-          ],
+          "schema_refs": ["EndpointKindCatalog", "EndpointKindCatalog"],
           "operation_contract_hash": "b99e64b4a067c3d04e09f20d5d4533a05e693642df23eb9dffe8ceee6518ec95"
         },
         {
@@ -1095,14 +962,8 @@
           "path": "/.well-known/gidas/gqts/type/{serviceId}",
           "requirement_key": "x-gqts-requirement",
           "x_requirement": "REQ-GQTS-03",
-          "media_types": [
-            "application/gqts.type+json",
-            "application/json"
-          ],
-          "schema_refs": [
-            "ServiceDescriptor",
-            "ServiceDescriptor"
-          ],
+          "media_types": ["application/gqts.type+json", "application/json"],
+          "schema_refs": ["ServiceDescriptor", "ServiceDescriptor"],
           "operation_contract_hash": "7e62c7b1058716e8a8f814c059ac6c4723b358bca3f3746b6fab2d6c00369f3e"
         },
         {
@@ -1111,14 +972,8 @@
           "path": "/.well-known/gidas/gqts/event/{logId}",
           "requirement_key": "x-gqts-requirement",
           "x_requirement": "REQ-GQTS-05",
-          "media_types": [
-            "application/gqts.eventlog+json",
-            "application/json"
-          ],
-          "schema_refs": [
-            "EventLogView",
-            "EventLogView"
-          ],
+          "media_types": ["application/gqts.eventlog+json", "application/json"],
+          "schema_refs": ["EventLogView", "EventLogView"],
           "operation_contract_hash": "6f50ab0c8126b90241e7e831c374173464d2067371a8e72cc73a38648601e497"
         },
         {
@@ -1149,10 +1004,7 @@
             "application/gqts.event-head+json",
             "application/json"
           ],
-          "schema_refs": [
-            "EventHeadMeta",
-            "EventHeadMeta"
-          ],
+          "schema_refs": ["EventHeadMeta", "EventHeadMeta"],
           "operation_contract_hash": "ba0f6e87e1618034e7ea928da24edd3d97f2daa118d809ccbd8d4dba922d2a66"
         },
         {
@@ -1161,10 +1013,7 @@
           "path": "/.well-known/gidas/gqts/event/{logId}/{eventId}",
           "requirement_key": "x-gqts-requirement",
           "x_requirement": "REQ-GQTS-07",
-          "media_types": [
-            "application/gqts.event+json",
-            "application/json"
-          ],
+          "media_types": ["application/gqts.event+json", "application/json"],
           "schema_refs": [
             "EventEnvelope",
             "EventEnvelope",

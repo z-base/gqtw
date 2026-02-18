@@ -80,9 +80,9 @@
       <p>
         GDIS does not claim automatic legal recognition in any jurisdiction. It
         defines how to derive deterministic subject-binding evidence from
-        MRZ-extracted PID material, bind that evidence to governance verification
-        endpoints, issue the binding as a VC to a DID controlled by a
-        GQSCD-class device, and publish verification material in an open
+        MRZ-extracted PID material, bind that evidence to governance
+        verification endpoints, issue the binding as a VC to a DID controlled by
+        a GQSCD-class device, and publish verification material in an open
         decentralized publication network.
       </p>
     </section>
@@ -123,9 +123,8 @@
         Unless explicitly overridden, data-model terms such as
         <a>list</a>, <a>set</a>, <a>tuple</a>, and <a>byte sequence</a>
         are interpreted according to Infra
-        <a href="#ref-infra">[INFRA]</a>. JSON payload and array semantics
-        are interpreted according to
-        <a href="#ref-rfc8259">[RFC8259]</a>.
+        <a href="#ref-infra">[INFRA]</a>. JSON payload and array semantics are
+        interpreted according to <a href="#ref-rfc8259">[RFC8259]</a>.
       </p>
       <p>
         End-to-end machine verifiability is mandatory: any acceptance decision,
@@ -153,8 +152,7 @@
         Where protocol endpoints are defined, normative wire contracts are
         defined in <span class="mono">openapi.yaml</span>. ReSpec prose in this
         document defines invariants, processing rules, and conformance semantics
-        for those contracts
-        <a href="#ref-oas-3-1-2">[OAS-3.1.2]</a>.
+        for those contracts <a href="#ref-oas-3-1-2">[OAS-3.1.2]</a>.
       </p>
     </section>
 
@@ -227,8 +225,8 @@
               accepting protected-key claims.
             </td>
             <td>
-              Publish implementation conformance evidence mapped to GQSCD profile
-              requirements.
+              Publish implementation conformance evidence mapped to GQSCD
+              profile requirements.
             </td>
           </tr>
           <tr>
@@ -265,13 +263,13 @@
           <tr>
             <td>Governments and regulators</td>
             <td>
-              Goal: publish authoritative policy and recognition inputs. Required
-              interface: governance discovery endpoints and authoritative
-              registries.
+              Goal: publish authoritative policy and recognition inputs.
+              Required interface: governance discovery endpoints and
+              authoritative registries.
             </td>
             <td>
-              Separate cryptographic validity from legal-status determination and
-              evaluate each layer explicitly.
+              Separate cryptographic validity from legal-status determination
+              and evaluate each layer explicitly.
             </td>
             <td>
               Define governance profiles and legal recognition procedures that
@@ -385,9 +383,8 @@
         <dt><dfn>PID field set</dfn></dt>
         <dd>
           A <a>list</a> of PID requirement entries for a governance area,
-          serialized as a JSON array
-          <a href="#ref-rfc8259">[RFC8259]</a>. Membership semantics are a
-          <a>set</a> keyed by
+          serialized as a JSON array <a href="#ref-rfc8259">[RFC8259]</a>.
+          Membership semantics are a <a>set</a> keyed by
           <span class="mono">fieldId</span> (that is,
           <span class="mono">fieldId</span> values are unique). Each entry
           identifies a physical identity item field (as extracted from
@@ -467,8 +464,8 @@
 
         <dt><dfn>asOf query parameter</dfn></dt>
         <dd>
-          URI query parameter whose value is an RFC 3339 date-time selecting
-          the policy version that was effective at that instant
+          URI query parameter whose value is an RFC 3339 date-time selecting the
+          policy version that was effective at that instant
           <a href="#ref-rfc3339">[RFC3339]</a>.
         </dd>
 
@@ -493,21 +490,20 @@
         </dd>
 
         <dt>
-          <dfn data-cite="GQSCD-CORE#web-profile" data-lt="web profile">web profile</dfn>
+          <dfn data-cite="GQSCD-CORE#web-profile" data-lt="web profile"
+            >web profile</dfn
+          >
         </dt>
-        <dd>
-          Imported term from <a href="#ref-gqscd-core">[GQSCD-CORE]</a>.
-        </dd>
+        <dd>Imported term from <a href="#ref-gqscd-core">[GQSCD-CORE]</a>.</dd>
 
         <dt>
           <dfn
             data-cite="GQSCD-CORE#eu-compatibility-profile"
             data-lt="EU compatibility profile|eu compatibility profile"
-            >EU compatibility profile</dfn>
+            >EU compatibility profile</dfn
+          >
         </dt>
-        <dd>
-          Imported term from <a href="#ref-gqscd-core">[GQSCD-CORE]</a>.
-        </dd>
+        <dd>Imported term from <a href="#ref-gqscd-core">[GQSCD-CORE]</a>.</dd>
       </dl>
     </section>
     <section id="mandate-law">
@@ -611,8 +607,9 @@
             under governance verification procedures.
           </li>
           <li>
-            PID fields are extracted from <a>MRZ</a>-compatible data, canonicalized,
-            and transformed into profile-defined subject-binding evidence.
+            PID fields are extracted from <a>MRZ</a>-compatible data,
+            canonicalized, and transformed into profile-defined subject-binding
+            evidence.
           </li>
           <li>
             Governance verification endpoint data is normalized and transformed
@@ -655,23 +652,24 @@
         <ol>
           <li>
             A governance-recognized issuer validates PID evidence from a
-            physical identity item and binds it to a user-controlled
-            GQSCD-class controller context.
+            physical identity item and binds it to a user-controlled GQSCD-class
+            controller context.
           </li>
           <li>
             The issuer outputs a binding credential addressed to a subject DID,
-            with issuer proof material and governance-policy references needed by
-            independent verifiers.
+            with issuer proof material and governance-policy references needed
+            by independent verifiers.
           </li>
           <li>
             DID resolution material, status material, and key-history evidence
-            are published across replicated hosts under the declared host profile
-            (for example GQTS), enabling cross-origin consistency checks.
+            are published across replicated hosts under the declared host
+            profile (for example GQTS), enabling cross-origin consistency
+            checks.
           </li>
           <li>
             The user wallet executes signing and presentation flows from the
-            end-user device boundary; verifier transactions check proof validity,
-            freshness, and policy inputs.
+            end-user device boundary; verifier transactions check proof
+            validity, freshness, and policy inputs.
           </li>
           <li>
             Revocation and key-state transitions are published as signed,
@@ -681,7 +679,8 @@
         </ol>
         <p>
           Scope boundary: this walkthrough describes technical evidence flow in
-          GDIS. Legal qualification outcomes are external policy-layer decisions.
+          GDIS. Legal qualification outcomes are external policy-layer
+          decisions.
         </p>
       </section>
 
@@ -689,8 +688,8 @@
         <h3>Subject and Endpoint Binding Outcomes</h3>
         <p>
           GDIS v1 defines binding outcomes, not one mandated implementation.
-          Conforming profiles MUST define deterministic verifier behavior for the
-          binding tuple:
+          Conforming profiles MUST define deterministic verifier behavior for
+          the binding tuple:
           <span class="mono">(subjectBindingValue, endpointBindingValue)</span>.
         </p>
         <p>
@@ -773,11 +772,10 @@
         <h3>Decentralized Publication Model</h3>
         <p>
           GDIS requires publication of verification material to a
-          <a>decentralized event log</a>, but transport,
-          replication, ordering, and distribution semantics are delegated to the
-          declared host profile. This specification defines publication
-          obligations and identity-binding semantics; it does not define host
-          network internals.
+          <a>decentralized event log</a>, but transport, replication, ordering,
+          and distribution semantics are delegated to the declared host profile.
+          This specification defines publication obligations and
+          identity-binding semantics; it does not define host network internals.
           <a href="#ref-gqts-core">[GQTS-CORE]</a>
         </p>
       </section>
@@ -881,9 +879,8 @@
           </li>
           <li>
             <a>PID binding value</a> input fields
-            <em class="rfc2119">MUST</em> be
-            explicitly versioned and canonicalized before binding-value
-            derivation
+            <em class="rfc2119">MUST</em> be explicitly versioned and
+            canonicalized before binding-value derivation
             <a href="#ref-rfc8785">[RFC8785]</a>.
           </li>
           <li>
@@ -1102,8 +1099,7 @@
             This specification <em class="rfc2119">MUST NOT</em> define
             transport-level replication, ordering, distribution, or anti-abuse
             mechanisms. Those semantics are defined by the declared host profile
-            (for example GQTS)
-            <a href="#ref-gqts-core">[GQTS-CORE]</a>.
+            (for example GQTS) <a href="#ref-gqts-core">[GQTS-CORE]</a>.
           </li>
           <li>
             A governance profile MAY define <a>mandatory minimum hosts</a>.
@@ -1413,8 +1409,7 @@
         <li>declared mandatory cryptographic suites and key constraints;</li>
         <li>
           implemented requirement identifiers (for example
-          <span class="mono">REQ-GDIS-03</span>) and any documented
-          exclusions;
+          <span class="mono">REQ-GDIS-03</span>) and any documented exclusions;
         </li>
         <li>
           test evidence, including pass/fail results and artifact samples;
@@ -1588,8 +1583,8 @@
               <tr>
                 <td>Electronic Attestation of Attributes</td>
                 <td>
-                  VC claims bound to issuer proof material and verifier-checkable
-                  evidence references.
+                  VC claims bound to issuer proof material and
+                  verifier-checkable evidence references.
                 </td>
                 <td>
                   Attribute semantics and legal effect remain policy-layer
@@ -1772,8 +1767,8 @@
           </li>
           <li id="ref-rfc8259">
             <a href="https://www.rfc-editor.org/rfc/rfc8259"
-              >[RFC8259] The JavaScript Object Notation (JSON) Data
-              Interchange Format</a
+              >[RFC8259] The JavaScript Object Notation (JSON) Data Interchange
+              Format</a
             >
           </li>
           <li id="ref-rfc9110">
@@ -2054,8 +2049,8 @@
           </li>
           <li id="ref-gqts-core">
             <a href="https://z-base.github.io/gqts/"
-              >[GQTS-CORE] GQTS host and trust-transport profile
-              (framework item)</a
+              >[GQTS-CORE] GQTS host and trust-transport profile (framework
+              item)</a
             >
           </li>
         </ul>

@@ -285,36 +285,28 @@
       "clause_id": "REQ-GDIS-01",
       "anchor": "#req-anchor",
       "kind": "requirement",
-      "normative_keywords_used": [
-        "MUST"
-      ],
+      "normative_keywords_used": ["MUST"],
       "text_excerpt_hash": "02518504c38fea8b42bd49be7b3a18e39a68ca8abffb9ca06ddfa17faec85565"
     },
     {
       "clause_id": "REQ-GDIS-01",
       "anchor": "#REQ-GDIS-01",
       "kind": "requirement",
-      "normative_keywords_used": [
-        "MUST"
-      ],
+      "normative_keywords_used": ["MUST"],
       "text_excerpt_hash": "1142cd635b4718b16d70996686579aca41e38a83ff801403508600a8f89b58a9"
     },
     {
       "clause_id": "REQ-GDIS-02",
       "anchor": "#req-mrz-pid",
       "kind": "requirement",
-      "normative_keywords_used": [
-        "MUST"
-      ],
+      "normative_keywords_used": ["MUST"],
       "text_excerpt_hash": "584e0ed2e904bd151b446f4a6ed4b331c383058dd70b341f1be6ba26617cdaf2"
     },
     {
       "clause_id": "REQ-GDIS-02",
       "anchor": "#REQ-GDIS-02",
       "kind": "requirement",
-      "normative_keywords_used": [
-        "MUST"
-      ],
+      "normative_keywords_used": ["MUST"],
       "text_excerpt_hash": "c55f59e6f27bb126fb8d91b8a6d860f0749cecf962aa5ff3b66c553fae8539a8"
     },
     {
@@ -335,90 +327,70 @@
       "clause_id": "REQ-GDIS-04",
       "anchor": "#req-vc-did-gqscd",
       "kind": "requirement",
-      "normative_keywords_used": [
-        "MUST"
-      ],
+      "normative_keywords_used": ["MUST"],
       "text_excerpt_hash": "dbe6835f91cd512ce1e33c5953a715d5f06eafabc402896b145a2f8f090f6c59"
     },
     {
       "clause_id": "REQ-GDIS-04",
       "anchor": "#REQ-GDIS-04",
       "kind": "requirement",
-      "normative_keywords_used": [
-        "MUST"
-      ],
+      "normative_keywords_used": ["MUST"],
       "text_excerpt_hash": "7592ab9139d2d8bada81c9e7c932ee7a8336526a941b8d0d967ab496a6b6a695"
     },
     {
       "clause_id": "REQ-GDIS-05",
       "anchor": "#req-publication-profile",
       "kind": "requirement",
-      "normative_keywords_used": [
-        "MUST"
-      ],
+      "normative_keywords_used": ["MUST"],
       "text_excerpt_hash": "68dbb0a1d5cd1be3c582e2862279a33b5e184579ffcd02b4d26c5be7ba0a4dff"
     },
     {
       "clause_id": "REQ-GDIS-05",
       "anchor": "#REQ-GDIS-05",
       "kind": "requirement",
-      "normative_keywords_used": [
-        "MUST"
-      ],
+      "normative_keywords_used": ["MUST"],
       "text_excerpt_hash": "930ea9f595030121e9cdf716491a20a02ae72515d9c8756619220827e355d476"
     },
     {
       "clause_id": "REQ-GDIS-06",
       "anchor": "#req-replay",
       "kind": "requirement",
-      "normative_keywords_used": [
-        "MUST"
-      ],
+      "normative_keywords_used": ["MUST"],
       "text_excerpt_hash": "b523ab1b9b8e6deb57de95ea447e8652eb03973cece300995a02d58273f1ba19"
     },
     {
       "clause_id": "REQ-GDIS-06",
       "anchor": "#REQ-GDIS-06",
       "kind": "requirement",
-      "normative_keywords_used": [
-        "MUST"
-      ],
+      "normative_keywords_used": ["MUST"],
       "text_excerpt_hash": "bb17b70ace2ecdacf77daecc7d7785e17f957dd0fe8babfede37e25d3fb97451"
     },
     {
       "clause_id": "REQ-GDIS-07",
       "anchor": "#req-crypto-agility",
       "kind": "requirement",
-      "normative_keywords_used": [
-        "MUST"
-      ],
+      "normative_keywords_used": ["MUST"],
       "text_excerpt_hash": "749b6c5a428b3a2251ebbf1e5f767c78f53906a17ea6fea1a48cc657396a23b7"
     },
     {
       "clause_id": "REQ-GDIS-07",
       "anchor": "#REQ-GDIS-07",
       "kind": "requirement",
-      "normative_keywords_used": [
-        "MUST"
-      ],
+      "normative_keywords_used": ["MUST"],
       "text_excerpt_hash": "9a59be563b61ce294dd7670c3fd83b3b85397bc0c09153be4e5d32278325f941"
     },
     {
       "clause_id": "REQ-GDIS-08",
       "anchor": "#REQ-GDIS-08",
       "kind": "requirement",
-      "normative_keywords_used": [
-        "MUST"
-      ],
+      "normative_keywords_used": ["MUST"],
       "text_excerpt_hash": "9c244b32e7f9e177092a91445b8af04082cf9f93a7617ce8e55fd0f237ca66ab"
     },
     {
       "clause_id": "REQ-GDIS-09",
       "anchor": "#REQ-GDIS-09",
       "kind": "requirement",
-      "normative_keywords_used": [
-        "MUST"
-      ],
+      "normative_keywords_used": ["MUST"],
       "text_excerpt_hash": "6bc5e137a18972cb0b9bc2c8699f3e23913f5f1865295727c9d24513ba6aef4a"
     }
   ],
@@ -492,14 +464,8 @@
         "path": "/.well-known/gidas/gqts/scheme/{governanceCode}",
         "requirement_key": "x-gqts-requirement",
         "x_requirement": "REQ-GQTS-01",
-        "media_types": [
-          "application/gqts.scheme+json",
-          "application/json"
-        ],
-        "schema_refs": [
-          "SchemeDescriptor",
-          "SchemeDescriptor"
-        ],
+        "media_types": ["application/gqts.scheme+json", "application/json"],
+        "schema_refs": ["SchemeDescriptor", "SchemeDescriptor"],
         "operation_contract_hash": "eb261882d3fd63334b14867c013db40bc7c5639767ba6729655c5665cfffb846"
       },
       {
@@ -512,10 +478,7 @@
           "application/gqts.endpoint-kinds+json",
           "application/json"
         ],
-        "schema_refs": [
-          "EndpointKindCatalog",
-          "EndpointKindCatalog"
-        ],
+        "schema_refs": ["EndpointKindCatalog", "EndpointKindCatalog"],
         "operation_contract_hash": "b99e64b4a067c3d04e09f20d5d4533a05e693642df23eb9dffe8ceee6518ec95"
       },
       {
@@ -524,14 +487,8 @@
         "path": "/.well-known/gidas/gqts/type/{serviceId}",
         "requirement_key": "x-gqts-requirement",
         "x_requirement": "REQ-GQTS-03",
-        "media_types": [
-          "application/gqts.type+json",
-          "application/json"
-        ],
-        "schema_refs": [
-          "ServiceDescriptor",
-          "ServiceDescriptor"
-        ],
+        "media_types": ["application/gqts.type+json", "application/json"],
+        "schema_refs": ["ServiceDescriptor", "ServiceDescriptor"],
         "operation_contract_hash": "7e62c7b1058716e8a8f814c059ac6c4723b358bca3f3746b6fab2d6c00369f3e"
       },
       {
@@ -540,14 +497,8 @@
         "path": "/.well-known/gidas/gqts/event/{logId}",
         "requirement_key": "x-gqts-requirement",
         "x_requirement": "REQ-GQTS-05",
-        "media_types": [
-          "application/gqts.eventlog+json",
-          "application/json"
-        ],
-        "schema_refs": [
-          "EventLogView",
-          "EventLogView"
-        ],
+        "media_types": ["application/gqts.eventlog+json", "application/json"],
+        "schema_refs": ["EventLogView", "EventLogView"],
         "operation_contract_hash": "6f50ab0c8126b90241e7e831c374173464d2067371a8e72cc73a38648601e497"
       },
       {
@@ -574,14 +525,8 @@
         "path": "/.well-known/gidas/gqts/event/{logId}/meta",
         "requirement_key": "x-gqts-requirement",
         "x_requirement": "REQ-GQTS-04",
-        "media_types": [
-          "application/gqts.event-head+json",
-          "application/json"
-        ],
-        "schema_refs": [
-          "EventHeadMeta",
-          "EventHeadMeta"
-        ],
+        "media_types": ["application/gqts.event-head+json", "application/json"],
+        "schema_refs": ["EventHeadMeta", "EventHeadMeta"],
         "operation_contract_hash": "ba0f6e87e1618034e7ea928da24edd3d97f2daa118d809ccbd8d4dba922d2a66"
       },
       {
@@ -590,14 +535,8 @@
         "path": "/.well-known/gidas/gqts/event/{logId}/{eventId}",
         "requirement_key": "x-gqts-requirement",
         "x_requirement": "REQ-GQTS-07",
-        "media_types": [
-          "application/gqts.event+json",
-          "application/json"
-        ],
-        "schema_refs": [
-          "EventEnvelope",
-          "EventEnvelope"
-        ],
+        "media_types": ["application/gqts.event+json", "application/json"],
+        "schema_refs": ["EventEnvelope", "EventEnvelope"],
         "operation_contract_hash": "629c37284614988e4423fae71ab52f7f79b30a347904c9404ecf4744149cb1b7"
       },
       {
@@ -606,10 +545,7 @@
         "path": "/.well-known/gidas/pid-identification",
         "requirement_key": "x-gdis-requirement",
         "x_requirement": "REQ-GDIS-03",
-        "media_types": [
-          "application/gdis.pid-policy+json",
-          "application/json"
-        ],
+        "media_types": ["application/gdis.pid-policy+json", "application/json"],
         "schema_refs": [
           "GdisPidIdentificationPolicy",
           "GdisPidIdentificationPolicy",

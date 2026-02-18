@@ -4,9 +4,7 @@
       "canonical_term": "annexii1a",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#annexii-1a",
-      "aliases": [
-        "ANNEXII-1a"
-      ],
+      "aliases": ["ANNEXII-1a"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -21,9 +19,7 @@
       "canonical_term": "annexii1b",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#annexii-1b",
-      "aliases": [
-        "ANNEXII-1b"
-      ],
+      "aliases": ["ANNEXII-1b"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -38,9 +34,7 @@
       "canonical_term": "annexii1c",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#annexii-1c",
-      "aliases": [
-        "ANNEXII-1c"
-      ],
+      "aliases": ["ANNEXII-1c"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -55,9 +49,7 @@
       "canonical_term": "annexii1d",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#annexii-1d",
-      "aliases": [
-        "ANNEXII-1d"
-      ],
+      "aliases": ["ANNEXII-1d"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -72,9 +64,7 @@
       "canonical_term": "annexii2",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#annexii-2",
-      "aliases": [
-        "ANNEXII-2"
-      ],
+      "aliases": ["ANNEXII-2"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -89,9 +79,7 @@
       "canonical_term": "asof query parameter",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#asof-query-parameter",
-      "aliases": [
-        "asOf query parameter"
-      ],
+      "aliases": ["asOf query parameter"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -106,9 +94,7 @@
       "canonical_term": "attestation evidence",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#attestation-evidence",
-      "aliases": [
-        "attestation evidence"
-      ],
+      "aliases": ["attestation evidence"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -123,9 +109,7 @@
       "canonical_term": "byte sequence",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#byte-sequence",
-      "aliases": [
-        "byte sequence"
-      ],
+      "aliases": ["byte sequence"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -140,9 +124,7 @@
       "canonical_term": "chipbacked private key",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#chip-backed-private-key",
-      "aliases": [
-        "chip-backed private key"
-      ],
+      "aliases": ["chip-backed private key"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -157,9 +139,7 @@
       "canonical_term": "conformance report",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#conformance-report",
-      "aliases": [
-        "conformance report"
-      ],
+      "aliases": ["conformance report"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -174,9 +154,7 @@
       "canonical_term": "decentralized event log",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#decentralized-event-log",
-      "aliases": [
-        "decentralized event log"
-      ],
+      "aliases": ["decentralized event log"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -191,9 +169,7 @@
       "canonical_term": "eidas framework",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#eidas-framework",
-      "aliases": [
-        "eidas framework"
-      ],
+      "aliases": ["eidas framework"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -208,9 +184,7 @@
       "canonical_term": "enduser device",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#end-user-device",
-      "aliases": [
-        "end-user device"
-      ],
+      "aliases": ["end-user device"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -225,10 +199,7 @@
       "canonical_term": "eu compatibility profile",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#eu-compatibility-profile",
-      "aliases": [
-        "EU compatibility profile",
-        "eu compatibility profile"
-      ],
+      "aliases": ["EU compatibility profile", "eu compatibility profile"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -250,9 +221,7 @@
       "canonical_term": "eudi wallet ecosystem",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#eudi-wallet-ecosystem",
-      "aliases": [
-        "eudi wallet ecosystem"
-      ],
+      "aliases": ["eudi wallet ecosystem"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -267,9 +236,7 @@
       "canonical_term": "event namespace",
       "canonical_owner_spec_id": "GQTS-CORE",
       "canonical_anchor": "#event-namespace",
-      "aliases": [
-        "event namespace"
-      ],
+      "aliases": ["event namespace"],
       "members": [
         {
           "spec_id": "GQTS-CORE",
@@ -284,9 +251,7 @@
       "canonical_term": "evidence artifact",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#evidence-artifact",
-      "aliases": [
-        "evidence artifact"
-      ],
+      "aliases": ["evidence artifact"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -301,9 +266,7 @@
       "canonical_term": "evidence record",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#evidence-record",
-      "aliases": [
-        "evidence record"
-      ],
+      "aliases": ["evidence record"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -318,9 +281,7 @@
       "canonical_term": "gdis binding credential",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#gdis-binding-credential",
-      "aliases": [
-        "GDIS binding credential"
-      ],
+      "aliases": ["GDIS binding credential"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -335,9 +296,7 @@
       "canonical_term": "gdis subject did",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#gdis-subject-did",
-      "aliases": [
-        "GDIS subject DID"
-      ],
+      "aliases": ["GDIS subject DID"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -352,9 +311,7 @@
       "canonical_term": "governance area",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#governance-area",
-      "aliases": [
-        "governance area"
-      ],
+      "aliases": ["governance area"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -369,9 +326,7 @@
       "canonical_term": "governance code",
       "canonical_owner_spec_id": "GQTS-CORE",
       "canonical_anchor": "#governance-code",
-      "aliases": [
-        "governance code"
-      ],
+      "aliases": ["governance code"],
       "members": [
         {
           "spec_id": "GQTS-CORE",
@@ -386,9 +341,7 @@
       "canonical_term": "governance verification endpoint",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#governance-verification-endpoint",
-      "aliases": [
-        "governance verification endpoint"
-      ],
+      "aliases": ["governance verification endpoint"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -403,9 +356,7 @@
       "canonical_term": "gqscd controller",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#gqscd-controller",
-      "aliases": [
-        "GQSCD controller"
-      ],
+      "aliases": ["GQSCD controller"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -420,9 +371,7 @@
       "canonical_term": "gqts host",
       "canonical_owner_spec_id": "GQTS-CORE",
       "canonical_anchor": "#gqts-host",
-      "aliases": [
-        "GQTS host"
-      ],
+      "aliases": ["GQTS host"],
       "members": [
         {
           "spec_id": "GQTS-CORE",
@@ -437,9 +386,7 @@
       "canonical_term": "gqtsp discovery endpoint",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#gqtsp-discovery-endpoint",
-      "aliases": [
-        "gqtsp discovery endpoint"
-      ],
+      "aliases": ["gqtsp discovery endpoint"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -454,9 +401,7 @@
       "canonical_term": "hardwarebacked key",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#hardware-backed-key",
-      "aliases": [
-        "hardware-backed key"
-      ],
+      "aliases": ["hardware-backed key"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -471,9 +416,7 @@
       "canonical_term": "head digest",
       "canonical_owner_spec_id": "GQTS-CORE",
       "canonical_anchor": "#head-digest",
-      "aliases": [
-        "head digest"
-      ],
+      "aliases": ["head digest"],
       "members": [
         {
           "spec_id": "GQTS-CORE",
@@ -488,9 +431,7 @@
       "canonical_term": "host profile",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#host-profile",
-      "aliases": [
-        "host profile"
-      ],
+      "aliases": ["host profile"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -505,9 +446,7 @@
       "canonical_term": "implementing specification",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#implementing-specification",
-      "aliases": [
-        "implementing specification"
-      ],
+      "aliases": ["implementing specification"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -522,9 +461,7 @@
       "canonical_term": "list",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#list",
-      "aliases": [
-        "list"
-      ],
+      "aliases": ["list"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -539,9 +476,7 @@
       "canonical_term": "local signing profile",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#local-signing-profile",
-      "aliases": [
-        "local signing profile"
-      ],
+      "aliases": ["local signing profile"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -556,9 +491,7 @@
       "canonical_term": "mandatory minimum host",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#mandatory-minimum-hosts",
-      "aliases": [
-        "mandatory minimum hosts"
-      ],
+      "aliases": ["mandatory minimum hosts"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -573,9 +506,7 @@
       "canonical_term": "measured boot evidence",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#measured-boot-evidence",
-      "aliases": [
-        "measured boot evidence"
-      ],
+      "aliases": ["measured boot evidence"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -590,9 +521,7 @@
       "canonical_term": "mechanical validity",
       "canonical_owner_spec_id": "GQTS-CORE",
       "canonical_anchor": "#mechanical-validity",
-      "aliases": [
-        "mechanical validity"
-      ],
+      "aliases": ["mechanical validity"],
       "members": [
         {
           "spec_id": "GQTS-CORE",
@@ -607,9 +536,7 @@
       "canonical_term": "merge event",
       "canonical_owner_spec_id": "GQTS-CORE",
       "canonical_anchor": "#merge-event",
-      "aliases": [
-        "merge event"
-      ],
+      "aliases": ["merge event"],
       "members": [
         {
           "spec_id": "GQTS-CORE",
@@ -624,9 +551,7 @@
       "canonical_term": "mrz",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#mrz",
-      "aliases": [
-        "MRZ"
-      ],
+      "aliases": ["MRZ"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -641,9 +566,7 @@
       "canonical_term": "physical identity item",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#physical-identity-item",
-      "aliases": [
-        "physical identity item"
-      ],
+      "aliases": ["physical identity item"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -658,9 +581,7 @@
       "canonical_term": "pid",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#pid",
-      "aliases": [
-        "PID"
-      ],
+      "aliases": ["PID"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -675,9 +596,7 @@
       "canonical_term": "pid field set",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#pid-field-set",
-      "aliases": [
-        "PID field set"
-      ],
+      "aliases": ["PID field set"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -692,9 +611,7 @@
       "canonical_term": "pid hash",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#pid-hash",
-      "aliases": [
-        "PID hash"
-      ],
+      "aliases": ["PID hash"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -709,9 +626,7 @@
       "canonical_term": "pid identification endpoint",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#pid-identification-endpoint",
-      "aliases": [
-        "PID identification endpoint"
-      ],
+      "aliases": ["PID identification endpoint"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -726,9 +641,7 @@
       "canonical_term": "publication set",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#publication-set",
-      "aliases": [
-        "publication set"
-      ],
+      "aliases": ["publication set"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -743,9 +656,7 @@
       "canonical_term": "qscd certification evidence tuple",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#qscd-certification-evidence-tuple",
-      "aliases": [
-        "qscd certification evidence tuple"
-      ],
+      "aliases": ["qscd certification evidence tuple"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -760,9 +671,7 @@
       "canonical_term": "qualified signature creation device",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#qualified-signature-creation-device",
-      "aliases": [
-        "qualified signature creation device"
-      ],
+      "aliases": ["qualified signature creation device"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -777,9 +686,7 @@
       "canonical_term": "qualified status claim",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#qualified-status-claim",
-      "aliases": [
-        "qualified status claim"
-      ],
+      "aliases": ["qualified status claim"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -794,9 +701,7 @@
       "canonical_term": "recognition statu",
       "canonical_owner_spec_id": "GQTS-CORE",
       "canonical_anchor": "#recognition-status",
-      "aliases": [
-        "recognition status"
-      ],
+      "aliases": ["recognition status"],
       "members": [
         {
           "spec_id": "GQTS-CORE",
@@ -811,9 +716,7 @@
       "canonical_term": "remote signing model",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#remote-signing-model",
-      "aliases": [
-        "remote signing model"
-      ],
+      "aliases": ["remote signing model"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -828,9 +731,7 @@
       "canonical_term": "scheme descriptor",
       "canonical_owner_spec_id": "GQTS-CORE",
       "canonical_anchor": "#scheme-descriptor",
-      "aliases": [
-        "scheme descriptor"
-      ],
+      "aliases": ["scheme descriptor"],
       "members": [
         {
           "spec_id": "GQTS-CORE",
@@ -845,9 +746,7 @@
       "canonical_term": "secure boot chain",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#secure-boot-chain",
-      "aliases": [
-        "secure boot chain"
-      ],
+      "aliases": ["secure boot chain"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -862,9 +761,7 @@
       "canonical_term": "service descriptor",
       "canonical_owner_spec_id": "GQTS-CORE",
       "canonical_anchor": "#service-descriptor",
-      "aliases": [
-        "service descriptor"
-      ],
+      "aliases": ["service descriptor"],
       "members": [
         {
           "spec_id": "GQTS-CORE",
@@ -879,9 +776,7 @@
       "canonical_term": "set",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#set",
-      "aliases": [
-        "set"
-      ],
+      "aliases": ["set"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -896,9 +791,7 @@
       "canonical_term": "signature creation data",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#signature-creation-data",
-      "aliases": [
-        "signature creation data"
-      ],
+      "aliases": ["signature creation data"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -913,9 +806,7 @@
       "canonical_term": "signature creation key",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#signature-creation-key",
-      "aliases": [
-        "signature creation key"
-      ],
+      "aliases": ["signature creation key"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -930,9 +821,7 @@
       "canonical_term": "sole control",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#sole-control",
-      "aliases": [
-        "sole control"
-      ],
+      "aliases": ["sole control"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -947,9 +836,7 @@
       "canonical_term": "trusted computing base",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#trusted-computing-base",
-      "aliases": [
-        "trusted computing base"
-      ],
+      "aliases": ["trusted computing base"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -964,9 +851,7 @@
       "canonical_term": "trusted execution environment",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#trusted-execution-environment",
-      "aliases": [
-        "trusted execution environment"
-      ],
+      "aliases": ["trusted execution environment"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -981,9 +866,7 @@
       "canonical_term": "tuple",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#tuple",
-      "aliases": [
-        "tuple"
-      ],
+      "aliases": ["tuple"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -998,9 +881,7 @@
       "canonical_term": "tuple expression",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#tuple-expression",
-      "aliases": [
-        "tuple expression"
-      ],
+      "aliases": ["tuple expression"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -1015,9 +896,7 @@
       "canonical_term": "user approved object",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#user-approved-object",
-      "aliases": [
-        "user approved object"
-      ],
+      "aliases": ["user approved object"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -1032,9 +911,7 @@
       "canonical_term": "user intent ceremony",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#user-intent-ceremony",
-      "aliases": [
-        "user intent ceremony"
-      ],
+      "aliases": ["user intent ceremony"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -1049,9 +926,7 @@
       "canonical_term": "user verification",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#user-verification",
-      "aliases": [
-        "user verification"
-      ],
+      "aliases": ["user verification"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -1066,9 +941,7 @@
       "canonical_term": "verification result",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_anchor": "#verification-result",
-      "aliases": [
-        "verification result"
-      ],
+      "aliases": ["verification result"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -1083,9 +956,7 @@
       "canonical_term": "web profile",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#web-profile",
-      "aliases": [
-        "web profile"
-      ],
+      "aliases": ["web profile"],
       "members": [
         {
           "spec_id": "GDIS-CORE",
@@ -1107,9 +978,7 @@
       "canonical_term": "zerotrust verification model",
       "canonical_owner_spec_id": "GQSCD-CORE",
       "canonical_anchor": "#zero-trust-verification-model",
-      "aliases": [
-        "zero-trust verification model"
-      ],
+      "aliases": ["zero-trust verification model"],
       "members": [
         {
           "spec_id": "GQSCD-CORE",
@@ -1126,72 +995,49 @@
       "clause_concept": "getEndpointKindCatalog",
       "canonical_owner_spec_id": "GQTS-CORE",
       "canonical_clause_id": "REQ-GQTS-02",
-      "member_clause_ids": [
-        "GDIS-CORE:REQ-GQTS-02",
-        "GQTS-CORE:REQ-GQTS-02"
-      ]
+      "member_clause_ids": ["GDIS-CORE:REQ-GQTS-02", "GQTS-CORE:REQ-GQTS-02"]
     },
     {
       "clause_concept": "getEventById",
       "canonical_owner_spec_id": "GQTS-CORE",
       "canonical_clause_id": "REQ-GQTS-07",
-      "member_clause_ids": [
-        "GDIS-CORE:REQ-GQTS-07",
-        "GQTS-CORE:REQ-GQTS-07"
-      ]
+      "member_clause_ids": ["GDIS-CORE:REQ-GQTS-07", "GQTS-CORE:REQ-GQTS-07"]
     },
     {
       "clause_concept": "getEventHeadMeta",
       "canonical_owner_spec_id": "GQTS-CORE",
       "canonical_clause_id": "REQ-GQTS-04",
-      "member_clause_ids": [
-        "GDIS-CORE:REQ-GQTS-04",
-        "GQTS-CORE:REQ-GQTS-04"
-      ]
+      "member_clause_ids": ["GDIS-CORE:REQ-GQTS-04", "GQTS-CORE:REQ-GQTS-04"]
     },
     {
       "clause_concept": "getEventLogView",
       "canonical_owner_spec_id": "GQTS-CORE",
       "canonical_clause_id": "REQ-GQTS-05",
-      "member_clause_ids": [
-        "GDIS-CORE:REQ-GQTS-05",
-        "GQTS-CORE:REQ-GQTS-05"
-      ]
+      "member_clause_ids": ["GDIS-CORE:REQ-GQTS-05", "GQTS-CORE:REQ-GQTS-05"]
     },
     {
       "clause_concept": "getGdisPidIdentificationPolicy",
       "canonical_owner_spec_id": "GDIS-CORE",
       "canonical_clause_id": "REQ-GDIS-03",
-      "member_clause_ids": [
-        "GDIS-CORE:REQ-GDIS-03"
-      ]
+      "member_clause_ids": ["GDIS-CORE:REQ-GDIS-03"]
     },
     {
       "clause_concept": "getSchemeDescriptor",
       "canonical_owner_spec_id": "GQTS-CORE",
       "canonical_clause_id": "REQ-GQTS-01",
-      "member_clause_ids": [
-        "GDIS-CORE:REQ-GQTS-01",
-        "GQTS-CORE:REQ-GQTS-01"
-      ]
+      "member_clause_ids": ["GDIS-CORE:REQ-GQTS-01", "GQTS-CORE:REQ-GQTS-01"]
     },
     {
       "clause_concept": "getTypeDescriptor",
       "canonical_owner_spec_id": "GQTS-CORE",
       "canonical_clause_id": "REQ-GQTS-03",
-      "member_clause_ids": [
-        "GDIS-CORE:REQ-GQTS-03",
-        "GQTS-CORE:REQ-GQTS-03"
-      ]
+      "member_clause_ids": ["GDIS-CORE:REQ-GQTS-03", "GQTS-CORE:REQ-GQTS-03"]
     },
     {
       "clause_concept": "postEventIngest",
       "canonical_owner_spec_id": "GQTS-CORE",
       "canonical_clause_id": "REQ-GQTS-06",
-      "member_clause_ids": [
-        "GDIS-CORE:REQ-GQTS-06",
-        "GQTS-CORE:REQ-GQTS-06"
-      ]
+      "member_clause_ids": ["GDIS-CORE:REQ-GQTS-06", "GQTS-CORE:REQ-GQTS-06"]
     }
   ],
   "conflicts": [],

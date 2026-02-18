@@ -679,7 +679,8 @@ components:
         - kind: event
           purpose: Append-only history publication and retrieval.
           pathTemplate: /.well-known/gidas/gqts/event/{logId}
-          operationIds: [getEventHeadMeta, getEventLogView, postEventIngest, getEventById]
+          operationIds:
+            [getEventHeadMeta, getEventLogView, postEventIngest, getEventById]
           primarySchema: '#/components/schemas/EventEnvelope'
           consistencyModel: append-only
           asyncIngestSupported: true
@@ -718,7 +719,13 @@ components:
             - kind: event
               purpose: Append-only event history operations.
               pathTemplate: /.well-known/gidas/gqts/event/{logId}
-              operationIds: [getEventHeadMeta, getEventLogView, postEventIngest, getEventById]
+              operationIds:
+                [
+                  getEventHeadMeta,
+                  getEventLogView,
+                  postEventIngest,
+                  getEventById,
+                ]
               primarySchema: '#/components/schemas/EventEnvelope'
               consistencyModel: append-only
               asyncIngestSupported: true
