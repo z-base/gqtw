@@ -27,13 +27,13 @@ servers:
 security: []
 
 x-gqts-requirements:
-  REQ-R1: Governance-scoped scheme discovery.
-  REQ-R2: Endpoint-kind taxonomy publication.
-  REQ-R3: Service descriptor head commitment publication.
-  REQ-R4: Low-cost divergence detection via compact head metadata.
-  REQ-R5: Append-only log retrieval.
-  REQ-R6: Asynchronous ingest and receipt model.
-  REQ-R7: Immutable event addressing.
+  REQ-GQTS-01: Governance-scoped scheme discovery.
+  REQ-GQTS-02: Endpoint-kind taxonomy publication.
+  REQ-GQTS-03: Service descriptor head commitment publication.
+  REQ-GQTS-04: Low-cost divergence detection via compact head metadata.
+  REQ-GQTS-05: Append-only log retrieval.
+  REQ-GQTS-06: Asynchronous ingest and receipt model.
+  REQ-GQTS-07: Immutable event addressing.
 
 tags:
   - name: gdis
@@ -51,7 +51,7 @@ paths:
       tags: [scheme]
       operationId: getSchemeDescriptor
       summary: Get scheme descriptor.
-      x-gqts-requirement: REQ-R1
+      x-gqts-requirement: REQ-GQTS-01
       description: |
         Returns governance-scoped naming, canonicalization, proof profile, and publication-floor metadata.
       parameters:
@@ -84,7 +84,7 @@ paths:
       tags: [scheme]
       operationId: getEndpointKindCatalog
       summary: Get endpoint-kind catalog.
-      x-gqts-requirement: REQ-R2
+      x-gqts-requirement: REQ-GQTS-02
       description: |
         Returns the normative endpoint-kind mapping (`scheme`, `type`, `event`) for a governance profile.
         This operation provides machine-readable requirement-level conformance metadata.
@@ -118,7 +118,7 @@ paths:
       tags: [type]
       operationId: getTypeDescriptor
       summary: Get service descriptor.
-      x-gqts-requirement: REQ-R3
+      x-gqts-requirement: REQ-GQTS-03
       description: |
         Returns metadata for one trust-service instance, including the current event-log head commitment.
       parameters:
@@ -151,7 +151,7 @@ paths:
       tags: [event]
       operationId: getEventLogView
       summary: Get event log head or event page.
-      x-gqts-requirement: REQ-R5
+      x-gqts-requirement: REQ-GQTS-05
       description: |
         Returns either a compact head view (default) or paged events for an append-only log.
         Implementations SHOULD use conditional retrieval and compare `headDigest` before expensive sync work.
@@ -187,7 +187,7 @@ paths:
       tags: [event]
       operationId: postEventIngest
       summary: Submit an event for ingest/gossip.
-      x-gqts-requirement: REQ-R6
+      x-gqts-requirement: REQ-GQTS-06
       description: |
         Accepts an event envelope for asynchronous processing.
         Successful acceptance returns `202 Accepted`; replication and merge outcomes are observed via GET event-log views.
@@ -224,7 +224,7 @@ paths:
       tags: [event]
       operationId: getEventHeadMeta
       summary: Get compact event-head metadata.
-      x-gqts-requirement: REQ-R4
+      x-gqts-requirement: REQ-GQTS-04
       description: |
         Returns a compact head commitment view for opportunistic synchronization.
         Peers SHOULD compare this result before requesting event pages or merge processing.
@@ -258,7 +258,7 @@ paths:
       tags: [event]
       operationId: getEventById
       summary: Get immutable event object.
-      x-gqts-requirement: REQ-R7
+      x-gqts-requirement: REQ-GQTS-07
       description: Retrieves one immutable event object by identifier.
       parameters:
         - $ref: '#/components/parameters/LogId'

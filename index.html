@@ -27,6 +27,26 @@
           'local-refs-exist': true,
           'no-unused-dfns': true,
         },
+        localBiblio: {
+          'GDIS-CORE': {
+            title: 'Global Digital Identity Scheme (GDIS) Core',
+            href: 'https://z-base.github.io/gdis/',
+            status: 'unofficial',
+            publisher: 'z-base',
+          },
+          'GQSCD-CORE': {
+            title: 'Globally Qualified Signature Creation Device (GQSCD) Core',
+            href: 'https://z-base.github.io/gqscd/',
+            status: 'unofficial',
+            publisher: 'z-base',
+          },
+          'GQTS-CORE': {
+            title: 'Globally Qualified Trust Service (GQTS) Core',
+            href: 'https://z-base.github.io/gqts/',
+            status: 'unofficial',
+            publisher: 'z-base',
+          },
+        },
       }
     </script>
     <style>
@@ -464,16 +484,21 @@
           normative processing rules in this specification.
         </dd>
 
-        <dt><dfn>web profile</dfn></dt>
+        <dt>
+          <dfn data-cite="GQSCD-CORE#web-profile" data-lt="web profile">web profile</dfn>
+        </dt>
         <dd>
-          Primary interoperability profile based on globally deployed web
-          standards and internet protocols.
+          Imported term from <a href="#ref-gqscd-core">[GQSCD-CORE]</a>.
         </dd>
 
-        <dt><dfn>EU compatibility profile</dfn></dt>
+        <dt>
+          <dfn
+            data-cite="GQSCD-CORE#eu-compatibility-profile"
+            data-lt="EU compatibility profile|eu compatibility profile"
+            >EU compatibility profile</dfn>
+        </dt>
         <dd>
-          Mapping layer from <a>web profile</a> outputs to EU-specific legal and
-          ecosystem requirements.
+          Imported term from <a href="#ref-gqscd-core">[GQSCD-CORE]</a>.
         </dd>
       </dl>
     </section>
