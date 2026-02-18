@@ -62,7 +62,7 @@
         defines how to derive a stable subject key from MRZ-extracted PID hash
         material, bind that key to governance verification endpoints, issue the
         binding as a VC to a DID controlled by a GQSCD-class device, and publish
-        verification material in an open decentralized event log.
+        verification material in an open decentralized publication network.
       </p>
     </section>
 
@@ -123,6 +123,13 @@
         API usage recipes; it defines interoperable data contracts and verifier
         behavior.
       </p>
+      <p>
+        Where protocol endpoints are defined, normative wire contracts are
+        defined in <span class="mono">openapi.yaml</span>. ReSpec prose in this
+        document defines invariants, processing rules, and conformance semantics
+        for those contracts
+        <a href="#ref-oas-3-1-2">[OAS-3.1.2]</a>.
+      </p>
     </section>
 
     <section id="scope">
@@ -159,6 +166,126 @@
           closed host network.
         </li>
       </ul>
+    </section>
+
+    <section id="positioning-adoption" class="informative">
+      <h2>Positioning and Adoption Model</h2>
+      <p>
+        This section is informative. It describes stakeholder adoption pathways
+        as explicit
+        <span class="mono"
+          >goal -&gt; required artifact/interface -&gt; verifier behavior -&gt;
+          adoption pathway</span
+        >
+        mappings.
+      </p>
+      <table class="simple tight">
+        <thead>
+          <tr>
+            <th>Stakeholder</th>
+            <th>Goal and Required Artifact/Interface</th>
+            <th>Verifier Behavior</th>
+            <th>Adoption Pathway</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Device and platform manufacturers</td>
+            <td>
+              Goal: expose auditable key-custody and user-intent evidence.
+              Required interface: GQSCD-aligned controller evidence and
+              verifiable signing material.
+            </td>
+            <td>
+              Verify controller evidence and cryptographic proof material before
+              accepting protected-key claims.
+            </td>
+            <td>
+              Publish implementation conformance evidence mapped to GQSCD profile
+              requirements.
+            </td>
+          </tr>
+          <tr>
+            <td>Wallet and app implementers</td>
+            <td>
+              Goal: implement end-user controlled signing and identity binding.
+              Required artifact: GDIS binding credential and publication
+              evidence.
+            </td>
+            <td>
+              Verify PID policy compliance, proof validity, and replay/freshness
+              controls.
+            </td>
+            <td>
+              Publish conformance reports with test vectors and machine-readable
+              evidence outputs.
+            </td>
+          </tr>
+          <tr>
+            <td>Standards development organizations (SDOs)</td>
+            <td>
+              Goal: profile interoperability contracts. Required interface:
+              profile work items, registries, and conformance test suites.
+            </td>
+            <td>
+              Require deterministic verification outputs for equivalent inputs
+              across implementations.
+            </td>
+            <td>
+              Adopt profile-specific compatibility mappings and normative test
+              assertions.
+            </td>
+          </tr>
+          <tr>
+            <td>Governments and regulators</td>
+            <td>
+              Goal: publish authoritative policy and recognition inputs. Required
+              interface: governance discovery endpoints and authoritative
+              registries.
+            </td>
+            <td>
+              Separate cryptographic validity from legal-status determination and
+              evaluate each layer explicitly.
+            </td>
+            <td>
+              Define governance profiles and legal recognition procedures that
+              consume verifier-checkable artifacts.
+            </td>
+          </tr>
+          <tr>
+            <td>Auditors, CABs, and assessors</td>
+            <td>
+              Goal: assess conformance with machine-verifiable artifacts.
+              Required artifact: conformance reports, test outputs, and
+              verification transcripts.
+            </td>
+            <td>
+              Evaluate deterministic requirement satisfaction and explicit
+              failure semantics.
+            </td>
+            <td>
+              Publish assessment criteria that map requirement identifiers to
+              objective evidence.
+            </td>
+          </tr>
+          <tr>
+            <td>Verifiers and relying parties</td>
+            <td>
+              Goal: make acceptance decisions from evidence, not declarations.
+              Required artifact: credential proofs, policy documents, and
+              publication evidence.
+            </td>
+            <td>
+              Execute deterministic verification logic and return explicit
+              machine-readable decisions.
+            </td>
+            <td>
+              Integrate verifier outputs into relying-party policy decisions
+              without replacing cryptographic checks with trust lists alone.
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
     <section id="terminology">
@@ -284,26 +411,30 @@
         <dt><dfn>decentralized event log</dfn></dt>
         <dd>
           Open-participation publication layer used to replicate GDIS
-          verification material across many origins.
+          verification material across many origins. Transport and host
+          participation semantics are defined by the declared host profile (for
+          example GQTS), not by this specification.
         </dd>
 
-        <dt><dfn>GDIS host</dfn></dt>
+        <dt><dfn>host profile</dfn></dt>
         <dd>
-          An origin participating in the <a>decentralized event log</a> by
-          storing and serving GDIS publication material according to a declared
-          host profile.
+          External specification that defines host role semantics, admission,
+          transport, replication, and consistency behavior for publication
+          participants (for example GQTS).
+          <a href="#ref-gqts-core">[GQTS-CORE]</a>.
         </dd>
 
         <dt><dfn>mandatory minimum hosts</dfn></dt>
         <dd>
-          Governance-required publication targets that define a minimum
-          publication floor and not an exclusive publication ceiling.
+          Governance-required publication targets in the selected
+          <a>host profile</a> that define a minimum publication floor and not an
+          exclusive publication ceiling.
         </dd>
 
         <dt><dfn>publication set</dfn></dt>
         <dd>
-          Union of mandatory governance hosts and person-selected additional
-          hosts to which a subject's materials are published.
+          Union of mandatory governance publication targets and person-selected
+          additional targets to which subject materials are published.
         </dd>
 
         <dt><dfn>asOf query parameter</dfn></dt>
@@ -315,8 +446,9 @@
 
         <dt><dfn>evidence artifact</dfn></dt>
         <dd>
-          A signed or hashed machine-verifiable artifact used by issuers, hosts,
-          or verifiers to substantiate a security or status claim.
+          A signed or hashed machine-verifiable artifact used by issuers,
+          host-profile operators, or verifiers to substantiate a security or
+          status claim.
         </dd>
 
         <dt><dfn>conformance report</dfn></dt>
@@ -428,11 +560,12 @@
           </li>
           <li>
             <strong>Verifier</strong>: relying party validating evidence,
-            endpoint freshness, and event-log consistency.
+            endpoint freshness, and publication-evidence consistency.
           </li>
           <li>
-            <strong>Host</strong>: any open participant origin implementing GDIS
-            host replication endpoints.
+            <strong>Host-profile operator</strong>: participant running a host
+            implementation defined by the selected <a>host profile</a> (for
+            example GQTS).
           </li>
         </ul>
       </section>
@@ -461,11 +594,13 @@
           </li>
           <li>
             PID-hash key material and verification material are published to a
-            <a>publication set</a> in the <a>decentralized event log</a>.
+            <a>publication set</a> in the selected
+            <a>host profile</a> network.
           </li>
           <li>
-            Verifiers resolve events mechanically and evaluate binding validity,
-            status, and freshness.
+            Verifiers validate publication evidence under the declared
+            <a>host profile</a> and evaluate binding validity, status, and
+            freshness.
           </li>
         </ol>
       </section>
@@ -575,7 +710,7 @@
       </section>
 
       <section id="event-log-model">
-        <h3>Decentralized Event Log Model</h3>
+        <h3>Decentralized Publication Model</h3>
         <p>
           GDIS requires publication of verification material, but transport,
           replication, ordering, and distribution semantics are delegated to the
@@ -648,7 +783,10 @@
       <h2>Normative Requirements</h2>
 
       <section id="req-anchor">
-        <h3>1. Physical Anchor Requirements</h3>
+        <h3>
+          <span id="REQ-GDIS-01" class="mono">REQ-GDIS-01</span>
+          1. Physical Anchor Requirements
+        </h3>
         <ul>
           <li>
             A GDIS issuance flow <em class="rfc2119">MUST</em> begin from a
@@ -668,7 +806,10 @@
       </section>
 
       <section id="req-mrz-pid">
-        <h3>2. MRZ-Derived PID Hash Requirements</h3>
+        <h3>
+          <span id="REQ-GDIS-02" class="mono">REQ-GDIS-02</span>
+          2. MRZ-Derived PID Hash Requirements
+        </h3>
         <ul>
           <li>
             Implementations <em class="rfc2119">MUST</em> derive
@@ -736,7 +877,7 @@
           <li>
             Raw MRZ strings and raw PID fields
             <em class="rfc2119">MUST NOT</em> be published in cleartext in the
-            decentralized event log.
+            publication layer.
           </li>
           <li>
             <a>PID hash</a> <em class="rfc2119">MUST</em> be treated as a
@@ -754,7 +895,16 @@
       </section>
 
       <section id="req-endpoint">
-        <h3>3. Verification Endpoint Requirements</h3>
+        <h3>
+          <span id="REQ-GDIS-03" class="mono">REQ-GDIS-03</span>
+          3. Verification Endpoint Requirements
+        </h3>
+        <p>
+          Wire contracts for GDIS endpoint operations are normative in
+          <span class="mono">openapi.yaml</span>. This section defines only
+          behavioral invariants and conformance expectations
+          <a href="#ref-oas-3-1-2">[OAS-3.1.2]</a>.
+        </p>
         <ul>
           <li>
             GDIS HTTP endpoints <em class="rfc2119">MUST</em> use the URI
@@ -774,72 +924,36 @@
           </li>
           <li>
             Governance areas defining PID requirements
-            <em class="rfc2119">MUST</em> expose a
-            <a>PID identification endpoint</a> at
-            <span class="mono">GET /.well-known/gidas/pid-identification</span>
-            that is recognized by that jurisdiction's legal or administrative
-            framework.
+            <em class="rfc2119">MUST</em> expose a governance-recognized
+            <a>PID identification endpoint</a>.
           </li>
           <li>
-            The PID identification endpoint response
-            <em class="rfc2119">MUST</em> provide a normative
-            <a>PID field set</a> as a machine-readable JSON payload
-            <a href="#ref-rfc8259">[RFC8259]</a> with at least:
-            <span class="mono"
-              >governanceArea, policyId, profileVersion, effectiveFrom,
-              pidFieldSet</span
-            >.
+            Conforming implementations
+            <em class="rfc2119">MUST</em> implement the
+            <span class="mono">getGdisPidIdentificationPolicy</span> operation
+            in <span class="mono">openapi.yaml</span> without behavioral
+            deviation from declared parameters, response schemas, and error
+            semantics.
           </li>
           <li>
-            <span class="mono">pidFieldSet</span>
-            <em class="rfc2119">MUST</em> be serialized as a JSON array (a
-            <a>list</a>) and <em class="rfc2119">MUST</em> have unique
-            <span class="mono">fieldId</span> members (a
-            <a>set</a> constraint).
+            The PID policy contract
+            <em class="rfc2119">MUST</em> conform to the
+            <span class="mono">GdisPidIdentificationPolicy</span> and
+            <span class="mono">GdisPidFieldRequirement</span> schemas in
+            <span class="mono">openapi.yaml</span>.
           </li>
           <li>
-            Each <span class="mono">pidFieldSet</span> entry
-            <em class="rfc2119">MUST</em> include at least:
-            <span class="mono"
-              >fieldId, mrzSource, required, regexp, regexpProfileVersion</span
-            >.
-          </li>
-          <li>
-            Per-field regular expressions in the PID field set
-            <em class="rfc2119">MUST</em> use an internet-safe regular
-            expression profile aligned with I-Regexp
-            <a href="#ref-rfc9485">[RFC9485]</a>. Governance profiles MAY
-            publish an equivalent ECMAScript-compatible pattern projection for
-            tooling interoperability <a href="#ref-mdn-regexp">[MDN-REGEXP]</a>.
-          </li>
-          <li>
-            PID field regular-expression checks
+            PID field regular-expression checks declared by the PID policy
             <em class="rfc2119">MUST</em> be applied as full-value validation,
-            not substring detection.
+            not substring detection, with regex profile alignment to I-Regexp
+            <a href="#ref-rfc9485">[RFC9485]</a>.
           </li>
           <li>
-            Endpoint responses <em class="rfc2119">MUST</em> declare media type,
-            schema version, and profile version so verifiers can apply
-            deterministic parsing and policy rules. JSON responses
-            <em class="rfc2119">MUST</em> use
-            <span class="mono">application/json</span>
-            <a href="#ref-rfc9110">[RFC9110]</a>
-            <a href="#ref-rfc8259">[RFC8259]</a>.
-          </li>
-          <li>
-            The PID identification endpoint <em class="rfc2119">MUST</em>
-            support optional
+            The PID policy operation
+            <em class="rfc2119">MUST</em> support optional
             <span class="mono">asOf</span>
-            <a>asOf query parameter</a> selection via URI query components
-            <a href="#ref-rfc3986">[RFC3986]</a>. If
-            <span class="mono">asOf</span> is supplied, the endpoint
-            <em class="rfc2119">MUST</em> return the policy version effective at
-            that instant, or HTTP
-            <span class="mono">404</span> with a machine-readable JSON error
-            object
-            <span class="mono">{"code": "...", "message": "..."}</span>
-            <a href="#ref-rfc9110">[RFC9110]</a>
-            <a href="#ref-rfc8259">[RFC8259]</a>.
+            <a>asOf query parameter</a> selection and policy-version resolution
+            semantics as declared in <span class="mono">openapi.yaml</span>.
           </li>
           <li>
             PID policy responses <em class="rfc2119">MUST</em> be
@@ -867,45 +981,13 @@
             endpoint status responses.
           </li>
         </ul>
-        <pre class="example"><code class="json">{
-  "governanceArea": "EX-GOV-001",
-  "policyId": "urn:gidas:pid-policy:EX-GOV-001:2026-02",
-  "profileVersion": "2026-02",
-  "effectiveFrom": "2026-02-01T00:00:00Z",
-  "effectiveUntil": null,
-  "pidFieldSet": [
-    {
-      "fieldId": "documentNumber",
-      "mrzSource": "TD3.line2[1:9]",
-      "required": true,
-      "regexp": "^[A-Z0-9<]{9}$",
-      "regexpProfileVersion": "iregexp-rfc9485-v1"
-    },
-    {
-      "fieldId": "nationality",
-      "mrzSource": "TD3.line2[11:13]",
-      "required": true,
-      "regexp": "^[A-Z<]{3}$",
-      "regexpProfileVersion": "iregexp-rfc9485-v1"
-    },
-    {
-      "fieldId": "birthDate",
-      "mrzSource": "TD3.line2[14:19]",
-      "required": true,
-      "regexp": "^[0-9]{6}$",
-      "regexpProfileVersion": "iregexp-rfc9485-v1"
-    }
-  ],
-  "signature": {
-    "alg": "EdDSA",
-    "kid": "did:example:gov#policy-2026-02",
-    "value": "..."
-  }
-}</code></pre>
       </section>
 
       <section id="req-vc-did-gqscd">
-        <h3>4. VC to DID Binding and Controller Requirements</h3>
+        <h3>
+          <span id="REQ-GDIS-04" class="mono">REQ-GDIS-04</span>
+          4. VC to DID Binding and Controller Requirements
+        </h3>
         <ul>
           <li>
             The binding statement <em class="rfc2119">MUST</em> be a
@@ -931,12 +1013,20 @@
       </section>
 
       <section id="req-publication-profile">
-        <h3>5. Publication Profile Binding</h3>
+        <h3>
+          <span id="REQ-GDIS-05" class="mono">REQ-GDIS-05</span>
+          5. Publication Profile Binding
+        </h3>
         <ul>
           <li>
             GDIS issuers and verifiers <em class="rfc2119">MUST</em> process
             publication evidence bound to <a>PID hash</a> under a declared host
             profile identifier.
+          </li>
+          <li>
+            GDIS does not define an independent host role. Host-role semantics
+            are defined only by the selected <a>host profile</a> (for example
+            GQTS) <a href="#ref-gqts-core">[GQTS-CORE]</a>.
           </li>
           <li>
             This specification <em class="rfc2119">MUST NOT</em> define
@@ -961,7 +1051,10 @@
       </section>
 
       <section id="req-replay">
-        <h3>6. Replay and Freshness Controls</h3>
+        <h3>
+          <span id="REQ-GDIS-06" class="mono">REQ-GDIS-06</span>
+          6. Replay and Freshness Controls
+        </h3>
         <ul>
           <li>
             Verification payloads <em class="rfc2119">MUST</em> include nonce or
@@ -979,7 +1072,10 @@
       </section>
 
       <section id="req-crypto-agility">
-        <h3>7. Cryptographic Agility and Profile Constraints</h3>
+        <h3>
+          <span id="REQ-GDIS-07" class="mono">REQ-GDIS-07</span>
+          7. Cryptographic Agility and Profile Constraints
+        </h3>
         <ul>
           <li>
             This specification <em class="rfc2119">MUST</em> remain
@@ -1027,7 +1123,10 @@
       <h2>Processing Model</h2>
 
       <section id="processing-issuer">
-        <h3>Issuer Processing Rules</h3>
+        <h3>
+          <span id="REQ-GDIS-08" class="mono">REQ-GDIS-08</span>
+          Issuer Processing Rules
+        </h3>
         <ol>
           <li>
             The issuer MUST verify the physical anchor evidence, including
@@ -1058,9 +1157,15 @@
       </section>
 
       <section id="processing-verifier">
-        <h3>Verifier Processing Rules and Output Contract</h3>
+        <h3>
+          <span id="REQ-GDIS-09" class="mono">REQ-GDIS-09</span>
+          Verifier Processing Rules and Output Contract
+        </h3>
         <p>
-          A verifier MUST execute requirements from sections 3, 5, 6, and 7
+          A verifier MUST execute
+          <span class="mono"
+            >REQ-GDIS-03, REQ-GDIS-05, REQ-GDIS-06, and REQ-GDIS-07</span
+          >
           before returning a decision. The verifier output MUST be explicit and
           machine-consumable.
         </p>
@@ -1127,32 +1232,56 @@
         </thead>
         <tbody>
           <tr>
-            <td>Section 1 Physical Anchor</td>
+            <td>REQ-GDIS-01 Physical anchor</td>
             <td>Issuer anchor evidence artifact</td>
             <td>Issuer</td>
             <td>Verifier</td>
           </tr>
           <tr>
-            <td>Section 2 MRZ-derived PID hash</td>
+            <td>REQ-GDIS-02 MRZ-derived PID hash</td>
             <td>Canonicalization and hash transcript</td>
             <td>Issuer</td>
             <td>Verifier</td>
           </tr>
           <tr>
-            <td>Section 3 Endpoint verification</td>
+            <td>REQ-GDIS-03 Endpoint verification</td>
             <td>Endpoint status artifact</td>
             <td>Endpoint operator</td>
             <td>Verifier</td>
           </tr>
           <tr>
-            <td>Section 5 Publication profile binding</td>
+            <td>REQ-GDIS-05 Publication profile binding</td>
             <td>Publication evidence artifact</td>
             <td>Issuer</td>
             <td>Verifier</td>
           </tr>
           <tr>
-            <td>Section 6 Replay/freshness</td>
+            <td>REQ-GDIS-06 Replay/freshness</td>
             <td>Verifier transcript artifact</td>
+            <td>Verifier</td>
+            <td>Auditor or policy authority</td>
+          </tr>
+          <tr>
+            <td>REQ-GDIS-04 VC to DID binding</td>
+            <td>Binding credential artifact</td>
+            <td>Issuer</td>
+            <td>Verifier</td>
+          </tr>
+          <tr>
+            <td>REQ-GDIS-07 Cryptographic agility</td>
+            <td>Cryptographic profile declaration</td>
+            <td>Issuer</td>
+            <td>Verifier</td>
+          </tr>
+          <tr>
+            <td>REQ-GDIS-08 Issuer processing</td>
+            <td>Issuance transcript and evidence bundle</td>
+            <td>Issuer</td>
+            <td>Verifier</td>
+          </tr>
+          <tr>
+            <td>REQ-GDIS-09 Verifier processing</td>
+            <td>Verification result and failure reason outputs</td>
             <td>Verifier</td>
             <td>Auditor or policy authority</td>
           </tr>
@@ -1173,14 +1302,15 @@
           <tr>
             <td>GDIS Issuer</td>
             <td>
-              1, 2, 3, 4, 5, 6, 7 and issuance evidence production.
+              REQ-GDIS-01, REQ-GDIS-02, REQ-GDIS-03, REQ-GDIS-04, REQ-GDIS-05,
+              REQ-GDIS-06, REQ-GDIS-07, and REQ-GDIS-08.
             </td>
           </tr>
           <tr>
             <td>GDIS Verifier</td>
             <td>
-              3, 5, 6, 7 plus endpoint freshness and publication-evidence
-              output.
+              REQ-GDIS-03, REQ-GDIS-05, REQ-GDIS-06, REQ-GDIS-07, and
+              REQ-GDIS-09.
             </td>
           </tr>
         </tbody>
@@ -1195,7 +1325,8 @@
       </p>
       <ul>
         <li>
-          declared conformance class (Issuer, Verifier, or multiple);
+          declared conformance class (Issuer, Verifier, or multiple) and
+          declared satisfied requirement identifiers;
         </li>
         <li>supported profile and schema versions;</li>
         <li>
@@ -1203,7 +1334,11 @@
           version pinning for publication semantics (for example GQTS);
         </li>
         <li>declared mandatory cryptographic suites and key constraints;</li>
-        <li>implemented requirement units and any documented exclusions;</li>
+        <li>
+          implemented requirement identifiers (for example
+          <span class="mono">REQ-GDIS-03</span>) and any documented
+          exclusions;
+        </li>
         <li>
           test evidence, including pass/fail results and artifact samples;
         </li>
@@ -1445,6 +1580,12 @@
               Words</a
             >
           </li>
+          <li id="ref-rfc6838">
+            <a href="https://www.rfc-editor.org/rfc/rfc6838"
+              >[RFC6838] Media Type Specifications and Registration
+              Procedures</a
+            >
+          </li>
           <li id="ref-infra">
             <a href="https://infra.spec.whatwg.org/"
               >[INFRA] WHATWG Infra Standard</a
@@ -1604,8 +1745,39 @@
         </ul>
       </section>
       <section>
+        <h3>Infra and API Baselines</h3>
+        <ul>
+          <li id="ref-ecma262">
+            <a href="https://tc39.es/ecma262/"
+              >[ECMA-262] ECMAScript Language Specification</a
+            >
+          </li>
+          <li id="ref-xmlschema11-2">
+            <a href="https://www.w3.org/TR/xmlschema11-2/"
+              >[XMLSCHEMA11-2] XML Schema 1.1 Part 2: Datatypes</a
+            >
+          </li>
+          <li id="ref-base64url-practical">
+            <a href="https://base64.guru/standards/base64url"
+              >[BASE64URL] Base64URL practical reference (RFC 4648 section 5
+              terminology)</a
+            >
+          </li>
+          <li id="ref-oas-3-1-2">
+            <a href="https://spec.openapis.org/oas/v3.1.2.html"
+              >[OAS-3.1.2] OpenAPI Specification 3.1.2</a
+            >
+          </li>
+        </ul>
+      </section>
+      <section>
         <h3>Web Credentials and Identity</h3>
         <ul>
+          <li id="ref-controller-document">
+            <a href="https://www.w3.org/TR/cid-1.0/"
+              >[CONTROLLER-DOCUMENT] Controlled Identifiers v1.0</a
+            >
+          </li>
           <li id="ref-did-core">
             <a href="https://www.w3.org/TR/did-core/"
               >[DID-CORE] Decentralized Identifiers (DID) v1.0</a
@@ -1619,6 +1791,11 @@
           <li id="ref-vc-data-integrity">
             <a href="https://www.w3.org/TR/vc-data-integrity/"
               >[VC-DI] Verifiable Credential Data Integrity 1.0</a
+            >
+          </li>
+          <li id="ref-vc-di-ecdsa">
+            <a href="https://www.w3.org/TR/vc-di-ecdsa/"
+              >[VC-DI-ECDSA] Data Integrity ECDSA Cryptosuites v1.0</a
             >
           </li>
           <li id="ref-json-ld11">
@@ -1686,10 +1863,35 @@
           </li>
         </ul>
       </section>
+      <section>
+        <h3>Verifiable History Inputs</h3>
+        <ul>
+          <li id="ref-cel-spec">
+            <a href="https://w3c-ccg.github.io/cel-spec/"
+              >[CEL-SPEC] Composable Event Logs Specification</a
+            >
+          </li>
+          <li id="ref-did-webvh">
+            <a href="https://identity.foundation/didwebvh/v1.0/"
+              >[DID-WEBVH] did:webvh DID Method v1.0</a
+            >
+          </li>
+          <li id="ref-json-web-history">
+            <a href="https://z-base.github.io/json-web-history/"
+              >[JSON-WEB-HISTORY] JSON Web History</a
+            >
+          </li>
+        </ul>
+      </section>
 
       <section>
         <h3>GQSCD Framework Inputs</h3>
         <ul>
+          <li id="ref-gdis-core">
+            <a href="https://z-base.github.io/gdis/"
+              >[GDIS-CORE] Global Digital Identity Scheme (framework item)</a
+            >
+          </li>
           <li id="ref-gqscd-core">
             <a href="https://z-base.github.io/gqscd/"
               >[GQSCD-CORE] Globally Qualified Signature Creation Device
