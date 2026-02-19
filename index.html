@@ -72,9 +72,12 @@
         as the wallet profile in the GIDAS family.
       </p>
       <p>
-        GQTW defines wallet-private custody and private event-log behavior for liability-bearing
-        proof artifacts. GQTS hosts public verification material and public append-only event
-        histories. GQSCD provides protected-key invocation evidence.
+        This specification is technical and does not create legal recognition by itself.
+      </p>
+      <p class="note">
+        NOTE: The <span class="mono">openapi.yaml</span> contracts are indicative ("suuntaa
+        antavia") and are not yet normative. Official schemas will be finalized after the first
+        reference implementation.
       </p>
     </section>
 
@@ -90,24 +93,58 @@
 
     <section id="conformance">
       <p>
-        The key words <em class="rfc2119">MUST</em>, <em class="rfc2119">MUST NOT</em>,
+        The key words <em class="rfc2119">MUST</em>,
+        <em class="rfc2119">MUST NOT</em>, <em class="rfc2119">REQUIRED</em>,
+        <em class="rfc2119">SHALL</em>, <em class="rfc2119">SHALL NOT</em>,
         <em class="rfc2119">SHOULD</em>, <em class="rfc2119">SHOULD NOT</em>,
-        <em class="rfc2119">MAY</em>, and <em class="rfc2119">REQUIRED</em> are interpreted
-        as described in BCP 14 <a href="#ref-rfc2119">[RFC2119]</a>
-        <a href="#ref-rfc8174">[RFC8174]</a>.
+        <em class="rfc2119">RECOMMENDED</em>, <em class="rfc2119">MAY</em>, and
+        <em class="rfc2119">OPTIONAL</em> in this document are to be interpreted
+        as described in BCP 14
+        <a href="#ref-rfc2119">[RFC2119]</a>
+        <a href="#ref-rfc8174">[RFC8174]</a> when, and only when, they appear in
+        all capitals.
       </p>
       <p>
-        Conforming implementations MUST satisfy all requirements for at least one conformance
-        class in <a href="#conformance-classes">Conformance Classes</a>.
+        Conforming implementations MUST satisfy all requirements for at least
+        one conformance class in
+        <a href="#conformance-classes">Conformance Classes</a>.
       </p>
       <p>
-        Data-model terms such as <a>list</a>, <a>set</a>, <a>tuple</a>, and
-        <a>byte sequence</a> follow <a href="#ref-infra">[INFRA]</a> unless overridden.
+        Unless explicitly overridden, data-model terms such as
+        <a>list</a>, <a>set</a>, <a>tuple</a>, and <a>byte sequence</a>
+        are interpreted according to Infra
+        <a href="#ref-infra">[INFRA]</a>. JSON payload and array semantics are
+        interpreted according to <a href="#ref-rfc8259">[RFC8259]</a>.
       </p>
       <p>
-        Normative wire contracts are defined in <span class="mono">openapi.yaml</span>
-        <a href="#ref-oas-3-1-2">[OAS-3.1.2]</a>. ReSpec prose defines invariants,
-        deterministic processing, and conformance semantics.
+        End-to-end machine verifiability is mandatory: any acceptance decision,
+        legal-status claim, or policy-compatibility claim MUST be backed by
+        machine-verifiable artifacts and explicit source references, not UI
+        labels or unverifiable declarations.
+      </p>
+      <p>
+        This specification defines behavioral requirements and verification
+        invariants. It intentionally remains implementation-agnostic about
+        runtime complexity and internal data structures, provided equivalent
+        outputs are produced for equivalent inputs.
+      </p>
+      <p>
+        Conformance in this specification is outcome-based: required verifier
+        outputs and security/privacy invariants are normative; implementation
+        strategy is a competitive concern.
+      </p>
+      <p>
+        This document does not define programming-language implementations or
+        API usage recipes; it defines interoperable data contracts and verifier
+        behavior.
+      </p>
+      <p>
+        Where protocol endpoints are defined, wire contracts are described in
+        <span class="mono">openapi.yaml</span>. These contracts are indicative
+        ("suuntaa antavia") and will be finalized after the first reference
+        implementation. ReSpec prose defines invariants, processing rules, and
+        conformance semantics for those contracts
+        <a href="#ref-oas-3-1-2">[OAS-3.1.2]</a>.
       </p>
     </section>
 
@@ -118,58 +155,79 @@
         <li>wallet-private proof custody and private append-only history;</li>
         <li>wallet interoperability with relying parties, GQTS, and GQSCD;</li>
         <li>opaque encrypted portability and backup invariants;</li>
-        <li>web-native, EU EUDI, and Utah SEDI compatibility mappings.</li>
+        <li>web-native and jurisdictional compatibility mappings.</li>
       </ul>
-      <p>This specification does not create legal recognition by itself.</p>
+      <p>This specification does not:</p>
+      <ul>
+        <li>create legal recognition by itself;</li>
+        <li>replace jurisdictional trust lists, supervisory registries, or legal status determinations;</li>
+        <li>standardize one specific chain, one specific vendor stack, or one closed host network.</li>
+      </ul>
     </section>
 
     <section id="positioning-adoption" class="informative">
       <h2>Positioning and Adoption Model</h2>
+      <p>
+        This section is informative. It describes stakeholder adoption pathways
+        as explicit
+        <span class="mono"
+          >goal -&gt; required artifact/interface -&gt; verifier behavior -&gt;
+          adoption pathway</span
+        >
+        mappings.
+      </p>
       <table class="simple tight">
         <thead>
           <tr>
             <th>Stakeholder</th>
-            <th>Goal -&gt; artifact/interface</th>
-            <th>Verifier behavior</th>
-            <th>Adoption pathway</th>
+            <th>Goal</th>
+            <th>Required Artifact/Interface</th>
+            <th>Verifier Behavior</th>
+            <th>Adoption Pathway</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Device/platform manufacturers</td>
-            <td>Expose GQSCD-aligned intent and key-custody evidence.</td>
-            <td>Verify evidence before accepting signing/attestation claims.</td>
-            <td>Publish conformance against GQSCD requirements.</td>
+            <td>Device and platform manufacturers</td>
+            <td>Implement and expose verifiable evidence hooks.</td>
+            <td>Evidence hooks, user-intent enforcement signals, key-custody evidence, conformance targets.</td>
+            <td>Verify evidence before accepting signing or attestation claims.</td>
+            <td>Publish conformance targets and implementation profiles.</td>
           </tr>
           <tr>
-            <td>Wallet implementers</td>
-            <td>Maintain private proof custody and user-consented disclosure.</td>
-            <td>Verify challenge/audience/freshness and disclosure minimization.</td>
-            <td>Publish machine-verifiable conformance artifacts.</td>
+            <td>Wallet and app implementers</td>
+            <td>Build end-user controlled signing and attestation flows.</td>
+            <td>Proof artifacts, consent records, disclosure policies, conformance evidence.</td>
+            <td>Verify challenge, audience, freshness, and disclosure minimization.</td>
+            <td>Publish machine-verifiable conformance artifacts and avoid remote-by-default custody.</td>
           </tr>
           <tr>
-            <td>SDOs</td>
-            <td>Define profiles, registries, and test suites.</td>
+            <td>Standards development organizations (SDOs)</td>
+            <td>Define profile work items and test suites.</td>
+            <td>Profile specifications, test assertions, registry/discovery strategy.</td>
             <td>Require deterministic outputs for equivalent inputs.</td>
             <td>Adopt profile work items and clause mappings.</td>
           </tr>
           <tr>
-            <td>Governments/regulators</td>
-            <td>Publish registries and recognition inputs.</td>
-            <td>Keep mechanical validity separate from legal recognition output.</td>
+            <td>Governments and regulators</td>
+            <td>Publish authoritative discovery endpoints and recognition inputs.</td>
+            <td>Registries, authoritative discovery endpoints, recognition procedures.</td>
+            <td>Keep cryptographic validity separate from legal recognition output.</td>
             <td>Publish machine-readable policy and registry interfaces.</td>
           </tr>
           <tr>
-            <td>Auditors/CABs/assessors</td>
-            <td>Evaluate machine-verifiable evidence, not paper-only assertions.</td>
+            <td>Auditors, CABs, and assessors</td>
+            <td>Define test assertions and evidence evaluation procedures.</td>
+            <td>Test assertions, evidence evaluation procedures, machine-verifiable artifacts.</td>
             <td>Require requirement-id traceability and deterministic checks.</td>
-            <td>Issue clause-mapped evidence reports.</td>
+            <td>Issue clause-mapped evidence reports and minimize paper-only trust.</td>
           </tr>
           <tr>
-            <td>Verifiers/relying parties</td>
-            <td>Demand proof plus DID-linked verification history.</td>
+            <td>Verifiers and relying parties</td>
+            <td>Implement deterministic verification and policy separation.</td>
+            <td>Verifier-checkable evidence for every security claim.</td>
             <td>Reject unverifiable claims and policy-only signals.</td>
-            <td>Require cryptographic evidence for every security claim.</td>
+            <td>Require deterministic verification as a separate policy layer.</td>
           </tr>
         </tbody>
       </table>
@@ -249,8 +307,8 @@
       </dl>
     </section>
 
-    <section id="architecture">
-      <h2>Architecture</h2>
+    <section id="architecture-data-model">
+      <h2>Architecture and Data Model</h2>
       <p>
         GQTW defines the wallet-side private boundary. GQTS defines the public verification
         material boundary. GQSCD defines protected-key invocation evidence. GDIS defines
@@ -318,78 +376,71 @@
         <a href="https://z-base.github.io/gdis/#REQ-GDIS-04">REQ-GDIS-04</a> through
         <a href="https://z-base.github.io/gdis/#REQ-GDIS-06">REQ-GDIS-06</a>.
       </p>
-    </section>
-
-    <section id="data-model">
-      <h2>Data Model</h2>
-      <section id="data-model-proof-artifacts">
-        <h3>Proof Artifacts (Private VC/VP)</h3>
-        <p>
-          Wallet-held <a>proof artifact</a> objects are VC/VP-family objects (or explicit profiled
-          equivalents) and are private by default. A wallet artifact can embed a
-          <a>GDIS binding credential</a> and bind disclosure proofs to a
-          <a>GDIS subject DID</a> in verifier flows.
-        </p>
-      </section>
-      <section id="data-model-public-verification-material">
-        <h3>Verification Material Tokens (Public)</h3>
-        <p>
-          Public <a>blind verification material</a> is DID-resolvable and published/replicated by
-          <a>GQTS host</a> participants.
-          Public data is "public but blind" and is not a cleartext claim store.
-        </p>
-      </section>
-      <section id="data-model-event-log-format">
-        <h3>Event-Log Token Structure</h3>
-        <p>
-          Accepted token/event objects MUST carry an identifier, explicit parent reference,
-          timestamp, verification-method reference, payload digest, and <a>proof object</a>.
-          Key rotation MUST be authorized by the previous valid key in lineage.
-        </p>
+      <section id="data-model">
+        <h3>Data Model</h3>
+        <section id="data-model-proof-artifacts">
+          <h4>Proof Artifacts (Private VC/VP)</h4>
+          <p>
+            Wallet-held <a>proof artifact</a> objects are VC/VP-family objects (or explicit profiled
+            equivalents) and are private by default. A wallet artifact can embed a
+            <a>GDIS binding credential</a> and bind disclosure proofs to a
+            <a>GDIS subject DID</a> in verifier flows.
+          </p>
+        </section>
+        <section id="data-model-public-verification-material">
+          <h4>Verification Material Tokens (Public)</h4>
+          <p>
+            Public <a>blind verification material</a> is DID-resolvable and published/replicated by
+            <a>GQTS host</a> participants.
+            Public data is "public but blind" and is not a cleartext claim store.
+          </p>
+        </section>
+        <section id="data-model-event-log-format">
+          <h4>Event-Log Token Structure</h4>
+          <p>
+            Accepted token/event objects MUST carry an identifier, explicit parent reference,
+            timestamp, verification-method reference, payload digest, and <a>proof object</a>.
+            Key rotation MUST be authorized by the previous valid key in lineage.
+          </p>
+        </section>
       </section>
     </section>
 
     <section id="protocols-apis">
       <h2>Protocols and APIs</h2>
+      <p>
+        This section states protocol invariants and verifier expectations.
+        Endpoint schemas and wire contracts are defined in
+        <span class="mono">openapi.yaml</span> and are not restated here.
+      </p>
       <section id="protocol-wallet-rp">
         <h3>Wallet and Relying Party</h3>
         <p>
-          Request/present/consent behavior is bound to
-          <a href="#op-postPresentationRequest"><code>postPresentationRequest</code></a>
-          and
-          <a href="#op-postPresentationSubmission"><code>postPresentationSubmission</code></a>.
-          The disclosure output proves statements without disclosing private <a>witness</a>
-          material by default.
+          Request, presentation, and consent behavior MUST ensure that disclosure outputs
+          prove statements without disclosing private <a>witness</a> material by default.
         </p>
       </section>
       <section id="protocol-wallet-gqts">
         <h3>Wallet and GQTS</h3>
         <p>
-          Wallets resolve public history using GQTS operations and may use
-          <a href="#op-postGqtsHeadHint"><code>postGqtsHeadHint</code></a>
-          and
-          <a href="#op-postWalletIncidentReport"><code>postWalletIncidentReport</code></a>
-          for hint/report interfaces. Invalid branches are classified as <a>bad node</a> inputs
-          and handled by deterministic reject/report logic.
+          Wallets resolve public history using GQTS operations. Invalid branches are
+          classified as <a>bad node</a> inputs and handled by deterministic reject and
+          report logic.
         </p>
       </section>
       <section id="protocol-wallet-gqscd">
         <h3>Wallet and GQSCD</h3>
         <p>
-          Protected-key invocation is bound to
-          <a href="#op-postGqscdInvocation"><code>postGqscdInvocation</code></a>
-          with user-intent evidence. Invocation policy MUST preserve
-          <a>sole control</a> and verifiable <a>user intent ceremony</a> behavior.
+          Protected-key invocation MUST include user-intent evidence. Invocation policy
+          MUST preserve <a>sole control</a> and verifiable <a>user intent ceremony</a>
+          behavior.
         </p>
       </section>
       <section id="protocol-portability">
         <h3>Export, Portability, and Backup</h3>
         <p>
-          Opaque encrypted migration contracts are bound to
-          <a href="#op-postWalletExport"><code>postWalletExport</code></a>
-          and
-          <a href="#op-postWalletImport"><code>postWalletImport</code></a>.
-          The exported unit is a <a>portability package</a>.
+          Opaque encrypted migration contracts MUST treat the exported unit as a
+          <a>portability package</a>.
         </p>
       </section>
       <figure class="informative">
@@ -976,7 +1027,7 @@
     </section>
 
     <section id="conformance-reporting">
-      <h2>Conformance Reporting Requirements</h2>
+      <h2>Conformance Reporting</h2>
       <ul>
         <li>implementation identifier/version and claimed class;</li>
         <li>requirement coverage list with REQ-GQTW ids;</li>
