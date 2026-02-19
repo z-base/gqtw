@@ -50,6 +50,16 @@
                       "imported_from":  null
                   },
                   {
+                      "term_text":  "witness",
+                      "normalized_term":  "witnes",
+                      "term_id":  "witness",
+                      "anchor":  "#witness",
+                      "section_anchor":  "#terminology",
+                      "definition_excerpt_hash":  "c1de58cfafdba7a3131eef40cf701f128f22441dc82c603558bdde345b4a8850",
+                      "definition_text_excerpt":  "Private cryptographic input used to construct or satisfy a proof statement (for example hidden attributes, blinding values, or secret proof-state elements).",
+                      "imported_from":  null
+                  },
+                  {
                       "term_text":  "portability package",
                       "normalized_term":  "portability package",
                       "term_id":  "portability-package",
@@ -228,17 +238,16 @@
                         "normative_keywords_used":  [
                                                         "MUST"
                                                     ],
-                        "text_excerpt_hash":  "4e4c7f9827f2f75f84a2fabc9eb7732e15f13399913c3b624b30350b77f20fcc"
+                        "text_excerpt_hash":  "135458470dd0a3e372d44ecf9075f62218e1ee78de9f7ca130434a758bfd7325"
                     },
                     {
                         "clause_id":  "REQ-GQTW-01",
                         "anchor":  "#REQ-GQTW-01",
                         "kind":  "requirement",
                         "normative_keywords_used":  [
-                                                        "MUST",
-                                                        "MUST NOT"
+                                                        "MUST"
                                                     ],
-                        "text_excerpt_hash":  "f0446fefb63be25f8518ae5dd0d24cd8568b919c60125aef36183b50745c8ce8"
+                        "text_excerpt_hash":  "c72d070ad67fbb8d2c8a15211c267999c61b7e1d8dbdaa1fb1b218f7cce22e3f"
                     },
                     {
                         "clause_id":  "REQ-GQTW-02",
@@ -247,7 +256,7 @@
                         "normative_keywords_used":  [
                                                         "MUST"
                                                     ],
-                        "text_excerpt_hash":  "dca21fe03e507aa0ca3a1b6ba53965a4f19647414616dd9ccb96eead92d4cff7"
+                        "text_excerpt_hash":  "893f0bac3802f53ab16a7e664419432df8863646f8cfaf75a3e6eed897a81345"
                     },
                     {
                         "clause_id":  "REQ-GQTW-02",
@@ -256,7 +265,7 @@
                         "normative_keywords_used":  [
                                                         "MUST"
                                                     ],
-                        "text_excerpt_hash":  "818f1d1b7ff98c0ad2e049f130e6607e928d2850030f665cfc773b795abe1dd7"
+                        "text_excerpt_hash":  "08e8ae4d29944f76d9f59805113442c7081eb3dcdd011d61486d934c8134ddd5"
                     },
                     {
                         "clause_id":  "REQ-GQTW-03",
@@ -322,7 +331,7 @@
                                                         "MUST",
                                                         "MAY"
                                                     ],
-                        "text_excerpt_hash":  "04b972416365ef964efc660ec4386b72c8a77d541a60c431b1cbe54c0827224d"
+                        "text_excerpt_hash":  "d6709d6f62b2c0eaf36dc7c1f3ae0dd28974933a6dfe048d03335ed886e0b0b4"
                     },
                     {
                         "clause_id":  "REQ-GQTW-06",
@@ -332,7 +341,7 @@
                                                         "MUST",
                                                         "MAY"
                                                     ],
-                        "text_excerpt_hash":  "df9a60884a7445a834345ab56315ddce0e181e2e1032d69f31f2851a14686cf0"
+                        "text_excerpt_hash":  "976ac9cb45d089ddf5c9b3b35db6ccae350c290331fb17c262383dbf25f7788a"
                     },
                     {
                         "clause_id":  "REQ-GQTW-07",
@@ -395,7 +404,7 @@
                         "normative_keywords_used":  [
                                                         "MUST"
                                                     ],
-                        "text_excerpt_hash":  "4bc3477cf8010529b309a9100cebe4f5175f7a5417fac611e3fc7307b7691a9e"
+                        "text_excerpt_hash":  "80dc365f67d90c7a46dfe42d18557b8db8bf95030296882a690c4d3a404d714e"
                     },
                     {
                         "clause_id":  "REQ-GQTW-10",
@@ -404,7 +413,7 @@
                         "normative_keywords_used":  [
                                                         "MUST"
                                                     ],
-                        "text_excerpt_hash":  "9b7561d0531807a9610be4af1fd96fe9ced471f723c96ef7c3ab4696679cf588"
+                        "text_excerpt_hash":  "03271b3f405c98b560b9ba24821dcc54fd1516d82524fe215372e9dc2cc13ac1"
                     },
                     {
                         "clause_id":  "REQ-GQTW-11",
@@ -493,7 +502,7 @@
                                                         "MUST NOT",
                                                         "MAY"
                                                     ],
-                        "text_excerpt_hash":  "6485d562fa745ea2f6990c20e8c36feaae9fd4d5b82acf3167e40b92067e680a"
+                        "text_excerpt_hash":  "4f52541dec0e1ad4187a7d0a2372a4bdb0312fcf80979efd5e65b8b48ac01c46"
                     },
                     {
                         "clause_id":  "REQ-GQTW-15",
@@ -504,7 +513,7 @@
                                                         "MUST NOT",
                                                         "MAY"
                                                     ],
-                        "text_excerpt_hash":  "6c4c4967722cf56b165b058cd2e8c407c93426dd9eda9416932ed9c592c41985"
+                        "text_excerpt_hash":  "cc027ef4c00cddc1965786b1a655645691c4de1862c2d16148c176a131ab63b2"
                     }
                 ],
     "cross_spec_references":  [

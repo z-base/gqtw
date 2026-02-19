@@ -1334,6 +1334,23 @@
                                             ]
                             },
                             {
+                                "canonical_term":  "witnes",
+                                "canonical_owner_spec_id":  "GQTW-CORE",
+                                "canonical_anchor":  "#witness",
+                                "aliases":  [
+                                                "witness"
+                                            ],
+                                "members":  [
+                                                {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "witness",
+                                                    "anchor":  "#witness",
+                                                    "definition_excerpt_hash":  "c1de58cfafdba7a3131eef40cf701f128f22441dc82c603558bdde345b4a8850",
+                                                    "imported_from":  null
+                                                }
+                                            ]
+                            },
+                            {
                                 "canonical_term":  "zerotrust verification model",
                                 "canonical_owner_spec_id":  "GQSCD-CORE",
                                 "canonical_anchor":  "#zero-trust-verification-model",
@@ -1581,6 +1598,66 @@
                       }
                   ],
     "gaps":  [
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQTS-01"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQTS-07"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQSCD-06"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQSCD-10"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GDIS-04"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GDIS-04"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GDIS-06"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GDIS-06"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQTS-04"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQTS-07"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQSCD-26"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQSCD-29"
+                 },
                  {
                      "type":  "missing-requirement-anchor",
                      "spec_id":  "GQTW-CORE",

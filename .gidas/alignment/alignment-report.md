@@ -27,7 +27,7 @@
 - term_definition_conflicts: 0
 - requirement_id_namespace_conflicts: 0
 - operation_contract_conflicts: 1
-- gaps_detected: 58
+- gaps_detected: 70
 
 ## Key Requirement ID Namespace Conflicts
 - none
