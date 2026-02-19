@@ -68,27 +68,33 @@
   <body>
     <section id="abstract">
       <p>
-        This document specifies <strong>GQTW: Globally Qualified Trust Wallet</strong>
+        This document specifies
+        <strong>GQTW: Globally Qualified Trust Wallet</strong>
         as the wallet profile in the GIDAS family.
       </p>
       <p>
-        This specification is technical and does not create legal recognition by itself.
+        This specification is technical and does not create legal recognition by
+        itself.
       </p>
       <p class="note">
-        NOTE: The <span class="mono">openapi.yaml</span> contracts are indicative ("suuntaa
-        antavia") and are not yet normative. Official schemas will be finalized after the first
-        reference implementation.
+        NOTE: The <span class="mono">openapi.yaml</span> contracts are
+        indicative and are not yet normative. Official schemas will be finalized
+        after the first reference implementation.
       </p>
     </section>
 
     <section id="sotd">
       <p>This is an unofficial draft.</p>
       <p>
-        AI assistance disclosure: this draft used OpenAI GPT-5 Codex for drafting support,
-        structure proposals, and editorial rewrites. Human editor review determines normative
-        intent, accepted/rejected changes, and final wording.
+        AI assistance disclosure: this draft used OpenAI GPT-5 Codex for
+        drafting support, structure proposals, and editorial rewrites. Human
+        editor review determines normative intent, accepted/rejected changes,
+        and final wording.
       </p>
-      <p>Source currency note: linked source pages were checked on February 19, 2026.</p>
+      <p>
+        Source currency note: linked source pages were checked on February 19,
+        2026.
+      </p>
     </section>
 
     <section id="conformance">
@@ -160,8 +166,14 @@
       <p>This specification does not:</p>
       <ul>
         <li>create legal recognition by itself;</li>
-        <li>replace jurisdictional trust lists, supervisory registries, or legal status determinations;</li>
-        <li>standardize one specific chain, one specific vendor stack, or one closed host network.</li>
+        <li>
+          replace jurisdictional trust lists, supervisory registries, or legal
+          status determinations;
+        </li>
+        <li>
+          standardize one specific chain, one specific vendor stack, or one
+          closed host network.
+        </li>
       </ul>
     </section>
 
@@ -190,44 +202,79 @@
           <tr>
             <td>Device and platform manufacturers</td>
             <td>Implement and expose verifiable evidence hooks.</td>
-            <td>Evidence hooks, user-intent enforcement signals, key-custody evidence, conformance targets.</td>
-            <td>Verify evidence before accepting signing or attestation claims.</td>
+            <td>
+              Evidence hooks, user-intent enforcement signals, key-custody
+              evidence, conformance targets.
+            </td>
+            <td>
+              Verify evidence before accepting signing or attestation claims.
+            </td>
             <td>Publish conformance targets and implementation profiles.</td>
           </tr>
           <tr>
             <td>Wallet and app implementers</td>
             <td>Build end-user controlled signing and attestation flows.</td>
-            <td>Proof artifacts, consent records, disclosure policies, conformance evidence.</td>
-            <td>Verify challenge, audience, freshness, and disclosure minimization.</td>
-            <td>Publish machine-verifiable conformance artifacts and avoid remote-by-default custody.</td>
+            <td>
+              Proof artifacts, consent records, disclosure policies, conformance
+              evidence.
+            </td>
+            <td>
+              Verify challenge, audience, freshness, and disclosure
+              minimization.
+            </td>
+            <td>
+              Publish machine-verifiable conformance artifacts and avoid
+              remote-by-default custody.
+            </td>
           </tr>
           <tr>
             <td>Standards development organizations (SDOs)</td>
             <td>Define profile work items and test suites.</td>
-            <td>Profile specifications, test assertions, registry/discovery strategy.</td>
+            <td>
+              Profile specifications, test assertions, registry/discovery
+              strategy.
+            </td>
             <td>Require deterministic outputs for equivalent inputs.</td>
             <td>Adopt profile work items and clause mappings.</td>
           </tr>
           <tr>
             <td>Governments and regulators</td>
-            <td>Publish authoritative discovery endpoints and recognition inputs.</td>
-            <td>Registries, authoritative discovery endpoints, recognition procedures.</td>
-            <td>Keep cryptographic validity separate from legal recognition output.</td>
+            <td>
+              Publish authoritative discovery endpoints and recognition inputs.
+            </td>
+            <td>
+              Registries, authoritative discovery endpoints, recognition
+              procedures.
+            </td>
+            <td>
+              Keep cryptographic validity separate from legal recognition
+              output.
+            </td>
             <td>Publish machine-readable policy and registry interfaces.</td>
           </tr>
           <tr>
             <td>Auditors, CABs, and assessors</td>
             <td>Define test assertions and evidence evaluation procedures.</td>
-            <td>Test assertions, evidence evaluation procedures, machine-verifiable artifacts.</td>
-            <td>Require requirement-id traceability and deterministic checks.</td>
-            <td>Issue clause-mapped evidence reports and minimize paper-only trust.</td>
+            <td>
+              Test assertions, evidence evaluation procedures,
+              machine-verifiable artifacts.
+            </td>
+            <td>
+              Require requirement-id traceability and deterministic checks.
+            </td>
+            <td>
+              Issue clause-mapped evidence reports and minimize paper-only
+              trust.
+            </td>
           </tr>
           <tr>
             <td>Verifiers and relying parties</td>
             <td>Implement deterministic verification and policy separation.</td>
             <td>Verifier-checkable evidence for every security claim.</td>
             <td>Reject unverifiable claims and policy-only signals.</td>
-            <td>Require deterministic verification as a separate policy layer.</td>
+            <td>
+              Require deterministic verification as a separate policy layer.
+            </td>
           </tr>
         </tbody>
       </table>
@@ -237,33 +284,54 @@
       <h2>Terminology</h2>
       <dl>
         <dt><dfn>proof artifact</dfn></dt>
-        <dd>Wallet-private VC/VP-family artifact carrying liability-bearing claims and proof metadata.</dd>
+        <dd>
+          Wallet-private VC/VP-family artifact carrying liability-bearing claims
+          and proof metadata.
+        </dd>
 
         <dt><dfn>wallet-private event log</dfn></dt>
-        <dd>Wallet-maintained append-only directed linear history for private artifacts and events.</dd>
+        <dd>
+          Wallet-maintained append-only directed linear history for private
+          artifacts and events.
+        </dd>
 
         <dt><dfn>blind verification material</dfn></dt>
-        <dd>Public verification-side material that does not reveal sensitive claim contents by default.</dd>
+        <dd>
+          Public verification-side material that does not reveal sensitive claim
+          contents by default.
+        </dd>
 
         <dt><dfn>blind verification profile</dfn></dt>
-        <dd>Named profile for deterministic privacy-preserving proof verification behavior.</dd>
+        <dd>
+          Named profile for deterministic privacy-preserving proof verification
+          behavior.
+        </dd>
 
         <dt><dfn>witness</dfn></dt>
         <dd>
-          Private cryptographic input used to construct or satisfy a proof statement
-          (for example hidden attributes, blinding values, or secret proof-state elements).
+          Private cryptographic input used to construct or satisfy a proof
+          statement (for example hidden attributes, blinding values, or secret
+          proof-state elements).
         </dd>
 
         <dt><dfn>portability package</dfn></dt>
-        <dd>Opaque encrypted export object for user-controlled migration/backup.</dd>
+        <dd>
+          Opaque encrypted export object for user-controlled migration/backup.
+        </dd>
 
         <dt><dfn data-cite="GQTS-CORE#gqts-host">GQTS host</dfn></dt>
         <dd>Imported term from <a href="#ref-gqts-core">[GQTS-CORE]</a>.</dd>
 
-        <dt><dfn data-cite="GQTS-CORE#verification-material">verification material</dfn></dt>
+        <dt>
+          <dfn data-cite="GQTS-CORE#verification-material"
+            >verification material</dfn
+          >
+        </dt>
         <dd>Imported term from <a href="#ref-gqts-core">[GQTS-CORE]</a>.</dd>
 
-        <dt><dfn data-cite="GQTS-CORE#event-namespace">event namespace</dfn></dt>
+        <dt>
+          <dfn data-cite="GQTS-CORE#event-namespace">event namespace</dfn>
+        </dt>
         <dd>Imported term from <a href="#ref-gqts-core">[GQTS-CORE]</a>.</dd>
 
         <dt><dfn data-cite="GQTS-CORE#head-token">head token</dfn></dt>
@@ -272,10 +340,16 @@
         <dt><dfn data-cite="GQTS-CORE#bad-node">bad node</dfn></dt>
         <dd>Imported term from <a href="#ref-gqts-core">[GQTS-CORE]</a>.</dd>
 
-        <dt><dfn data-cite="GQTS-CORE#mechanical-validity">mechanical validity</dfn></dt>
+        <dt>
+          <dfn data-cite="GQTS-CORE#mechanical-validity"
+            >mechanical validity</dfn
+          >
+        </dt>
         <dd>Imported term from <a href="#ref-gqts-core">[GQTS-CORE]</a>.</dd>
 
-        <dt><dfn data-cite="GQTS-CORE#recognition-status">recognition status</dfn></dt>
+        <dt>
+          <dfn data-cite="GQTS-CORE#recognition-status">recognition status</dfn>
+        </dt>
         <dd>Imported term from <a href="#ref-gqts-core">[GQTS-CORE]</a>.</dd>
 
         <dt><dfn data-cite="GQSCD-CORE#proof-object">proof object</dfn></dt>
@@ -284,35 +358,58 @@
         <dt><dfn data-cite="GQSCD-CORE#sole-control">sole control</dfn></dt>
         <dd>Imported term from <a href="#ref-gqscd-core">[GQSCD-CORE]</a>.</dd>
 
-        <dt><dfn data-cite="GQSCD-CORE#user-intent-ceremony">user intent ceremony</dfn></dt>
+        <dt>
+          <dfn data-cite="GQSCD-CORE#user-intent-ceremony"
+            >user intent ceremony</dfn
+          >
+        </dt>
         <dd>Imported term from <a href="#ref-gqscd-core">[GQSCD-CORE]</a>.</dd>
 
-        <dt><dfn data-cite="GDIS-CORE#gdis-binding-credential">GDIS binding credential</dfn></dt>
+        <dt>
+          <dfn data-cite="GDIS-CORE#gdis-binding-credential"
+            >GDIS binding credential</dfn
+          >
+        </dt>
         <dd>Imported term from <a href="#ref-gdis-core">[GDIS-CORE]</a>.</dd>
 
-        <dt><dfn data-cite="GDIS-CORE#gdis-subject-did">GDIS subject DID</dfn></dt>
+        <dt>
+          <dfn data-cite="GDIS-CORE#gdis-subject-did">GDIS subject DID</dfn>
+        </dt>
         <dd>Imported term from <a href="#ref-gdis-core">[GDIS-CORE]</a>.</dd>
 
         <dt><dfn>list</dfn></dt>
-        <dd>Data concept used as defined by Infra <a href="#ref-infra">[INFRA]</a>.</dd>
+        <dd>
+          Data concept used as defined by Infra
+          <a href="#ref-infra">[INFRA]</a>.
+        </dd>
 
         <dt><dfn>set</dfn></dt>
-        <dd>Data concept used as defined by Infra <a href="#ref-infra">[INFRA]</a>.</dd>
+        <dd>
+          Data concept used as defined by Infra
+          <a href="#ref-infra">[INFRA]</a>.
+        </dd>
 
         <dt><dfn>tuple</dfn></dt>
-        <dd>Data concept used as defined by Infra <a href="#ref-infra">[INFRA]</a>.</dd>
+        <dd>
+          Data concept used as defined by Infra
+          <a href="#ref-infra">[INFRA]</a>.
+        </dd>
 
         <dt><dfn>byte sequence</dfn></dt>
-        <dd>Data concept used as defined by Infra <a href="#ref-infra">[INFRA]</a>.</dd>
+        <dd>
+          Data concept used as defined by Infra
+          <a href="#ref-infra">[INFRA]</a>.
+        </dd>
       </dl>
     </section>
 
     <section id="architecture-data-model">
       <h2>Architecture and Data Model</h2>
       <p>
-        GQTW defines the wallet-side private boundary. GQTS defines the public verification
-        material boundary. GQSCD defines protected-key invocation evidence. GDIS defines
-        PID-binding lifecycle evidence consumed by wallet <a>proof artifact</a> objects.
+        GQTW defines the wallet-side private boundary. GQTS defines the public
+        verification material boundary. GQSCD defines protected-key invocation
+        evidence. GDIS defines PID-binding lifecycle evidence consumed by wallet
+        <a>proof artifact</a> objects.
       </p>
       <table class="simple tight">
         <thead>
@@ -325,12 +422,19 @@
         <tbody>
           <tr>
             <td>Wallet</td>
-            <td>Private <a>proof artifact</a> objects, <a>wallet-private event log</a>, consent records, <a>witness</a> state</td>
+            <td>
+              Private <a>proof artifact</a> objects,
+              <a>wallet-private event log</a>, consent records,
+              <a>witness</a> state
+            </td>
             <td>Private</td>
           </tr>
           <tr>
             <td>GQTS host</td>
-            <td>Public <a>verification material</a>, <a>event namespace</a> history, <a>head token</a> state</td>
+            <td>
+              Public <a>verification material</a>,
+              <a>event namespace</a> history, <a>head token</a> state
+            </td>
             <td>Public/untrusted-by-default</td>
           </tr>
           <tr>
@@ -346,34 +450,78 @@
         </tbody>
       </table>
       <figure class="informative">
-        <svg viewBox="0 0 820 170" role="img" aria-label="Private and public boundary flow">
-          <rect x="20" y="40" width="250" height="90" rx="8" fill="#eef6ff" stroke="#1e5fa6"></rect>
-          <text x="145" y="70" text-anchor="middle" font-size="13">Wallet Private Boundary</text>
-          <text x="145" y="92" text-anchor="middle" font-size="12">proof artifact + witness + private log</text>
-          <rect x="310" y="40" width="200" height="90" rx="8" fill="#f3fbf2" stroke="#2a7a39"></rect>
-          <text x="410" y="70" text-anchor="middle" font-size="13">Verifier Exchange</text>
-          <text x="410" y="92" text-anchor="middle" font-size="12">consent-bound disclosure proof</text>
-          <rect x="550" y="40" width="250" height="90" rx="8" fill="#fff8ef" stroke="#8a5a1f"></rect>
-          <text x="675" y="70" text-anchor="middle" font-size="13">GQTS Public Boundary</text>
-          <text x="675" y="92" text-anchor="middle" font-size="12">blind verification material + event history</text>
+        <svg
+          viewBox="0 0 820 170"
+          role="img"
+          aria-label="Private and public boundary flow"
+        >
+          <rect
+            x="20"
+            y="40"
+            width="250"
+            height="90"
+            rx="8"
+            fill="#eef6ff"
+            stroke="#1e5fa6"
+          ></rect>
+          <text x="145" y="70" text-anchor="middle" font-size="13">
+            Wallet Private Boundary
+          </text>
+          <text x="145" y="92" text-anchor="middle" font-size="12">
+            proof artifact + witness + private log
+          </text>
+          <rect
+            x="310"
+            y="40"
+            width="200"
+            height="90"
+            rx="8"
+            fill="#f3fbf2"
+            stroke="#2a7a39"
+          ></rect>
+          <text x="410" y="70" text-anchor="middle" font-size="13">
+            Verifier Exchange
+          </text>
+          <text x="410" y="92" text-anchor="middle" font-size="12">
+            consent-bound disclosure proof
+          </text>
+          <rect
+            x="550"
+            y="40"
+            width="250"
+            height="90"
+            rx="8"
+            fill="#fff8ef"
+            stroke="#8a5a1f"
+          ></rect>
+          <text x="675" y="70" text-anchor="middle" font-size="13">
+            GQTS Public Boundary
+          </text>
+          <text x="675" y="92" text-anchor="middle" font-size="12">
+            blind verification material + event history
+          </text>
           <path d="M270 85 L310 85" stroke="#4c5b6b" stroke-width="2"></path>
           <path d="M510 85 L550 85" stroke="#4c5b6b" stroke-width="2"></path>
           <polygon points="304,80 314,85 304,90" fill="#4c5b6b"></polygon>
           <polygon points="544,80 554,85 544,90" fill="#4c5b6b"></polygon>
         </svg>
         <figcaption>
-          Boundary model: private proof artifacts, witnesses, and wallet event log state remain
-          wallet-private; only consent-bound disclosure proofs cross to verifier exchange, while
-          blind verification material and event history remain public in GQTS.
+          Boundary model: private proof artifacts, witnesses, and wallet event
+          log state remain wallet-private; only consent-bound disclosure proofs
+          cross to verifier exchange, while blind verification material and
+          event history remain public in GQTS.
         </figcaption>
       </figure>
       <p>
         Cross-spec dependency binding:
-        <a href="https://z-base.github.io/gqts/#req-gqts-01">REQ-GQTS-01</a> through
+        <a href="https://z-base.github.io/gqts/#req-gqts-01">REQ-GQTS-01</a>
+        through
         <a href="https://z-base.github.io/gqts/#req-gqts-07">REQ-GQTS-07</a>,
         <a href="https://z-base.github.io/gqscd/#req-gqscd-06">REQ-GQSCD-06</a>,
-        <a href="https://z-base.github.io/gqscd/#req-gqscd-10">REQ-GQSCD-10</a>, and
-        <a href="https://z-base.github.io/gdis/#REQ-GDIS-04">REQ-GDIS-04</a> through
+        <a href="https://z-base.github.io/gqscd/#req-gqscd-10">REQ-GQSCD-10</a>,
+        and
+        <a href="https://z-base.github.io/gdis/#REQ-GDIS-04">REQ-GDIS-04</a>
+        through
         <a href="https://z-base.github.io/gdis/#REQ-GDIS-06">REQ-GDIS-06</a>.
       </p>
       <section id="data-model">
@@ -381,26 +529,27 @@
         <section id="data-model-proof-artifacts">
           <h4>Proof Artifacts (Private VC/VP)</h4>
           <p>
-            Wallet-held <a>proof artifact</a> objects are VC/VP-family objects (or explicit profiled
-            equivalents) and are private by default. A wallet artifact can embed a
-            <a>GDIS binding credential</a> and bind disclosure proofs to a
-            <a>GDIS subject DID</a> in verifier flows.
+            Wallet-held <a>proof artifact</a> objects are VC/VP-family objects
+            (or explicit profiled equivalents) and are private by default. A
+            wallet artifact can embed a <a>GDIS binding credential</a> and bind
+            disclosure proofs to a <a>GDIS subject DID</a> in verifier flows.
           </p>
         </section>
         <section id="data-model-public-verification-material">
           <h4>Verification Material Tokens (Public)</h4>
           <p>
-            Public <a>blind verification material</a> is DID-resolvable and published/replicated by
-            <a>GQTS host</a> participants.
-            Public data is "public but blind" and is not a cleartext claim store.
+            Public <a>blind verification material</a> is DID-resolvable and
+            published/replicated by <a>GQTS host</a> participants. Public data
+            is "public but blind" and is not a cleartext claim store.
           </p>
         </section>
         <section id="data-model-event-log-format">
           <h4>Event-Log Token Structure</h4>
           <p>
-            Accepted token/event objects MUST carry an identifier, explicit parent reference,
-            timestamp, verification-method reference, payload digest, and <a>proof object</a>.
-            Key rotation MUST be authorized by the previous valid key in lineage.
+            Accepted token/event objects MUST carry an identifier, explicit
+            parent reference, timestamp, verification-method reference, payload
+            digest, and <a>proof object</a>. Key rotation MUST be authorized by
+            the previous valid key in lineage.
           </p>
         </section>
       </section>
@@ -416,23 +565,25 @@
       <section id="protocol-wallet-rp">
         <h3>Wallet and Relying Party</h3>
         <p>
-          Request, presentation, and consent behavior MUST ensure that disclosure outputs
-          prove statements without disclosing private <a>witness</a> material by default.
+          Request, presentation, and consent behavior MUST ensure that
+          disclosure outputs prove statements without disclosing private
+          <a>witness</a> material by default.
         </p>
       </section>
       <section id="protocol-wallet-gqts">
         <h3>Wallet and GQTS</h3>
         <p>
-          Wallets resolve public history using GQTS operations. Invalid branches are
-          classified as <a>bad node</a> inputs and handled by deterministic reject and
-          report logic.
+          Wallets resolve public history using GQTS operations. Invalid branches
+          are classified as <a>bad node</a> inputs and handled by deterministic
+          reject and report logic.
         </p>
       </section>
       <section id="protocol-wallet-gqscd">
         <h3>Wallet and GQSCD</h3>
         <p>
-          Protected-key invocation MUST include user-intent evidence. Invocation policy
-          MUST preserve <a>sole control</a> and verifiable <a>user intent ceremony</a>
+          Protected-key invocation MUST include user-intent evidence. Invocation
+          policy MUST preserve <a>sole control</a> and verifiable
+          <a>user intent ceremony</a>
           behavior.
         </p>
       </section>
@@ -444,105 +595,261 @@
         </p>
       </section>
       <figure class="informative">
-        <svg viewBox="0 0 980 260" role="img" aria-label="Core protocol flow with converged verification branches">
+        <svg
+          viewBox="0 0 980 260"
+          role="img"
+          aria-label="Core protocol flow with converged verification branches"
+        >
           <defs>
-            <marker id="flow-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+            <marker
+              id="flow-arrow"
+              markerWidth="8"
+              markerHeight="8"
+              refX="7"
+              refY="4"
+              orient="auto"
+            >
               <path d="M0,0 L8,4 L0,8 z" fill="#4c5b6b"></path>
             </marker>
           </defs>
 
-          <rect x="20" y="95" width="170" height="64" rx="8" fill="#eef6ff" stroke="#1e5fa6"></rect>
-          <text x="105" y="131" text-anchor="middle" font-size="12">Relying Party</text>
+          <rect
+            x="20"
+            y="95"
+            width="170"
+            height="64"
+            rx="8"
+            fill="#eef6ff"
+            stroke="#1e5fa6"
+          ></rect>
+          <text x="105" y="131" text-anchor="middle" font-size="12">
+            Relying Party
+          </text>
 
-          <rect x="240" y="95" width="190" height="64" rx="8" fill="#f3fbf2" stroke="#2a7a39"></rect>
-          <text x="335" y="131" text-anchor="middle" font-size="12">Wallet</text>
+          <rect
+            x="240"
+            y="95"
+            width="190"
+            height="64"
+            rx="8"
+            fill="#f3fbf2"
+            stroke="#2a7a39"
+          ></rect>
+          <text x="335" y="131" text-anchor="middle" font-size="12">
+            Wallet
+          </text>
 
-          <rect x="500" y="30" width="210" height="64" rx="8" fill="#fff8ef" stroke="#8a5a1f"></rect>
-          <text x="605" y="66" text-anchor="middle" font-size="12">GQTS resolution</text>
+          <rect
+            x="500"
+            y="30"
+            width="210"
+            height="64"
+            rx="8"
+            fill="#fff8ef"
+            stroke="#8a5a1f"
+          ></rect>
+          <text x="605" y="66" text-anchor="middle" font-size="12">
+            GQTS resolution
+          </text>
 
-          <rect x="500" y="160" width="210" height="64" rx="8" fill="#f7efff" stroke="#6f4694"></rect>
-          <text x="605" y="196" text-anchor="middle" font-size="12">GQSCD invocation</text>
+          <rect
+            x="500"
+            y="160"
+            width="210"
+            height="64"
+            rx="8"
+            fill="#f7efff"
+            stroke="#6f4694"
+          ></rect>
+          <text x="605" y="196" text-anchor="middle" font-size="12">
+            GQSCD invocation
+          </text>
 
-          <circle cx="760" cy="127" r="20" fill="#ffffff" stroke="#556274"></circle>
+          <circle
+            cx="760"
+            cy="127"
+            r="20"
+            fill="#ffffff"
+            stroke="#556274"
+          ></circle>
           <text x="760" y="131" text-anchor="middle" font-size="11">AND</text>
 
-          <rect x="820" y="95" width="150" height="64" rx="8" fill="#f2f4f8" stroke="#556274"></rect>
-          <text x="895" y="131" text-anchor="middle" font-size="12">Verifier decision</text>
+          <rect
+            x="820"
+            y="95"
+            width="150"
+            height="64"
+            rx="8"
+            fill="#f2f4f8"
+            stroke="#556274"
+          ></rect>
+          <text x="895" y="131" text-anchor="middle" font-size="12">
+            Verifier decision
+          </text>
 
-          <path d="M190 127 L240 127" stroke="#4c5b6b" stroke-width="2" marker-end="url(#flow-arrow)"></path>
-          <path d="M430 127 L500 62" stroke="#4c5b6b" stroke-width="2" marker-end="url(#flow-arrow)"></path>
-          <path d="M430 127 L500 192" stroke="#4c5b6b" stroke-width="2" marker-end="url(#flow-arrow)"></path>
-          <path d="M710 62 L740 114" stroke="#4c5b6b" stroke-width="2" marker-end="url(#flow-arrow)"></path>
-          <path d="M710 192 L740 140" stroke="#4c5b6b" stroke-width="2" marker-end="url(#flow-arrow)"></path>
-          <path d="M780 127 L820 127" stroke="#4c5b6b" stroke-width="2" marker-end="url(#flow-arrow)"></path>
+          <path
+            d="M190 127 L240 127"
+            stroke="#4c5b6b"
+            stroke-width="2"
+            marker-end="url(#flow-arrow)"
+          ></path>
+          <path
+            d="M430 127 L500 62"
+            stroke="#4c5b6b"
+            stroke-width="2"
+            marker-end="url(#flow-arrow)"
+          ></path>
+          <path
+            d="M430 127 L500 192"
+            stroke="#4c5b6b"
+            stroke-width="2"
+            marker-end="url(#flow-arrow)"
+          ></path>
+          <path
+            d="M710 62 L740 114"
+            stroke="#4c5b6b"
+            stroke-width="2"
+            marker-end="url(#flow-arrow)"
+          ></path>
+          <path
+            d="M710 192 L740 140"
+            stroke="#4c5b6b"
+            stroke-width="2"
+            marker-end="url(#flow-arrow)"
+          ></path>
+          <path
+            d="M780 127 L820 127"
+            stroke="#4c5b6b"
+            stroke-width="2"
+            marker-end="url(#flow-arrow)"
+          ></path>
 
-          <rect x="436" y="72" width="120" height="18" rx="4" fill="#ffffff" opacity="0.92"></rect>
-          <text x="496" y="84" text-anchor="middle" font-size="11" fill="#4c5b6b">public history checks</text>
+          <rect
+            x="436"
+            y="72"
+            width="120"
+            height="18"
+            rx="4"
+            fill="#ffffff"
+            opacity="0.92"
+          ></rect>
+          <text
+            x="496"
+            y="84"
+            text-anchor="middle"
+            font-size="11"
+            fill="#4c5b6b"
+          >
+            public history checks
+          </text>
 
-          <rect x="436" y="172" width="110" height="18" rx="4" fill="#ffffff" opacity="0.92"></rect>
-          <text x="491" y="184" text-anchor="middle" font-size="11" fill="#4c5b6b">key-intent evidence</text>
+          <rect
+            x="436"
+            y="172"
+            width="110"
+            height="18"
+            rx="4"
+            fill="#ffffff"
+            opacity="0.92"
+          ></rect>
+          <text
+            x="491"
+            y="184"
+            text-anchor="middle"
+            font-size="11"
+            fill="#4c5b6b"
+          >
+            key-intent evidence
+          </text>
         </svg>
         <figcaption>
-          Converged verifier decision flow: relying-party acceptance requires both GQTS public
-          history verification and GQSCD key-intent invocation evidence before final decision.
+          Converged verifier decision flow: relying-party acceptance requires
+          both GQTS public history verification and GQSCD key-intent invocation
+          evidence before final decision.
         </figcaption>
       </figure>
       <p>
-        Reasoning: verifier acceptance is a converged decision. The public-history branch
-        (<a href="https://z-base.github.io/gqts/#req-gqts-04">REQ-GQTS-04</a> to
-        <a href="https://z-base.github.io/gqts/#req-gqts-07">REQ-GQTS-07</a>) and the
-        protected-key/user-intent branch (<a href="https://z-base.github.io/gqscd/#req-gqscd-26">REQ-GQSCD-26</a>
-        to <a href="https://z-base.github.io/gqscd/#req-gqscd-29">REQ-GQSCD-29</a>) are both
-        required before a relying-party decision is produced.
+        Reasoning: verifier acceptance is a converged decision. The
+        public-history branch (<a
+          href="https://z-base.github.io/gqts/#req-gqts-04"
+          >REQ-GQTS-04</a
+        >
+        to <a href="https://z-base.github.io/gqts/#req-gqts-07">REQ-GQTS-07</a>)
+        and the protected-key/user-intent branch (<a
+          href="https://z-base.github.io/gqscd/#req-gqscd-26"
+          >REQ-GQSCD-26</a
+        >
+        to
+        <a href="https://z-base.github.io/gqscd/#req-gqscd-29">REQ-GQSCD-29</a>)
+        are both required before a relying-party decision is produced.
       </p>
     </section>
 
     <section id="openapi-surface">
       <h2>Normative Interface Surface</h2>
       <p>
-        Endpoint contracts are normative in <a href="./openapi.yaml">`./openapi.yaml`</a>.
-        Operation anchors used by this specification are:
+        Endpoint contracts are normative in
+        <a href="./openapi.yaml">`./openapi.yaml`</a>. Operation anchors used by
+        this specification are:
       </p>
       <ul>
         <li>
-          <a id="op-getWalletProfile" href="./openapi/#operation/getWalletProfile"
+          <a
+            id="op-getWalletProfile"
+            href="./openapi/#operation/getWalletProfile"
             ><code>getWalletProfile</code></a
           >
         </li>
         <li>
-          <a id="op-postPresentationRequest" href="./openapi/#operation/postPresentationRequest"
+          <a
+            id="op-postPresentationRequest"
+            href="./openapi/#operation/postPresentationRequest"
             ><code>postPresentationRequest</code></a
           >
           and
-          <a id="op-postPresentationSubmission" href="./openapi/#operation/postPresentationSubmission"
+          <a
+            id="op-postPresentationSubmission"
+            href="./openapi/#operation/postPresentationSubmission"
             ><code>postPresentationSubmission</code></a
           >
         </li>
         <li>
-          <a id="op-postGqtsHeadHint" href="./openapi/#operation/postGqtsHeadHint"
+          <a
+            id="op-postGqtsHeadHint"
+            href="./openapi/#operation/postGqtsHeadHint"
             ><code>postGqtsHeadHint</code></a
           >
           and
-          <a id="op-postWalletIncidentReport" href="./openapi/#operation/postWalletIncidentReport"
+          <a
+            id="op-postWalletIncidentReport"
+            href="./openapi/#operation/postWalletIncidentReport"
             ><code>postWalletIncidentReport</code></a
           >
         </li>
         <li>
-          <a id="op-postGqscdInvocation" href="./openapi/#operation/postGqscdInvocation"
+          <a
+            id="op-postGqscdInvocation"
+            href="./openapi/#operation/postGqscdInvocation"
             ><code>postGqscdInvocation</code></a
           >
         </li>
         <li>
-          <a id="op-postWalletExport" href="./openapi/#operation/postWalletExport"
+          <a
+            id="op-postWalletExport"
+            href="./openapi/#operation/postWalletExport"
             ><code>postWalletExport</code></a
           >
           and
-          <a id="op-postWalletImport" href="./openapi/#operation/postWalletImport"
+          <a
+            id="op-postWalletImport"
+            href="./openapi/#operation/postWalletImport"
             ><code>postWalletImport</code></a
           >
         </li>
         <li>
-          <a id="op-postErasureRequest" href="./openapi/#operation/postErasureRequest"
+          <a
+            id="op-postErasureRequest"
+            href="./openapi/#operation/postErasureRequest"
             ><code>postErasureRequest</code></a
           >
         </li>
@@ -553,43 +860,73 @@
       <h2>Normative Requirements</h2>
 
       <section id="req-gqtw-01">
-        <h3><span id="REQ-GQTW-01" class="mono">REQ-GQTW-01</span> Private/Public Separation</h3>
+        <h3>
+          <span id="REQ-GQTW-01" class="mono">REQ-GQTW-01</span> Private/Public
+          Separation
+        </h3>
         <ul>
-          <li><a>proof artifact</a> objects MUST remain wallet-private unless holder-disclosed.</li>
-          <li>Public <a>verification material</a> MUST be published through GQTS-equivalent semantics.</li>
-          <li>Public material MUST be "public but blind" and MUST NOT publish raw sensitive claims.</li>
+          <li>
+            <a>proof artifact</a> objects MUST remain wallet-private unless
+            holder-disclosed.
+          </li>
+          <li>
+            Public <a>verification material</a> MUST be published through
+            GQTS-equivalent semantics.
+          </li>
+          <li>
+            Public material MUST be "public but blind" and MUST NOT publish raw
+            sensitive claims.
+          </li>
           <li>
             Derived from
-            <a href="https://z-base.github.io/gqscd/#req-gqscd-18">REQ-GQSCD-18</a>,
-            <a href="https://z-base.github.io/gqscd/#req-gqscd-24">REQ-GQSCD-24</a>,
-            <a href="https://z-base.github.io/gdis/#REQ-GDIS-05">REQ-GDIS-05</a>,
-            and <a href="https://z-base.github.io/gqts/#req-gqts-01">REQ-GQTS-01</a> to
-            <a href="https://z-base.github.io/gqts/#req-gqts-07">REQ-GQTS-07</a>.
+            <a href="https://z-base.github.io/gqscd/#req-gqscd-18"
+              >REQ-GQSCD-18</a
+            >,
+            <a href="https://z-base.github.io/gqscd/#req-gqscd-24"
+              >REQ-GQSCD-24</a
+            >,
+            <a href="https://z-base.github.io/gdis/#REQ-GDIS-05">REQ-GDIS-05</a
+            >, and
+            <a href="https://z-base.github.io/gqts/#req-gqts-01">REQ-GQTS-01</a>
+            to
+            <a href="https://z-base.github.io/gqts/#req-gqts-07">REQ-GQTS-07</a
+            >.
           </li>
         </ul>
       </section>
 
       <section id="req-gqtw-02">
-        <h3><span id="REQ-GQTW-02" class="mono">REQ-GQTW-02</span> Proof Artifact Format</h3>
+        <h3>
+          <span id="REQ-GQTW-02" class="mono">REQ-GQTW-02</span> Proof Artifact
+          Format
+        </h3>
         <ul>
           <li>
-            A <a>proof artifact</a> MUST be a VC/VP-family object or explicitly profiled equivalent with
-            deterministic verification behavior.
+            A <a>proof artifact</a> MUST be a VC/VP-family object or explicitly
+            profiled equivalent with deterministic verification behavior.
           </li>
           <li>
             VC baseline semantics are imported from
-            <a href="https://z-base.github.io/gqscd/#req-gqscd-18">REQ-GQSCD-18</a> and
-            <a href="https://z-base.github.io/gqscd/#req-gqscd-26">REQ-GQSCD-26</a>.
+            <a href="https://z-base.github.io/gqscd/#req-gqscd-18"
+              >REQ-GQSCD-18</a
+            >
+            and
+            <a href="https://z-base.github.io/gqscd/#req-gqscd-26"
+              >REQ-GQSCD-26</a
+            >.
           </li>
         </ul>
       </section>
 
       <section id="req-gqtw-03">
-        <h3><span id="REQ-GQTW-03" class="mono">REQ-GQTW-03</span> DID-Linked Public History</h3>
+        <h3>
+          <span id="REQ-GQTW-03" class="mono">REQ-GQTW-03</span> DID-Linked
+          Public History
+        </h3>
         <ul>
           <li>
-            Proof artifacts MUST reference a DID that controls or resolves to the verification
-            material history used for validation.
+            Proof artifacts MUST reference a DID that controls or resolves to
+            the verification material history used for validation.
           </li>
           <li>
             DID method behavior MUST support tamper-evident append-only history
@@ -599,105 +936,170 @@
       </section>
 
       <section id="req-gqtw-04">
-        <h3><span id="REQ-GQTW-04" class="mono">REQ-GQTW-04</span> Event-Log Structure and Rotation</h3>
+        <h3>
+          <span id="REQ-GQTW-04" class="mono">REQ-GQTW-04</span> Event-Log
+          Structure and Rotation
+        </h3>
         <ul>
-          <li>Wallet-private and public histories MUST be append-only directed linear graphs.</li>
-          <li>The first accepted event MUST establish root verification method.</li>
-          <li>Key rotation MUST be signed by the immediately previous valid verification method.</li>
-          <li>Invalid appends MUST be rejected and classified as conflict/misbehavior evidence.</li>
+          <li>
+            Wallet-private and public histories MUST be append-only directed
+            linear graphs.
+          </li>
+          <li>
+            The first accepted event MUST establish root verification method.
+          </li>
+          <li>
+            Key rotation MUST be signed by the immediately previous valid
+            verification method.
+          </li>
+          <li>
+            Invalid appends MUST be rejected and classified as
+            conflict/misbehavior evidence.
+          </li>
         </ul>
       </section>
 
       <section id="req-gqtw-05">
-        <h3><span id="REQ-GQTW-05" class="mono">REQ-GQTW-05</span> Gossip and Host Set Evolution</h3>
+        <h3>
+          <span id="REQ-GQTW-05" class="mono">REQ-GQTW-05</span> Gossip and Host
+          Set Evolution
+        </h3>
         <ul>
           <li>
-            Host sets to poll MUST be derived from latest valid history, not UI labels or RP
-            declarations.
+            Host sets to poll MUST be derived from latest valid history, not UI
+            labels or RP declarations.
           </li>
           <li>
-            Heavy sync/merge SHOULD be triggered only after head mismatch detection
-            (<a href="https://z-base.github.io/gqts/#req-gqts-04">REQ-GQTS-04</a>).
+            Heavy sync/merge SHOULD be triggered only after head mismatch
+            detection (<a href="https://z-base.github.io/gqts/#req-gqts-04"
+              >REQ-GQTS-04</a
+            >).
           </li>
         </ul>
       </section>
 
       <section id="req-gqtw-06">
-        <h3><span id="REQ-GQTW-06" class="mono">REQ-GQTW-06</span> Blind Verification Interfaces</h3>
+        <h3>
+          <span id="REQ-GQTW-06" class="mono">REQ-GQTW-06</span> Blind
+          Verification Interfaces
+        </h3>
         <ul>
           <li>
-            Public material MAY expose verification-side objects for privacy-preserving schemes.
+            Public material MAY expose verification-side objects for
+            privacy-preserving schemes.
           </li>
-          <li>Wallets MUST retain private <a>witness</a> material and disclosure proofs under user control.</li>
           <li>
-            Each <a>blind verification profile</a> MUST define deterministic transformation, verification,
-            and error semantics.
+            Wallets MUST retain private <a>witness</a> material and disclosure
+            proofs under user control.
+          </li>
+          <li>
+            Each <a>blind verification profile</a> MUST define deterministic
+            transformation, verification, and error semantics.
           </li>
         </ul>
       </section>
 
       <section id="req-gqtw-07">
-        <h3><span id="REQ-GQTW-07" class="mono">REQ-GQTW-07</span> Wallet and Relying-Party Flow</h3>
+        <h3>
+          <span id="REQ-GQTW-07" class="mono">REQ-GQTW-07</span> Wallet and
+          Relying-Party Flow
+        </h3>
         <ul>
           <li>
             Wallet-RP flows MUST use
-            <a href="#op-postPresentationRequest"><code>postPresentationRequest</code></a>
+            <a href="#op-postPresentationRequest"
+              ><code>postPresentationRequest</code></a
+            >
             and
-            <a href="#op-postPresentationSubmission"><code>postPresentationSubmission</code></a>.
+            <a href="#op-postPresentationSubmission"
+              ><code>postPresentationSubmission</code></a
+            >.
           </li>
-          <li>Challenge, audience, freshness, and consent binding MUST be verified for each flow.</li>
           <li>
-            Implementations MUST NOT accept UI strings or RP declarations as sufficient security
-            evidence (<a href="https://z-base.github.io/gqscd/#req-gqscd-10">REQ-GQSCD-10</a>).
+            Challenge, audience, freshness, and consent binding MUST be verified
+            for each flow.
+          </li>
+          <li>
+            Implementations MUST NOT accept UI strings or RP declarations as
+            sufficient security evidence (<a
+              href="https://z-base.github.io/gqscd/#req-gqscd-10"
+              >REQ-GQSCD-10</a
+            >).
           </li>
         </ul>
       </section>
 
       <section id="req-gqtw-08">
-        <h3><span id="REQ-GQTW-08" class="mono">REQ-GQTW-08</span> Wallet and GQTS Flow</h3>
+        <h3>
+          <span id="REQ-GQTW-08" class="mono">REQ-GQTW-08</span> Wallet and GQTS
+          Flow
+        </h3>
         <ul>
           <li>
-            Wallet implementations MUST resolve and validate public history through GQTS operation
-            semantics.
+            Wallet implementations MUST resolve and validate public history
+            through GQTS operation semantics.
           </li>
           <li>
             Hint and incident operations are
             <a href="#op-postGqtsHeadHint"><code>postGqtsHeadHint</code></a>
             and
-            <a href="#op-postWalletIncidentReport"><code>postWalletIncidentReport</code></a>.
+            <a href="#op-postWalletIncidentReport"
+              ><code>postWalletIncidentReport</code></a
+            >.
           </li>
         </ul>
       </section>
 
       <section id="req-gqtw-09">
-        <h3><span id="REQ-GQTW-09" class="mono">REQ-GQTW-09</span> Wallet and GQSCD Invocation</h3>
+        <h3>
+          <span id="REQ-GQTW-09" class="mono">REQ-GQTW-09</span> Wallet and
+          GQSCD Invocation
+        </h3>
         <ul>
           <li>
-            Signing/sealing/attestation key use MUST be mediated by GQSCD controls and user intent.
+            Signing/sealing/attestation key use MUST be mediated by GQSCD
+            controls and user intent.
           </li>
           <li>
             Invocation MUST use
-            <a href="#op-postGqscdInvocation"><code>postGqscdInvocation</code></a>
+            <a href="#op-postGqscdInvocation"
+              ><code>postGqscdInvocation</code></a
+            >
             and include a user-approved object digest.
           </li>
           <li>
             Derived from
-            <a href="https://z-base.github.io/gqscd/#req-gqscd-06">REQ-GQSCD-06</a>,
-            <a href="https://z-base.github.io/gqscd/#req-gqscd-17">REQ-GQSCD-17</a>, and
-            <a href="https://z-base.github.io/gqscd/#req-gqscd-26">REQ-GQSCD-26</a> to
-            <a href="https://z-base.github.io/gqscd/#req-gqscd-29">REQ-GQSCD-29</a>.
+            <a href="https://z-base.github.io/gqscd/#req-gqscd-06"
+              >REQ-GQSCD-06</a
+            >,
+            <a href="https://z-base.github.io/gqscd/#req-gqscd-17"
+              >REQ-GQSCD-17</a
+            >, and
+            <a href="https://z-base.github.io/gqscd/#req-gqscd-26"
+              >REQ-GQSCD-26</a
+            >
+            to
+            <a href="https://z-base.github.io/gqscd/#req-gqscd-29"
+              >REQ-GQSCD-29</a
+            >.
           </li>
         </ul>
       </section>
       <section id="req-gqtw-10">
-        <h3><span id="REQ-GQTW-10" class="mono">REQ-GQTW-10</span> Portability and Backup</h3>
+        <h3>
+          <span id="REQ-GQTW-10" class="mono">REQ-GQTW-10</span> Portability and
+          Backup
+        </h3>
         <ul>
-          <li>Exports MUST be opaque encrypted <a>portability package</a> objects.</li>
+          <li>
+            Exports MUST be opaque encrypted <a>portability package</a> objects.
+          </li>
           <li>
             Export/import operations MUST be
             <a href="#op-postWalletExport"><code>postWalletExport</code></a>
             and
-            <a href="#op-postWalletImport"><code>postWalletImport</code></a>.
+            <a href="#op-postWalletImport"><code>postWalletImport</code></a
+            >.
           </li>
           <li>
             Portability design intent aligns with
@@ -708,15 +1110,23 @@
       </section>
 
       <section id="req-gqtw-11">
-        <h3><span id="REQ-GQTW-11" class="mono">REQ-GQTW-11</span> Privacy, Minimization, Erasure</h3>
+        <h3>
+          <span id="REQ-GQTW-11" class="mono">REQ-GQTW-11</span> Privacy,
+          Minimization, Erasure
+        </h3>
         <ul>
-          <li>Wallet-RP processing SHOULD be minimal-disclosure and purpose-bounded.</li>
           <li>
-            Erasure requests MUST be supported via
-            <a href="#op-postErasureRequest"><code>postErasureRequest</code></a>.
+            Wallet-RP processing SHOULD be minimal-disclosure and
+            purpose-bounded.
           </li>
           <li>
-            Design intent aligns with <a href="#ref-eu-2024-2982">[EU-2024/2982]</a>,
+            Erasure requests MUST be supported via
+            <a href="#op-postErasureRequest"><code>postErasureRequest</code></a
+            >.
+          </li>
+          <li>
+            Design intent aligns with
+            <a href="#ref-eu-2024-2982">[EU-2024/2982]</a>,
             <a href="#ref-eu-2025-1569">[EU-2025/1569]</a>, and
             <a href="#ref-ut-sb0275">[UT-SB0275-2026-INTRO]</a>.
           </li>
@@ -724,20 +1134,35 @@
       </section>
 
       <section id="req-gqtw-12">
-        <h3><span id="REQ-GQTW-12" class="mono">REQ-GQTW-12</span> Threat Model Honesty</h3>
+        <h3>
+          <span id="REQ-GQTW-12" class="mono">REQ-GQTW-12</span> Threat Model
+          Honesty
+        </h3>
         <ul>
-          <li>Hostile client and hostile network assumptions are REQUIRED defaults.</li>
-          <li>Conformance reports MUST list trusted and excluded assumptions explicitly.</li>
-          <li>Policy signals MUST NOT replace cryptographic verification evidence.</li>
+          <li>
+            Hostile client and hostile network assumptions are REQUIRED
+            defaults.
+          </li>
+          <li>
+            Conformance reports MUST list trusted and excluded assumptions
+            explicitly.
+          </li>
+          <li>
+            Policy signals MUST NOT replace cryptographic verification evidence.
+          </li>
         </ul>
       </section>
 
       <section id="req-gqtw-13">
-        <h3><span id="REQ-GQTW-13" class="mono">REQ-GQTW-13</span> Profile Mapping Outputs</h3>
+        <h3>
+          <span id="REQ-GQTW-13" class="mono">REQ-GQTW-13</span> Profile Mapping
+          Outputs
+        </h3>
         <ul>
           <li>
             Profile metadata MUST be published via
-            <a href="#op-getWalletProfile"><code>getWalletProfile</code></a>.
+            <a href="#op-getWalletProfile"><code>getWalletProfile</code></a
+            >.
           </li>
           <li>
             Implementations MUST produce separate outputs for
@@ -747,23 +1172,33 @@
       </section>
 
       <section id="req-gqtw-14">
-        <h3><span id="REQ-GQTW-14" class="mono">REQ-GQTW-14</span> Conformance Traceability</h3>
+        <h3>
+          <span id="REQ-GQTW-14" class="mono">REQ-GQTW-14</span> Conformance
+          Traceability
+        </h3>
         <ul>
           <li>
-            Conformance reports MUST map REQ-GQTW clauses to test artifacts and OpenAPI
-            operations where applicable.
+            Conformance reports MUST map REQ-GQTW clauses to test artifacts and
+            OpenAPI operations where applicable.
           </li>
           <li>
-            Cross-spec dependencies MUST cite upstream requirement ids explicitly.
+            Cross-spec dependencies MUST cite upstream requirement ids
+            explicitly.
           </li>
         </ul>
       </section>
 
       <section id="req-gqtw-15">
-        <h3><span id="REQ-GQTW-15" class="mono">REQ-GQTW-15</span> GQES/GQEAA Extension Points</h3>
+        <h3>
+          <span id="REQ-GQTW-15" class="mono">REQ-GQTW-15</span> GQES/GQEAA
+          Extension Points
+        </h3>
         <ul>
           <li>GQTW MAY define extension hooks for GQES and GQEAA.</li>
-          <li>GQTW MUST NOT finalize GQES or GQEAA profile content in this specification.</li>
+          <li>
+            GQTW MUST NOT finalize GQES or GQEAA profile content in this
+            specification.
+          </li>
         </ul>
       </section>
     </section>
@@ -771,8 +1206,9 @@
     <section id="requirement-rationale" class="informative">
       <h2>Requirement Rationale</h2>
       <p>
-        This section explains why key GQTW requirements exist. It maps each clause to the attack
-        class it mitigates and the upstream clauses it refines.
+        This section explains why key GQTW requirements exist. It maps each
+        clause to the attack class it mitigates and the upstream clauses it
+        refines.
       </p>
       <table class="simple tight">
         <thead>
@@ -787,45 +1223,48 @@
             <td>REQ-GQTW-01</td>
             <td>Passive correlation and claim overexposure</td>
             <td>
-              Keeps proof artifacts and witnesses private while publishing only blind
-              verification-side material.
+              Keeps proof artifacts and witnesses private while publishing only
+              blind verification-side material.
             </td>
           </tr>
           <tr>
             <td>REQ-GQTW-04</td>
             <td>Rollback, fork acceptance, and key-lineage bypass</td>
             <td>
-              Requires append-only parent linkage and immediate-predecessor authorization
-              for rotation events.
+              Requires append-only parent linkage and immediate-predecessor
+              authorization for rotation events.
             </td>
           </tr>
           <tr>
             <td>REQ-GQTW-07</td>
             <td>Replay and coercive relying-party requests</td>
             <td>
-              Enforces challenge, audience, freshness, and consent-bound disclosure behavior.
+              Enforces challenge, audience, freshness, and consent-bound
+              disclosure behavior.
             </td>
           </tr>
           <tr>
             <td>REQ-GQTW-08 / REQ-GQTW-09</td>
             <td>False validity from one-sided evidence</td>
             <td>
-              Requires both GQTS public-history validation and GQSCD invocation evidence
-              for trusted verifier outcomes.
+              Requires both GQTS public-history validation and GQSCD invocation
+              evidence for trusted verifier outcomes.
             </td>
           </tr>
           <tr>
             <td>REQ-GQTW-10</td>
             <td>Data lock-in and migration leakage</td>
             <td>
-              Restricts portability to opaque encrypted packages and integrity-checked import.
+              Restricts portability to opaque encrypted packages and
+              integrity-checked import.
             </td>
           </tr>
           <tr>
             <td>REQ-GQTW-11</td>
             <td>Over-collection and retention abuse</td>
             <td>
-              Requires minimization posture plus explicit erasure-request interface support.
+              Requires minimization posture plus explicit erasure-request
+              interface support.
             </td>
           </tr>
         </tbody>
@@ -835,15 +1274,15 @@
     <section id="regulatory-program-profiles" class="informative">
       <h2>Regulatory and Program Profiles</h2>
       <p>
-        This section maps technical invariants to external profile inputs.
-        It does not create legal effect by itself.
+        This section maps technical invariants to external profile inputs. It
+        does not create legal effect by itself.
       </p>
 
       <section id="profile-web-native">
         <h3>Baseline Web-Native GIDAS Wallet Profile</h3>
         <p>
-          Baseline profile uses REQ-GQTW-01 through REQ-GQTW-15 with imported dependencies from
-          GDIS, GQTS, and GQSCD.
+          Baseline profile uses REQ-GQTW-01 through REQ-GQTW-15 with imported
+          dependencies from GDIS, GQTS, and GQSCD.
         </p>
       </section>
 
@@ -886,18 +1325,18 @@
         <ul>
           <li>
             No cross-context correlation by default:
-            <a href="#ref-ut-sb0275">[UT-SB0275-2026-INTRO]</a>,
-            Sections 63A-20-101 and 63A-20-301.
+            <a href="#ref-ut-sb0275">[UT-SB0275-2026-INTRO]</a>, Sections
+            63A-20-101 and 63A-20-301.
           </li>
           <li>
             Open standards and migration portability:
-            <a href="#ref-ut-sb0275">[UT-SB0275-2026-INTRO]</a>,
-            Section 63A-20-301(1)(g).
+            <a href="#ref-ut-sb0275">[UT-SB0275-2026-INTRO]</a>, Section
+            63A-20-301(1)(g).
           </li>
           <li>
             Data minimization and processing restrictions:
-            <a href="#ref-ut-sb0275">[UT-SB0275-2026-INTRO]</a>,
-            Sections 63A-20-501, 63A-20-601, and 63A-20-702.
+            <a href="#ref-ut-sb0275">[UT-SB0275-2026-INTRO]</a>, Sections
+            63A-20-501, 63A-20-601, and 63A-20-702.
           </li>
         </ul>
       </section>
@@ -906,8 +1345,9 @@
     <section id="threat-model">
       <h2>Threat Model</h2>
       <p>
-        Trusted components MUST be declared explicitly. GQTS hosts and relying parties are
-        untrusted by default. Wallet trust is conditional on verification evidence.
+        Trusted components MUST be declared explicitly. GQTS hosts and relying
+        parties are untrusted by default. Wallet trust is conditional on
+        verification evidence.
       </p>
       <table class="simple tight">
         <thead>
@@ -921,48 +1361,78 @@
           <tr>
             <td>Wallet runtime</td>
             <td>Partially trusted</td>
-            <td>Trusted only when local integrity controls and event-log checks verify.</td>
+            <td>
+              Trusted only when local integrity controls and event-log checks
+              verify.
+            </td>
           </tr>
           <tr>
             <td>GQSCD invocation path</td>
             <td>Conditionally trusted</td>
-            <td>Trusted only when invocation evidence satisfies referenced GQSCD requirements.</td>
+            <td>
+              Trusted only when invocation evidence satisfies referenced GQSCD
+              requirements.
+            </td>
           </tr>
           <tr>
             <td>GQTS hosts</td>
             <td>Untrusted by default</td>
-            <td>Any host can publish; trust follows cryptographic verification, not identity label.</td>
+            <td>
+              Any host can publish; trust follows cryptographic verification,
+              not identity label.
+            </td>
           </tr>
           <tr>
             <td>Relying party</td>
             <td>Untrusted by default</td>
-            <td>Requests can be coercive or over-collecting without evidence-backed constraints.</td>
+            <td>
+              Requests can be coercive or over-collecting without
+              evidence-backed constraints.
+            </td>
           </tr>
         </tbody>
       </table>
       <ul>
-        <li>Threat classes: key compromise, replay, rollback, forked history, malicious host.</li>
-        <li>Threat classes: passive correlation, coercive RP requests, false-status claims.</li>
+        <li>
+          Threat classes: key compromise, replay, rollback, forked history,
+          malicious host.
+        </li>
+        <li>
+          Threat classes: passive correlation, coercive RP requests,
+          false-status claims.
+        </li>
       </ul>
     </section>
 
     <section id="privacy-considerations">
       <h2>Privacy Considerations</h2>
       <ul>
-        <li>Private proofs and <a>witness</a> material remain wallet-private by default.</li>
+        <li>
+          Private proofs and <a>witness</a> material remain wallet-private by
+          default.
+        </li>
         <li>Selective disclosure and minimization SHOULD be preferred.</li>
-        <li>Correlation-resistant profiles SHOULD be used where equivalent verification is possible.</li>
+        <li>
+          Correlation-resistant profiles SHOULD be used where equivalent
+          verification is possible.
+        </li>
       </ul>
     </section>
 
     <section id="security-considerations">
       <h2>Security Considerations</h2>
       <ul>
-        <li>Events MUST verify root-to-head with explicit parent references.</li>
-        <li>Key rotation MUST be authorized by previous valid key.</li>
-        <li>Forked or invalid branches MUST be rejected unless explicit conflict-free rules apply.</li>
         <li>
-          Output separation between <a>mechanical validity</a> and <a>recognition status</a>
+          Events MUST verify root-to-head with explicit parent references.
+        </li>
+        <li>Key rotation MUST be authorized by previous valid key.</li>
+        <li>
+          Forked or invalid branches MUST be rejected unless explicit
+          conflict-free rules apply.
+        </li>
+        <li>
+          Output separation between <a>mechanical validity</a> and
+          <a>recognition status</a>
           is REQUIRED.
         </li>
       </ul>
@@ -974,24 +1444,40 @@
         <h3>Example 1: PID Onboarding to Wallet-Private Proof Artifact</h3>
         <ol>
           <li>PID issuer flow produces GDIS-compatible binding evidence.</li>
-          <li>Wallet stores VC as private proof artifact and appends private-log issuance event.</li>
-          <li>Public verification material is published via GQTS and DID-resolved.</li>
+          <li>
+            Wallet stores VC as private proof artifact and appends private-log
+            issuance event.
+          </li>
+          <li>
+            Public verification material is published via GQTS and DID-resolved.
+          </li>
         </ol>
       </section>
       <section id="example-flow-2">
         <h3>Example 2: Privacy-Preserving Age-Over-18 Presentation</h3>
         <ol>
           <li>RP submits challenge/audience request.</li>
-          <li>Wallet creates selective disclosure response after user consent.</li>
-          <li>Verifier resolves DID-linked blind verification material and validates proof.</li>
+          <li>
+            Wallet creates selective disclosure response after user consent.
+          </li>
+          <li>
+            Verifier resolves DID-linked blind verification material and
+            validates proof.
+          </li>
         </ol>
       </section>
       <section id="example-flow-3">
         <h3>Example 3: Key Rotation and Revocation</h3>
         <ol>
           <li>Rotation event is signed by previous valid key.</li>
-          <li>Public history is replicated and divergence is detected by head mismatch.</li>
-          <li>Verifier applies revocation/freshness checks from accepted head state.</li>
+          <li>
+            Public history is replicated and divergence is detected by head
+            mismatch.
+          </li>
+          <li>
+            Verifier applies revocation/freshness checks from accepted head
+            state.
+          </li>
         </ol>
       </section>
     </section>
@@ -1012,7 +1498,9 @@
           </tr>
           <tr>
             <td>GQTW RP Gateway</td>
-            <td>REQ-GQTW-07, REQ-GQTW-11, REQ-GQTW-12, REQ-GQTW-13, REQ-GQTW-14</td>
+            <td>
+              REQ-GQTW-07, REQ-GQTW-11, REQ-GQTW-12, REQ-GQTW-13, REQ-GQTW-14
+            </td>
           </tr>
           <tr>
             <td>GQTW Portability Service</td>
@@ -1047,51 +1535,204 @@
       <section>
         <h3>Hard Requirements (Law, Protocol, and Profiles)</h3>
         <ul>
-          <li id="ref-rfc2119"><a href="https://www.rfc-editor.org/rfc/rfc2119">[RFC2119] Key words for use in RFCs to Indicate Requirement Levels</a></li>
-          <li id="ref-rfc8174"><a href="https://www.rfc-editor.org/rfc/rfc8174">[RFC8174] Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words</a></li>
-          <li id="ref-rfc6838"><a href="https://www.rfc-editor.org/rfc/rfc6838">[RFC6838] Media Type Specifications and Registration Procedures</a></li>
-          <li id="ref-rfc8259"><a href="https://www.rfc-editor.org/rfc/rfc8259">[RFC8259] The JavaScript Object Notation (JSON) Data Interchange Format</a></li>
-          <li id="ref-rfc8785"><a href="https://www.rfc-editor.org/rfc/rfc8785">[RFC8785] JSON Canonicalization Scheme (JCS)</a></li>
-          <li id="ref-rfc8615"><a href="https://www.rfc-editor.org/rfc/rfc8615">[RFC8615] Well-Known Uniform Resource Identifiers (URIs)</a></li>
-          <li id="ref-rfc9110"><a href="https://www.rfc-editor.org/rfc/rfc9110">[RFC9110] HTTP Semantics</a></li>
-          <li id="ref-oas-3-1-2"><a href="https://spec.openapis.org/oas/v3.1.2.html">[OAS-3.1.2] OpenAPI Specification 3.1.2</a></li>
-          <li id="ref-controller-document"><a href="https://www.w3.org/TR/cid-1.0/">[CONTROLLER-DOCUMENT] Controlled Identifiers v1.0</a></li>
-          <li id="ref-vc-dm2"><a href="https://www.w3.org/TR/vc-data-model-2.0/">[VC-DM2] Verifiable Credentials Data Model v2.0</a></li>
-          <li id="ref-vc-data-integrity"><a href="https://www.w3.org/TR/vc-data-integrity/">[VC-DI] Verifiable Credential Data Integrity 1.0</a></li>
-          <li id="ref-vc-di-ecdsa"><a href="https://www.w3.org/TR/vc-di-ecdsa/">[VC-DI-ECDSA] Data Integrity ECDSA Cryptosuites v1.0</a></li>
-          <li id="ref-did-webvh"><a href="https://identity.foundation/didwebvh/v1.0/">[DID-WEBVH] did:webvh DID Method v1.0</a></li>
-          <li id="ref-json-web-history"><a href="https://z-base.github.io/json-web-history/">[JSON-WEB-HISTORY] JSON Web History</a></li>
-          <li id="ref-eidas-910"><a href="https://eur-lex.europa.eu/eli/reg/2014/910/2024-10-18/eng">[EU-910/2014] Regulation (EU) No 910/2014 consolidated text</a></li>
-          <li id="ref-eu-2024-1183"><a href="https://eur-lex.europa.eu/eli/reg/2024/1183/oj/eng">[EU-2024/1183] Regulation (EU) 2024/1183</a></li>
-          <li id="ref-eu-2024-2979"><a href="https://eur-lex.europa.eu/eli/reg_impl/2024/2979/oj/eng">[EU-2024/2979] CIR on EUDI Wallet integrity and core functionalities</a></li>
-          <li id="ref-eu-2024-2982"><a href="https://eur-lex.europa.eu/eli/reg_impl/2024/2982/oj/eng">[EU-2024/2982] CIR on EUDI Wallet protocols and interfaces</a></li>
-          <li id="ref-eu-2024-2980"><a href="https://eur-lex.europa.eu/eli/reg_impl/2024/2980/oj/eng">[EU-2024/2980] CIR on EUDI Wallet notifications</a></li>
-          <li id="ref-eu-2024-2977"><a href="https://eur-lex.europa.eu/eli/reg_impl/2024/2977/oj/eng">[EU-2024/2977] CIR on PID and EAA issuance</a></li>
-          <li id="ref-eu-2024-2981"><a href="https://eur-lex.europa.eu/eli/reg_impl/2024/2981/oj/eng">[EU-2024/2981] CIR on EUDI Wallet certification</a></li>
-          <li id="ref-eu-2025-848"><a href="https://eur-lex.europa.eu/eli/reg_impl/2025/848/oj/eng">[EU-2025/848] CIR on relying-party registration and public register</a></li>
-          <li id="ref-eu-2025-1569"><a href="https://eur-lex.europa.eu/eli/reg_impl/2025/1569/oj/eng">[EU-2025/1569] CIR on EAA requirements and wallet authentication</a></li>
-          <li id="ref-etsi-ts-119-412-6"><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/11941206/01.01.01_60/ts_11941206v010101p.pdf">[ETSI-TS-119-412-6] ETSI TS 119 412-6</a></li>
-          <li id="ref-etsi-ts-119-411-8"><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/11941108/01.01.01_60/ts_11941108v010101p.pdf">[ETSI-TS-119-411-8] ETSI TS 119 411-8</a></li>
-          <li id="ref-etsi-ts-119-602"><a href="https://www.etsi.org/deliver/etsi_ts/119600_119699/119602/01.01.01_60/ts_119602v010101p.pdf">[ETSI-TS-119-602] ETSI TS 119 602</a></li>
-          <li id="ref-etsi-ts-119-472-1"><a href="https://www.etsi.org/deliver/etsi_ts/119400_119499/11947201/01.01.01_60/ts_11947201v010101p.pdf">[ETSI-TS-119-472-1] ETSI TS 119 472-1</a></li>
-          <li id="ref-ut-sb0275"><a href="https://le.utah.gov/Session/2026/bills/introduced/SB0275.pdf">[UT-SB0275-2026-INTRO] Utah Senate Bill 275 (2026 General Session, introduced text)</a></li>
+          <li id="ref-rfc2119">
+            <a href="https://www.rfc-editor.org/rfc/rfc2119"
+              >[RFC2119] Key words for use in RFCs to Indicate Requirement
+              Levels</a
+            >
+          </li>
+          <li id="ref-rfc8174">
+            <a href="https://www.rfc-editor.org/rfc/rfc8174"
+              >[RFC8174] Ambiguity of Uppercase vs Lowercase in RFC 2119 Key
+              Words</a
+            >
+          </li>
+          <li id="ref-rfc6838">
+            <a href="https://www.rfc-editor.org/rfc/rfc6838"
+              >[RFC6838] Media Type Specifications and Registration
+              Procedures</a
+            >
+          </li>
+          <li id="ref-rfc8259">
+            <a href="https://www.rfc-editor.org/rfc/rfc8259"
+              >[RFC8259] The JavaScript Object Notation (JSON) Data Interchange
+              Format</a
+            >
+          </li>
+          <li id="ref-rfc8785">
+            <a href="https://www.rfc-editor.org/rfc/rfc8785"
+              >[RFC8785] JSON Canonicalization Scheme (JCS)</a
+            >
+          </li>
+          <li id="ref-rfc8615">
+            <a href="https://www.rfc-editor.org/rfc/rfc8615"
+              >[RFC8615] Well-Known Uniform Resource Identifiers (URIs)</a
+            >
+          </li>
+          <li id="ref-rfc9110">
+            <a href="https://www.rfc-editor.org/rfc/rfc9110"
+              >[RFC9110] HTTP Semantics</a
+            >
+          </li>
+          <li id="ref-oas-3-1-2">
+            <a href="https://spec.openapis.org/oas/v3.1.2.html"
+              >[OAS-3.1.2] OpenAPI Specification 3.1.2</a
+            >
+          </li>
+          <li id="ref-controller-document">
+            <a href="https://www.w3.org/TR/cid-1.0/"
+              >[CONTROLLER-DOCUMENT] Controlled Identifiers v1.0</a
+            >
+          </li>
+          <li id="ref-vc-dm2">
+            <a href="https://www.w3.org/TR/vc-data-model-2.0/"
+              >[VC-DM2] Verifiable Credentials Data Model v2.0</a
+            >
+          </li>
+          <li id="ref-vc-data-integrity">
+            <a href="https://www.w3.org/TR/vc-data-integrity/"
+              >[VC-DI] Verifiable Credential Data Integrity 1.0</a
+            >
+          </li>
+          <li id="ref-vc-di-ecdsa">
+            <a href="https://www.w3.org/TR/vc-di-ecdsa/"
+              >[VC-DI-ECDSA] Data Integrity ECDSA Cryptosuites v1.0</a
+            >
+          </li>
+          <li id="ref-did-webvh">
+            <a href="https://identity.foundation/didwebvh/v1.0/"
+              >[DID-WEBVH] did:webvh DID Method v1.0</a
+            >
+          </li>
+          <li id="ref-json-web-history">
+            <a href="https://z-base.github.io/json-web-history/"
+              >[JSON-WEB-HISTORY] JSON Web History</a
+            >
+          </li>
+          <li id="ref-eidas-910">
+            <a href="https://eur-lex.europa.eu/eli/reg/2014/910/2024-10-18/eng"
+              >[EU-910/2014] Regulation (EU) No 910/2014 consolidated text</a
+            >
+          </li>
+          <li id="ref-eu-2024-1183">
+            <a href="https://eur-lex.europa.eu/eli/reg/2024/1183/oj/eng"
+              >[EU-2024/1183] Regulation (EU) 2024/1183</a
+            >
+          </li>
+          <li id="ref-eu-2024-2979">
+            <a href="https://eur-lex.europa.eu/eli/reg_impl/2024/2979/oj/eng"
+              >[EU-2024/2979] CIR on EUDI Wallet integrity and core
+              functionalities</a
+            >
+          </li>
+          <li id="ref-eu-2024-2982">
+            <a href="https://eur-lex.europa.eu/eli/reg_impl/2024/2982/oj/eng"
+              >[EU-2024/2982] CIR on EUDI Wallet protocols and interfaces</a
+            >
+          </li>
+          <li id="ref-eu-2024-2980">
+            <a href="https://eur-lex.europa.eu/eli/reg_impl/2024/2980/oj/eng"
+              >[EU-2024/2980] CIR on EUDI Wallet notifications</a
+            >
+          </li>
+          <li id="ref-eu-2024-2977">
+            <a href="https://eur-lex.europa.eu/eli/reg_impl/2024/2977/oj/eng"
+              >[EU-2024/2977] CIR on PID and EAA issuance</a
+            >
+          </li>
+          <li id="ref-eu-2024-2981">
+            <a href="https://eur-lex.europa.eu/eli/reg_impl/2024/2981/oj/eng"
+              >[EU-2024/2981] CIR on EUDI Wallet certification</a
+            >
+          </li>
+          <li id="ref-eu-2025-848">
+            <a href="https://eur-lex.europa.eu/eli/reg_impl/2025/848/oj/eng"
+              >[EU-2025/848] CIR on relying-party registration and public
+              register</a
+            >
+          </li>
+          <li id="ref-eu-2025-1569">
+            <a href="https://eur-lex.europa.eu/eli/reg_impl/2025/1569/oj/eng"
+              >[EU-2025/1569] CIR on EAA requirements and wallet
+              authentication</a
+            >
+          </li>
+          <li id="ref-etsi-ts-119-412-6">
+            <a
+              href="https://www.etsi.org/deliver/etsi_ts/119400_119499/11941206/01.01.01_60/ts_11941206v010101p.pdf"
+              >[ETSI-TS-119-412-6] ETSI TS 119 412-6</a
+            >
+          </li>
+          <li id="ref-etsi-ts-119-411-8">
+            <a
+              href="https://www.etsi.org/deliver/etsi_ts/119400_119499/11941108/01.01.01_60/ts_11941108v010101p.pdf"
+              >[ETSI-TS-119-411-8] ETSI TS 119 411-8</a
+            >
+          </li>
+          <li id="ref-etsi-ts-119-602">
+            <a
+              href="https://www.etsi.org/deliver/etsi_ts/119600_119699/119602/01.01.01_60/ts_119602v010101p.pdf"
+              >[ETSI-TS-119-602] ETSI TS 119 602</a
+            >
+          </li>
+          <li id="ref-etsi-ts-119-472-1">
+            <a
+              href="https://www.etsi.org/deliver/etsi_ts/119400_119499/11947201/01.01.01_60/ts_11947201v010101p.pdf"
+              >[ETSI-TS-119-472-1] ETSI TS 119 472-1</a
+            >
+          </li>
+          <li id="ref-ut-sb0275">
+            <a
+              href="https://le.utah.gov/Session/2026/bills/introduced/SB0275.pdf"
+              >[UT-SB0275-2026-INTRO] Utah Senate Bill 275 (2026 General
+              Session, introduced text)</a
+            >
+          </li>
         </ul>
       </section>
       <section>
         <h3>Infra and Language Baselines</h3>
         <ul>
-          <li id="ref-ecma262"><a href="https://tc39.es/ecma262/">[ECMA-262] ECMAScript Language Specification</a></li>
-          <li id="ref-infra"><a href="https://infra.spec.whatwg.org/">[INFRA] WHATWG Infra Standard</a></li>
-          <li id="ref-xmlschema11-2"><a href="https://www.w3.org/TR/xmlschema11-2/">[XMLSCHEMA11-2] XML Schema 1.1 Part 2: Datatypes</a></li>
-          <li id="ref-base64url"><a href="https://base64.guru/standards/base64url">[BASE64URL] Base64URL practical reference</a></li>
+          <li id="ref-ecma262">
+            <a href="https://tc39.es/ecma262/"
+              >[ECMA-262] ECMAScript Language Specification</a
+            >
+          </li>
+          <li id="ref-infra">
+            <a href="https://infra.spec.whatwg.org/"
+              >[INFRA] WHATWG Infra Standard</a
+            >
+          </li>
+          <li id="ref-xmlschema11-2">
+            <a href="https://www.w3.org/TR/xmlschema11-2/"
+              >[XMLSCHEMA11-2] XML Schema 1.1 Part 2: Datatypes</a
+            >
+          </li>
+          <li id="ref-base64url">
+            <a href="https://base64.guru/standards/base64url"
+              >[BASE64URL] Base64URL practical reference</a
+            >
+          </li>
         </ul>
       </section>
       <section>
         <h3>Project References</h3>
         <ul>
-          <li id="ref-gdis-core"><a href="https://z-base.github.io/gdis/">[GDIS-CORE] Global Digital Identity Scheme</a></li>
-          <li id="ref-gqscd-core"><a href="https://z-base.github.io/gqscd/">[GQSCD-CORE] Globally Qualified Signature Creation Device</a></li>
-          <li id="ref-gqts-core"><a href="https://z-base.github.io/gqts/">[GQTS-CORE] Globally Qualified Trust Service</a></li>
+          <li id="ref-gdis-core">
+            <a href="https://z-base.github.io/gdis/"
+              >[GDIS-CORE] Global Digital Identity Scheme</a
+            >
+          </li>
+          <li id="ref-gqscd-core">
+            <a href="https://z-base.github.io/gqscd/"
+              >[GQSCD-CORE] Globally Qualified Signature Creation Device</a
+            >
+          </li>
+          <li id="ref-gqts-core">
+            <a href="https://z-base.github.io/gqts/"
+              >[GQTS-CORE] Globally Qualified Trust Service</a
+            >
+          </li>
         </ul>
       </section>
     </section>
