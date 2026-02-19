@@ -10,7 +10,7 @@
 
 ## What Changed
 - Read AGENTS.md and gidas-alignment.config.json preconditions.
-- Generated spec-index.self.json for GDIS-CORE.
+- Generated spec-index.self.json for GQTW-CORE.
 - Generated `spec-index.peers.json` for configured peer snapshots.
 - Generated `cross-spec-map.json` with canonical ownership, new conflict classes, and gaps.
 - Generated `alignment-plan.md` with SELF-specific edits and UNSPECIFIED items.
@@ -23,11 +23,11 @@
 - no spec text edits were applied by this generator; cross-reference actions are listed in `alignment-plan.md`.
 
 ## Metrics
-- term_clusters_with_multiple_members: 0
+- term_clusters_with_multiple_members: 16
 - term_definition_conflicts: 0
 - requirement_id_namespace_conflicts: 0
 - operation_contract_conflicts: 1
-- gaps_detected: 42
+- gaps_detected: 58
 
 ## Key Requirement ID Namespace Conflicts
 - none

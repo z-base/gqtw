@@ -1,5 +1,5 @@
 {
-  "name": "@z-base/gqts",
+  "name": "@z-base/gqtw",
   "version": "0.0.0",
   "description": "",
   "keywords": [
@@ -19,12 +19,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/entity/gqts.git"
+    "url": "git+https://github.com/entity/gqtw.git"
   },
   "bugs": {
-    "url": "https://github.com/entity/gqts/issues"
+    "url": "https://github.com/entity/gqtw/issues"
   },
-  "homepage": "https://z-base.github.io/gqts",
+  "homepage": "https://z-base.github.io/gqtw",
   "files": [
     "dist",
     "LICENSE",

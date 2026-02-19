@@ -1,18 +1,19 @@
 openapi: 3.1.2
 info:
-  title: GIDAS Core API
+  title: GQTW Core API
   version: 1.0.0-draft
-  summary: OpenAPI normative surface for GIDAS endpoint contracts (including GQTS and GDIS).
+  summary: OpenAPI normative surface for GQTW wallet interoperability contracts.
   description: |
-    This OpenAPI file is the normative endpoint contract for GIDAS API surfaces.
+    This OpenAPI file is the normative endpoint contract for the GQTW profile.
 
     Semantics:
-    - GET operations are synchronous retrieval operations.
-    - POST ingest/gossip operations are logically asynchronous and return 202 Accepted.
+    - All request and response payloads are JSON objects.
+    - Presentation and ingest-style operations are asynchronous unless a response explicitly states otherwise.
+    - GQTS host retrieval operations are defined in GQTS Core and are referenced by operation id in GQTW prose.
 
     Versioning strategy:
-    - Major/minor profile semantics are encoded in `info.version` and media types.
-    - Backward-incompatible changes require a new API version and explicit migration text.
+    - Breaking wire changes require a new API version and migration text.
+    - Profile-specific constraints are expressed through requirement ids and media types.
   license:
     name: MIT
     url: https://opensource.org/license/mit
@@ -26,395 +27,326 @@ servers:
 
 security: []
 
-x-gqts-requirements:
-  REQ-GQTS-01: Governance-scoped scheme discovery.
-  REQ-GQTS-02: Endpoint-kind taxonomy publication.
-  REQ-GQTS-03: Service descriptor head commitment publication.
-  REQ-GQTS-04: Low-cost divergence detection via compact head metadata.
-  REQ-GQTS-05: Append-only log retrieval.
-  REQ-GQTS-06: Asynchronous ingest and receipt model.
-  REQ-GQTS-07: Immutable event addressing.
+x-gqtw-requirements:
+  REQ-GQTW-07: Wallet-RP request/present/consent protocol with explicit challenge and audience binding.
+  REQ-GQTW-08: Wallet-GQTS integration for head hints and signed incident reporting.
+  REQ-GQTW-09: Wallet-GQSCD invocation binding to user-approved object digest.
+  REQ-GQTW-10: Opaque encrypted portability export/import preserving user control.
+  REQ-GQTW-11: Data-minimized erasure-request interface for wallet-RP interactions.
+  REQ-GQTW-13: Profile discovery and profile evidence publication.
 
 tags:
-  - name: gdis
-    description: GDIS governance policy endpoints.
-  - name: scheme
-    description: Governance-scoped scheme metadata.
-  - name: type
-    description: Trust-service instance metadata and current head commitments.
-  - name: event
-    description: Append-only event log retrieval and ingest.
+  - name: profile
+    description: Wallet profile metadata and capability publication.
+  - name: presentation
+    description: Wallet-RP presentation request and submission flows.
+  - name: gqts
+    description: Wallet-side integration hooks for GQTS-derived head-state changes.
+  - name: gqscd
+    description: Wallet-GQSCD invocation hooks for signing, sealing, and attestation.
+  - name: portability
+    description: Opaque encrypted export and import workflows.
+  - name: privacy
+    description: Erasure and privacy-control interfaces.
+  - name: incident
+    description: Signed incident reporting for conflict or abuse evidence.
 
 paths:
-  /.well-known/gidas/gqts/scheme/{governanceCode}:
+  /.well-known/gidas/gqtw/profile/{profileId}:
     get:
-      tags: [scheme]
-      operationId: getSchemeDescriptor
-      summary: Get scheme descriptor.
-      x-gqts-requirement: REQ-GQTS-01
+      tags: [profile]
+      operationId: getWalletProfile
+      summary: Get wallet profile metadata.
+      x-gqtw-requirement: REQ-GQTW-13
       description: |
-        Returns governance-scoped naming, canonicalization, proof profile, and publication-floor metadata.
+        Returns machine-readable metadata for one GQTW profile, including supported proof profiles,
+        supported upstream host-profile operations, and conformance dependencies.
       parameters:
-        - $ref: '#/components/parameters/GovernanceCode'
-        - $ref: '#/components/parameters/IfNoneMatch'
+        - $ref: '#/components/parameters/ProfileId'
       responses:
         '200':
-          description: Scheme descriptor.
-          headers:
-            ETag:
-              $ref: '#/components/headers/EntityTag'
-            Cache-Control:
-              $ref: '#/components/headers/CacheControl'
+          description: Wallet profile metadata.
           content:
-            application/gqts.scheme+json:
+            application/gqtw.profile+json:
               schema:
-                $ref: '#/components/schemas/SchemeDescriptor'
+                $ref: '#/components/schemas/WalletProfile'
             application/json:
               schema:
-                $ref: '#/components/schemas/SchemeDescriptor'
-        '304':
-          description: Not modified.
-        '400':
-          $ref: '#/components/responses/Problem'
+                $ref: '#/components/schemas/WalletProfile'
         '404':
           $ref: '#/components/responses/Problem'
 
-  /.well-known/gidas/gqts/scheme/{governanceCode}/endpoint-kinds:
-    get:
-      tags: [scheme]
-      operationId: getEndpointKindCatalog
-      summary: Get endpoint-kind catalog.
-      x-gqts-requirement: REQ-GQTS-02
-      description: |
-        Returns the normative endpoint-kind mapping (`scheme`, `type`, `event`) for a governance profile.
-        This operation provides machine-readable requirement-level conformance metadata.
-      parameters:
-        - $ref: '#/components/parameters/GovernanceCode'
-        - $ref: '#/components/parameters/IfNoneMatch'
-      responses:
-        '200':
-          description: Endpoint-kind catalog.
-          headers:
-            ETag:
-              $ref: '#/components/headers/EntityTag'
-            Cache-Control:
-              $ref: '#/components/headers/CacheControl'
-          content:
-            application/gqts.endpoint-kinds+json:
-              schema:
-                $ref: '#/components/schemas/EndpointKindCatalog'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EndpointKindCatalog'
-        '304':
-          description: Not modified.
-        '400':
-          $ref: '#/components/responses/Problem'
-        '404':
-          $ref: '#/components/responses/Problem'
-
-  /.well-known/gidas/gqts/type/{serviceId}:
-    get:
-      tags: [type]
-      operationId: getTypeDescriptor
-      summary: Get service descriptor.
-      x-gqts-requirement: REQ-GQTS-03
-      description: |
-        Returns metadata for one trust-service instance, including the current event-log head commitment.
-      parameters:
-        - $ref: '#/components/parameters/ServiceId'
-        - $ref: '#/components/parameters/IfNoneMatch'
-      responses:
-        '200':
-          description: Service descriptor.
-          headers:
-            ETag:
-              $ref: '#/components/headers/EntityTag'
-            Cache-Control:
-              $ref: '#/components/headers/CacheControl'
-          content:
-            application/gqts.type+json:
-              schema:
-                $ref: '#/components/schemas/ServiceDescriptor'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ServiceDescriptor'
-        '304':
-          description: Not modified.
-        '400':
-          $ref: '#/components/responses/Problem'
-        '404':
-          $ref: '#/components/responses/Problem'
-
-  /.well-known/gidas/gqts/event/{logId}:
-    get:
-      tags: [event]
-      operationId: getEventLogView
-      summary: Get event log head or event page.
-      x-gqts-requirement: REQ-GQTS-05
-      description: |
-        Returns either a compact head view (default) or paged events for an append-only log.
-        Implementations SHOULD use conditional retrieval and compare `headDigest` before expensive sync work.
-      parameters:
-        - $ref: '#/components/parameters/LogId'
-        - $ref: '#/components/parameters/IfNoneMatch'
-        - $ref: '#/components/parameters/View'
-        - $ref: '#/components/parameters/FromEventId'
-        - $ref: '#/components/parameters/Limit'
-      responses:
-        '200':
-          description: Event log view.
-          headers:
-            ETag:
-              $ref: '#/components/headers/EntityTag'
-            Cache-Control:
-              $ref: '#/components/headers/CacheControl'
-          content:
-            application/gqts.eventlog+json:
-              schema:
-                $ref: '#/components/schemas/EventLogView'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EventLogView'
-        '304':
-          description: Not modified.
-        '400':
-          $ref: '#/components/responses/Problem'
-        '404':
-          $ref: '#/components/responses/Problem'
-
+  /.well-known/gidas/gqtw/presentation/request:
     post:
-      tags: [event]
-      operationId: postEventIngest
-      summary: Submit an event for ingest/gossip.
-      x-gqts-requirement: REQ-GQTS-06
+      tags: [presentation]
+      operationId: postPresentationRequest
+      summary: Submit a relying-party presentation request to a wallet endpoint.
+      x-gqtw-requirement: REQ-GQTW-07
       description: |
-        Accepts an event envelope for asynchronous processing.
-        Successful acceptance returns `202 Accepted`; replication and merge outcomes are observed via GET event-log views.
-      parameters:
-        - $ref: '#/components/parameters/LogId'
+        Accepts a relying-party request that asks for one or more selectively disclosed claims.
+        Wallet implementations MUST bind all accepted requests to explicit challenge and audience values.
       requestBody:
         required: true
         content:
-          application/gqts.event+json:
+          application/gqtw.presentation-request+json:
             schema:
-              $ref: '#/components/schemas/EventIngestRequest'
+              $ref: '#/components/schemas/PresentationRequest'
           application/json:
             schema:
-              $ref: '#/components/schemas/EventIngestRequest'
+              $ref: '#/components/schemas/PresentationRequest'
       responses:
         '202':
-          description: Accepted for asynchronous processing.
+          description: Request accepted for wallet-user consent workflow.
           content:
-            application/gqts.ingest-receipt+json:
+            application/gqtw.presentation-request-receipt+json:
               schema:
-                $ref: '#/components/schemas/AsyncReceipt'
+                $ref: '#/components/schemas/PresentationRequestReceipt'
             application/json:
               schema:
-                $ref: '#/components/schemas/AsyncReceipt'
+                $ref: '#/components/schemas/PresentationRequestReceipt'
         '400':
           $ref: '#/components/responses/Problem'
         '409':
           $ref: '#/components/responses/Problem'
-        '413':
-          $ref: '#/components/responses/Problem'
 
-  /.well-known/gidas/gqts/event/{logId}/meta:
-    get:
-      tags: [event]
-      operationId: getEventHeadMeta
-      summary: Get compact event-head metadata.
-      x-gqts-requirement: REQ-GQTS-04
+  /.well-known/gidas/gqtw/presentation/{requestId}/submit:
+    post:
+      tags: [presentation]
+      operationId: postPresentationSubmission
+      summary: Submit a wallet presentation for a previously accepted request.
+      x-gqtw-requirement: REQ-GQTW-07
       description: |
-        Returns a compact head commitment view for opportunistic synchronization.
-        Peers SHOULD compare this result before requesting event pages or merge processing.
+        Submits the holder-approved presentation output for one presentation request.
+        The submission payload can contain VC/VP-family artifacts and profile-defined selective disclosure proofs.
       parameters:
-        - $ref: '#/components/parameters/LogId'
-        - $ref: '#/components/parameters/IfNoneMatch'
+        - $ref: '#/components/parameters/RequestId'
+      requestBody:
+        required: true
+        content:
+          application/gqtw.presentation-submission+json:
+            schema:
+              $ref: '#/components/schemas/PresentationSubmission'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PresentationSubmission'
       responses:
         '200':
-          description: Event-head metadata.
-          headers:
-            ETag:
-              $ref: '#/components/headers/EntityTag'
-            Cache-Control:
-              $ref: '#/components/headers/CacheControl'
+          description: Submission accepted and mechanically verified.
           content:
-            application/gqts.event-head+json:
+            application/gqtw.presentation-verification+json:
               schema:
-                $ref: '#/components/schemas/EventHeadMeta'
+                $ref: '#/components/schemas/PresentationVerificationResult'
             application/json:
               schema:
-                $ref: '#/components/schemas/EventHeadMeta'
-        '304':
-          description: Not modified.
+                $ref: '#/components/schemas/PresentationVerificationResult'
         '400':
           $ref: '#/components/responses/Problem'
         '404':
           $ref: '#/components/responses/Problem'
-
-  /.well-known/gidas/gqts/event/{logId}/{eventId}:
-    get:
-      tags: [event]
-      operationId: getEventById
-      summary: Get immutable event object.
-      x-gqts-requirement: REQ-GQTS-07
-      description: Retrieves one immutable event object by identifier.
-      parameters:
-        - $ref: '#/components/parameters/LogId'
-        - $ref: '#/components/parameters/EventId'
-      responses:
-        '200':
-          description: Event object.
-          headers:
-            ETag:
-              $ref: '#/components/headers/EntityTag'
-            Cache-Control:
-              $ref: '#/components/headers/CacheControlImmutable'
-          content:
-            application/gqts.event+json:
-              schema:
-                $ref: '#/components/schemas/EventEnvelope'
-            application/json:
-              schema:
-                $ref: '#/components/schemas/EventEnvelope'
-        '400':
-          $ref: '#/components/responses/Problem'
-        '404':
+        '422':
           $ref: '#/components/responses/Problem'
 
-  /.well-known/gidas/pid-identification:
-    get:
-      tags: [gdis]
-      operationId: getGdisPidIdentificationPolicy
-      summary: Get governance PID identification policy.
-      x-gdis-requirement: REQ-GDIS-03
+  /.well-known/gidas/gqtw/gqts/head-hint:
+    post:
+      tags: [gqts]
+      operationId: postGqtsHeadHint
+      summary: Submit a compact head-state hint derived from a GQTS history view.
+      x-gqtw-requirement: REQ-GQTW-08
       description: |
-        Returns the governance-defined PID identification policy, including required
-        MRZ-derived fields, physical-validity method constraints, delegated
-        issuance constraints, and per-field regular-expression constraints.
-      parameters:
-        - $ref: '#/components/parameters/AsOf'
-        - $ref: '#/components/parameters/IfNoneMatch'
+        Accepts a compact head-state hint so wallet implementations can decide if heavier retrieval is needed.
+        This operation does not replace authoritative retrieval from GQTS endpoints.
+      requestBody:
+        required: true
+        content:
+          application/gqtw.gqts-head-hint+json:
+            schema:
+              $ref: '#/components/schemas/GqtsHeadHint'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GqtsHeadHint'
       responses:
-        '200':
-          description: PID identification policy.
-          headers:
-            ETag:
-              $ref: '#/components/headers/EntityTag'
-            Cache-Control:
-              $ref: '#/components/headers/CacheControl'
+        '202':
+          description: Hint accepted.
           content:
-            application/gdis.pid-policy+json:
+            application/gqtw.async-receipt+json:
               schema:
-                $ref: '#/components/schemas/GdisPidIdentificationPolicy'
+                $ref: '#/components/schemas/AsyncReceipt'
             application/json:
               schema:
-                $ref: '#/components/schemas/GdisPidIdentificationPolicy'
-        '304':
-          description: Not modified.
+                $ref: '#/components/schemas/AsyncReceipt'
         '400':
           $ref: '#/components/responses/Problem'
-        '404':
+
+  /.well-known/gidas/gqtw/gqscd/invocation:
+    post:
+      tags: [gqscd]
+      operationId: postGqscdInvocation
+      summary: Invoke a GQSCD-backed signing, sealing, or attestation operation.
+      x-gqtw-requirement: REQ-GQTW-09
+      description: |
+        Invokes a protected-key operation through a GQSCD-conformant interface.
+        User intent and user-approved object digest binding are required inputs.
+      requestBody:
+        required: true
+        content:
+          application/gqtw.gqscd-invocation+json:
+            schema:
+              $ref: '#/components/schemas/GqscdInvocationRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GqscdInvocationRequest'
+      responses:
+        '200':
+          description: Invocation result.
+          content:
+            application/gqtw.gqscd-invocation-result+json:
+              schema:
+                $ref: '#/components/schemas/GqscdInvocationResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GqscdInvocationResult'
+        '400':
+          $ref: '#/components/responses/Problem'
+        '403':
+          $ref: '#/components/responses/Problem'
+
+  /.well-known/gidas/gqtw/portability/export:
+    post:
+      tags: [portability]
+      operationId: postWalletExport
+      summary: Create an opaque encrypted portability package.
+      x-gqtw-requirement: REQ-GQTW-10
+      description: |
+        Exports wallet-private material as an encrypted opaque package.
+        The package is designed for controlled migration and backup, not public publication.
+      requestBody:
+        required: true
+        content:
+          application/gqtw.portability-export-request+json:
+            schema:
+              $ref: '#/components/schemas/WalletExportRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WalletExportRequest'
+      responses:
+        '200':
+          description: Opaque portability package.
+          content:
+            application/gqtw.portability-package+json:
+              schema:
+                $ref: '#/components/schemas/WalletExportPackage'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletExportPackage'
+        '400':
+          $ref: '#/components/responses/Problem'
+
+  /.well-known/gidas/gqtw/portability/import:
+    post:
+      tags: [portability]
+      operationId: postWalletImport
+      summary: Import an opaque encrypted portability package.
+      x-gqtw-requirement: REQ-GQTW-10
+      description: |
+        Imports an opaque encrypted package and performs integrity checks before activation.
+      requestBody:
+        required: true
+        content:
+          application/gqtw.portability-import-request+json:
+            schema:
+              $ref: '#/components/schemas/WalletImportRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WalletImportRequest'
+      responses:
+        '200':
+          description: Import result.
+          content:
+            application/gqtw.portability-import-result+json:
+              schema:
+                $ref: '#/components/schemas/WalletImportResult'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WalletImportResult'
+        '400':
+          $ref: '#/components/responses/Problem'
+        '409':
+          $ref: '#/components/responses/Problem'
+
+  /.well-known/gidas/gqtw/privacy/erasure:
+    post:
+      tags: [privacy]
+      operationId: postErasureRequest
+      summary: Submit a holder-scoped data-erasure request.
+      x-gqtw-requirement: REQ-GQTW-11
+      description: |
+        Submits an erasure request for data previously disclosed through wallet-mediated presentation flows.
+      requestBody:
+        required: true
+        content:
+          application/gqtw.erasure-request+json:
+            schema:
+              $ref: '#/components/schemas/ErasureRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ErasureRequest'
+      responses:
+        '202':
+          description: Erasure request accepted.
+          content:
+            application/gqtw.erasure-receipt+json:
+              schema:
+                $ref: '#/components/schemas/ErasureReceipt'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErasureReceipt'
+        '400':
+          $ref: '#/components/responses/Problem'
+
+  /.well-known/gidas/gqtw/incident/report:
+    post:
+      tags: [incident]
+      operationId: postWalletIncidentReport
+      summary: Submit a signed incident report.
+      x-gqtw-requirement: REQ-GQTW-08
+      description: |
+        Submits signed evidence about host conflicts, replay attempts, policy abuse, or profile violations.
+      requestBody:
+        required: true
+        content:
+          application/gqtw.incident-report+json:
+            schema:
+              $ref: '#/components/schemas/IncidentReport'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IncidentReport'
+      responses:
+        '202':
+          description: Incident report accepted for asynchronous processing.
+          content:
+            application/gqtw.async-receipt+json:
+              schema:
+                $ref: '#/components/schemas/AsyncReceipt'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AsyncReceipt'
+        '400':
           $ref: '#/components/responses/Problem'
 
 components:
   parameters:
-    GovernanceCode:
-      name: governanceCode
+    ProfileId:
+      name: profileId
       in: path
       required: true
-      description: |
-        Lowercase ASCII governance identifier.
-        Producers MUST normalize to lowercase before publication.
       schema:
-        $ref: '#/components/schemas/GovernanceCode'
-
-    ServiceId:
-      name: serviceId
+        $ref: '#/components/schemas/Identifier'
+    RequestId:
+      name: requestId
       in: path
       required: true
-      description: Trust-service instance identifier.
       schema:
         $ref: '#/components/schemas/Identifier'
-
-    LogId:
-      name: logId
-      in: path
-      required: true
-      description: Event log namespace identifier.
-      schema:
-        $ref: '#/components/schemas/Identifier'
-
-    EventId:
-      name: eventId
-      in: path
-      required: true
-      description: Immutable event identifier.
-      schema:
-        $ref: '#/components/schemas/Identifier'
-
-    IfNoneMatch:
-      name: If-None-Match
-      in: header
-      required: false
-      description: ETag validator for conditional retrieval.
-      schema:
-        type: string
-
-    AsOf:
-      name: asOf
-      in: query
-      required: false
-      description: |
-        Optional RFC 3339 date-time selecting the policy version effective at
-        that instant.
-      schema:
-        type: string
-        format: date-time
-
-    View:
-      name: view
-      in: query
-      required: false
-      description: Controls head-only versus paged-event retrieval.
-      schema:
-        type: string
-        enum: [head, events]
-        default: head
-
-    FromEventId:
-      name: fromEventId
-      in: query
-      required: false
-      description: Resume cursor for paged event retrieval.
-      schema:
-        $ref: '#/components/schemas/Identifier'
-
-    Limit:
-      name: limit
-      in: query
-      required: false
-      description: Page size for event retrieval.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 200
-        default: 50
-
-  headers:
-    EntityTag:
-      description: Entity tag representing head commitment or immutable event digest.
-      schema:
-        type: string
-    CacheControl:
-      description: Cache policy for append-only views (typically short freshness with validators).
-      schema:
-        type: string
-    CacheControlImmutable:
-      description: Cache policy for immutable objects.
-      schema:
-        type: string
 
   responses:
     Problem:
@@ -423,595 +355,520 @@ components:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/ProblemDetails'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ProblemDetails'
 
   schemas:
-    GdisPidFieldRequirement:
+    Identifier:
+      type: string
+      minLength: 1
+      maxLength: 128
+      pattern: '^[A-Za-z0-9._:-]+$'
+
+    DidUri:
+      type: string
+      minLength: 8
+      pattern: '^did:[a-z0-9]+:.+$'
+
+    Uri:
+      type: string
+      format: uri
+
+    IsoDateTime:
+      type: string
+      format: date-time
+
+    WalletProfile:
       type: object
       additionalProperties: false
       required:
-        - fieldId
-        - mrzSource
-        - required
-        - regexp
-        - regexpProfileVersion
+        - profileId
+        - profileVersion
+        - proofProfiles
+        - upstreamRequirements
+        - gqtsOperations
       properties:
-        fieldId:
+        profileId:
+          $ref: '#/components/schemas/Identifier'
+        profileVersion:
           type: string
-          minLength: 1
-          description: Stable identifier of the required PID field.
-        mrzSource:
-          type: string
-          minLength: 1
-          description: MRZ extraction source definition for the field.
-        required:
-          type: boolean
-        regexp:
-          type: string
-          minLength: 1
-          description: |
-            Validation regular expression applied as full-value validation
-            (not substring matching).
-        regexpProfileVersion:
-          type: string
-          minLength: 1
-          description: Regular-expression profile identifier (for example RFC 9485 profile id).
-
-    GdisPolicySignature:
-      type: object
-      additionalProperties: false
-      required: [alg, kid, value]
-      properties:
-        alg:
-          type: string
-        kid:
-          type: string
-        value:
-          type: string
-
-    GdisPhysicalValidityPolicy:
-      type: object
-      additionalProperties: false
-      required:
-        - physicalValidityProfileId
-        - acceptedInputChannels
-        - governanceTrustSourceRefs
-      properties:
-        physicalValidityProfileId:
-          type: string
-          minLength: 1
-          description: |
-            Governance profile identifier defining deterministic physical-item
-            authenticity checks and verifier failure semantics.
-        acceptedInputChannels:
+          pattern: '^[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9.-]+)?$'
+        proofProfiles:
           type: array
           minItems: 1
-          uniqueItems: true
           items:
             type: string
             enum:
-              - mrz-only
-              - mrz-plus-nfc
-              - nfc-chip-only
-              - policy-defined
-          description: |
-            Input-channel policy for identity-item validity checks.
-        governanceTrustSourceRefs:
+              - bbs-profile
+              - oprf-profile
+              - sd-profile
+              - profile-extension
+        upstreamRequirements:
           type: array
           minItems: 1
-          description: |
-            Authoritative governance sources used during physical-validity
-            evaluation and verifier corroboration.
           items:
-            $ref: '#/components/schemas/UriDigest'
-        evidenceRequiredAtIssuance:
-          type: boolean
-          default: true
-        evidenceRequiredAtVerification:
-          type: boolean
-          default: true
+            type: string
+            pattern: '^REQ-(GQTS|GQSCD|GDIS|GQTW)-[0-9]{2}$'
+        gqtsOperations:
+          type: array
+          minItems: 1
+          items:
+            type: string
+            enum:
+              - getSchemeDescriptor
+              - getEndpointKindCatalog
+              - getTypeDescriptor
+              - getEventLogView
+              - getEventHeadMeta
+              - getEventById
+        gqscdProfileRefs:
+          type: array
+          items:
+            type: string
 
-    GdisDelegatedIssuancePolicy:
+    PresentationRequest:
       type: object
       additionalProperties: false
       required:
-        - physicalItemPrimary
-        - remoteEidFallbackAllowed
-        - issuerAuthorityChainRefs
+        - requestId
+        - challenge
+        - audience
+        - relyingParty
+        - requestedClaims
+        - expiresAt
       properties:
-        physicalItemPrimary:
-          type: boolean
-          const: true
-          description: |
-            Conforming policy posture. Physical identity-item issuance is the
-            primary path for PID binding.
-        remoteEidFallbackAllowed:
-          type: boolean
-          description: |
-            Indicates whether remote eID provider delegation is allowed as a
-            documented fallback.
-        remoteEidFallbackPolicy:
+        requestId:
+          $ref: '#/components/schemas/Identifier'
+        challenge:
+          type: string
+          minLength: 16
+        audience:
           type: string
           minLength: 1
-          description: |
-            Policy identifier or condition reference governing fallback
-            activation when remote delegation is allowed.
-        issuerAuthorityChainRefs:
+        relyingParty:
+          $ref: '#/components/schemas/RelyingPartyDescriptor'
+        requestedClaims:
           type: array
           minItems: 1
-          description: |
-            Authoritative references used to verify legal issuer and delegate
-            authority chain status.
           items:
-            $ref: '#/components/schemas/UriDigest'
-
-    GdisPidIdentificationPolicy:
-      type: object
-      additionalProperties: false
-      required:
-        - governanceArea
-        - policyId
-        - profileVersion
-        - effectiveFrom
-        - subjectBindingProfile
-        - publicHandlePolicy
-        - physicalValidity
-        - delegatedIssuance
-        - pidFieldSet
-        - signature
-      properties:
-        governanceArea:
-          type: string
-          minLength: 1
-        policyId:
-          type: string
-          minLength: 1
-        profileVersion:
-          type: string
-          minLength: 1
-        effectiveFrom:
-          type: string
-          format: date-time
-        effectiveUntil:
-          oneOf:
-            - type: string
-              format: date-time
-            - type: 'null'
-        subjectBindingProfile:
-          type: string
-          minLength: 1
-          description: |
-            Profile identifier defining deterministic subject-binding derivation,
-            proof verification behavior, and failure semantics.
-        publicHandlePolicy:
+            $ref: '#/components/schemas/ClaimRequest'
+        selectiveDisclosureRequired:
+          type: boolean
+          default: true
+        proofProfile:
           type: string
           enum:
-            - verifier-scoped-by-default
-            - blinded-by-default
-            - policy-defined
-          description: |
-            Declares whether publicly visible subject handles are verifier-scoped
-            or otherwise privacy-preserving by default.
-        physicalValidity:
-          $ref: '#/components/schemas/GdisPhysicalValidityPolicy'
-        delegatedIssuance:
-          $ref: '#/components/schemas/GdisDelegatedIssuancePolicy'
-        nonRevocationModel:
-          type: object
-          additionalProperties: false
-          required:
-            - requiredAtVerification
-            - mode
-          properties:
-            requiredAtVerification:
-              type: boolean
-            mode:
-              type: string
-              enum:
-                - status-list-proof
-                - accumulator-proof
-                - policy-defined
-          description: |
-            Declares how non-revocation is verified without requiring global
-            person-correlating identifiers.
-        pidFieldSet:
-          type: array
-          minItems: 1
-          description: |
-            List serialization of field requirements with set semantics by
-            `fieldId` (field identifiers are unique).
-          items:
-            $ref: '#/components/schemas/GdisPidFieldRequirement'
-        signature:
-          $ref: '#/components/schemas/GdisPolicySignature'
+            - bbs-profile
+            - oprf-profile
+            - sd-profile
+            - profile-extension
+        expiresAt:
+          $ref: '#/components/schemas/IsoDateTime'
 
-    EndpointKind:
-      type: string
-      enum: [scheme, type, event]
-
-    GovernanceCode:
-      type: string
-      pattern: '^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$'
-      examples: [eu, fi-traficom, us-nist]
-
-    Identifier:
-      type: string
-      minLength: 3
-      maxLength: 128
-      pattern: '^[A-Za-z0-9._:-]+$'
-      examples: [a8bb9d18-c3bc-4f5b-9158-3ce0d48f4f8c, eu-qts-registry]
-
-    DigestTuple:
-      type: string
-      description: Algorithm token plus digest value (`algorithm:value`).
-      pattern: '^[A-Za-z0-9._-]+:[A-Za-z0-9_-]+$'
-      examples: ['SHA-256:3f7zcM55W3A8fAq7sP6q18gw4ulvYz6oVaQqM4jLw8Q']
-
-    UriDigest:
-      type: object
-      required: [uri, digest]
-      additionalProperties: false
-      properties:
-        uri:
-          type: string
-          format: uri
-        digest:
-          $ref: '#/components/schemas/DigestTuple'
-
-    SchemeDescriptor:
+    PresentationRequestReceipt:
       type: object
       additionalProperties: false
       required:
-        - kind
-        - governanceCode
-        - version
-        - canonicalization
-        - hashAlgorithm
-        - proofSuites
-        - endpointKinds
-        - discovery
+        - requestId
+        - status
       properties:
-        kind:
+        requestId:
+          $ref: '#/components/schemas/Identifier'
+        status:
           type: string
-          const: scheme
-        governanceCode:
-          $ref: '#/components/schemas/GovernanceCode'
-        version:
-          type: string
-          examples: [v1]
-        canonicalization:
-          type: string
-          description: Canonicalization profile for event payload hashing.
-          examples: [JCS]
-        hashAlgorithm:
-          type: string
-          examples: [SHA-256]
-        proofSuites:
-          type: array
-          minItems: 1
-          items:
-            type: string
-          examples:
-            - [eddsa-jcs-2022, ecdsa-jcs-2019]
-        endpointKinds:
-          type: array
-          minItems: 3
-          uniqueItems: true
-          examples:
-            - [scheme, type, event]
-          items:
-            $ref: '#/components/schemas/EndpointKind'
-        publicationFloor:
-          type: array
-          description: Optional governance minimum host targets.
-          items:
-            type: string
-            format: uri
-        endpointKindsRef:
-          type: string
-          format: uri-reference
-          description: Relative or absolute URI to endpoint-kind catalog.
-        discovery:
-          type: object
-          additionalProperties: false
-          required: [schemeTemplate, typeTemplate, eventTemplate]
-          properties:
-            schemeTemplate:
-              type: string
-              examples: ['/.well-known/gidas/gqts/scheme/{governanceCode}']
-            typeTemplate:
-              type: string
-              examples: ['/.well-known/gidas/gqts/type/{serviceId}']
-            eventTemplate:
-              type: string
-              examples: ['/.well-known/gidas/gqts/event/{logId}']
+          enum:
+            - accepted
+            - rejected
+            - pending-user-consent
+        consentHandle:
+          $ref: '#/components/schemas/Identifier'
+        expiresAt:
+          $ref: '#/components/schemas/IsoDateTime'
 
-    EndpointKindEntry:
+    PresentationSubmission:
       type: object
       additionalProperties: false
       required:
-        - kind
+        - requestId
+        - holderDid
+        - proofArtifact
+        - consentReceipt
+      properties:
+        requestId:
+          $ref: '#/components/schemas/Identifier'
+        holderDid:
+          $ref: '#/components/schemas/DidUri'
+        proofArtifact:
+          $ref: '#/components/schemas/ProofArtifactEnvelope'
+        disclosedClaims:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClaimDisclosure'
+        consentReceipt:
+          $ref: '#/components/schemas/ConsentReceipt'
+
+    PresentationVerificationResult:
+      type: object
+      additionalProperties: false
+      required:
+        - requestId
+        - mechanicalValidity
+        - checkedAt
+      properties:
+        requestId:
+          $ref: '#/components/schemas/Identifier'
+        mechanicalValidity:
+          type: string
+          enum: [valid, invalid, indeterminate]
+        recognitionStatus:
+          type: string
+          enum: [out-of-scope, recognized, not-recognized, pending]
+        checkedAt:
+          $ref: '#/components/schemas/IsoDateTime'
+        failureCodes:
+          type: array
+          items:
+            type: string
+
+    RelyingPartyDescriptor:
+      type: object
+      additionalProperties: false
+      required:
+        - relyingPartyId
+      properties:
+        relyingPartyId:
+          $ref: '#/components/schemas/Identifier'
+        registrationCertificate:
+          type: string
+        registrationJurisdiction:
+          type: string
+
+    ClaimRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - claimId
         - purpose
-        - pathTemplate
-        - operationIds
-        - primarySchema
-        - consistencyModel
       properties:
-        kind:
-          $ref: '#/components/schemas/EndpointKind'
+        claimId:
+          type: string
         purpose:
           type: string
-        pathTemplate:
+        required:
+          type: boolean
+          default: true
+
+    ClaimDisclosure:
+      type: object
+      additionalProperties: false
+      required:
+        - claimId
+        - valueDigest
+      properties:
+        claimId:
           type: string
-          examples: ['/.well-known/gidas/gqts/{kind}/{id}']
-        operationIds:
+        valueDigest:
+          type: string
+          pattern: '^[A-Za-z0-9_-]{16,}$'
+        value:
+          description: Optional disclosed cleartext value when policy allows.
+
+    ConsentReceipt:
+      type: object
+      additionalProperties: false
+      required:
+        - consentHandle
+        - approvedAt
+        - userApprovedObjectDigest
+      properties:
+        consentHandle:
+          $ref: '#/components/schemas/Identifier'
+        approvedAt:
+          $ref: '#/components/schemas/IsoDateTime'
+        userApprovedObjectDigest:
+          type: string
+          pattern: '^[A-Za-z0-9_-]{16,}$'
+        gqscdEvidenceRef:
+          type: string
+
+    ProofArtifactEnvelope:
+      type: object
+      description: VC/VP-family artifact envelope or profile-equivalent object.
+      required:
+        - format
+        - artifact
+        - proof
+      additionalProperties: false
+      properties:
+        format:
+          type: string
+          enum:
+            - vc
+            - vp
+            - profiled-equivalent
+        artifact:
+          type: object
+          additionalProperties: true
+        proof:
+          type: object
+          additionalProperties: true
+
+    GqtsHeadHint:
+      type: object
+      additionalProperties: false
+      required:
+        - logId
+        - hostOrigin
+        - headToken
+        - headDigest
+        - observedAt
+      properties:
+        logId:
+          $ref: '#/components/schemas/Identifier'
+        hostOrigin:
+          $ref: '#/components/schemas/Uri'
+        headToken:
+          $ref: '#/components/schemas/Identifier'
+        headDigest:
+          type: string
+          pattern: '^[A-Za-z0-9_-]{16,}$'
+        observedAt:
+          $ref: '#/components/schemas/IsoDateTime'
+
+    GqscdInvocationRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - invocationId
+        - operationType
+        - keyReference
+        - userApprovedObjectDigest
+        - challenge
+        - audience
+      properties:
+        invocationId:
+          $ref: '#/components/schemas/Identifier'
+        operationType:
+          type: string
+          enum: [sign, seal, attest]
+        keyReference:
+          type: string
+        userApprovedObjectDigest:
+          type: string
+          pattern: '^[A-Za-z0-9_-]{16,}$'
+        challenge:
+          type: string
+          minLength: 16
+        audience:
+          type: string
+          minLength: 1
+
+    GqscdInvocationResult:
+      type: object
+      additionalProperties: false
+      required:
+        - invocationId
+        - status
+      properties:
+        invocationId:
+          $ref: '#/components/schemas/Identifier'
+        status:
+          type: string
+          enum: [succeeded, denied, failed]
+        signatureObject:
+          type: object
+          additionalProperties: true
+        evidenceReferences:
+          type: array
+          items:
+            type: string
+
+    WalletExportRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - exportId
+        - recipientPublicKey
+      properties:
+        exportId:
+          $ref: '#/components/schemas/Identifier'
+        recipientPublicKey:
+          type: object
+          additionalProperties: true
+        includePrivateLog:
+          type: boolean
+          default: true
+        includeArtifacts:
+          type: boolean
+          default: true
+
+    WalletExportPackage:
+      type: object
+      additionalProperties: false
+      required:
+        - packageId
+        - cipherSuite
+        - ciphertext
+        - digest
+        - createdAt
+      properties:
+        packageId:
+          $ref: '#/components/schemas/Identifier'
+        cipherSuite:
+          type: string
+        ciphertext:
+          type: string
+        digest:
+          type: string
+        createdAt:
+          $ref: '#/components/schemas/IsoDateTime'
+
+    WalletImportRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - package
+      properties:
+        package:
+          $ref: '#/components/schemas/WalletExportPackage'
+        decryptionContext:
+          type: object
+          additionalProperties: true
+
+    WalletImportResult:
+      type: object
+      additionalProperties: false
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum: [imported, rejected, partial]
+        activatedHeadToken:
+          $ref: '#/components/schemas/Identifier'
+        migratedArtifactCount:
+          type: integer
+          minimum: 0
+
+    ErasureRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - requestId
+        - relyingPartyId
+        - submittedAt
+      properties:
+        requestId:
+          $ref: '#/components/schemas/Identifier'
+        relyingPartyId:
+          $ref: '#/components/schemas/Identifier'
+        legalBasis:
+          type: string
+          default: gdpr-article-17
+        proofOfInteraction:
+          type: string
+        submittedAt:
+          $ref: '#/components/schemas/IsoDateTime'
+
+    ErasureReceipt:
+      type: object
+      additionalProperties: false
+      required:
+        - requestId
+        - status
+      properties:
+        requestId:
+          $ref: '#/components/schemas/Identifier'
+        status:
+          type: string
+          enum: [accepted, rejected, completed]
+        reference:
+          type: string
+
+    IncidentReport:
+      type: object
+      additionalProperties: false
+      required:
+        - reportId
+        - incidentType
+        - reportedAt
+        - evidence
+      properties:
+        reportId:
+          $ref: '#/components/schemas/Identifier'
+        incidentType:
+          type: string
+          enum:
+            - host-divergence
+            - fork-detected
+            - replay-attempt
+            - policy-abuse
+            - profile-violation
+        affectedHost:
+          $ref: '#/components/schemas/Uri'
+        affectedLogId:
+          $ref: '#/components/schemas/Identifier'
+        reporterDid:
+          $ref: '#/components/schemas/DidUri'
+        reportedAt:
+          $ref: '#/components/schemas/IsoDateTime'
+        evidence:
           type: array
           minItems: 1
           items:
-            type: string
-        primarySchema:
-          type: string
-          description: '#/components/schemas/... pointer.'
-          examples: ['#/components/schemas/ServiceDescriptor']
-        consistencyModel:
-          type: string
-          enum: [immutable, append-only, mutable-with-versioning]
-        asyncIngestSupported:
-          type: boolean
-          default: false
-      examples:
-        - kind: event
-          purpose: Append-only history publication and retrieval.
-          pathTemplate: /.well-known/gidas/gqts/event/{logId}
-          operationIds:
-            [getEventHeadMeta, getEventLogView, postEventIngest, getEventById]
-          primarySchema: '#/components/schemas/EventEnvelope'
-          consistencyModel: append-only
-          asyncIngestSupported: true
+            $ref: '#/components/schemas/IncidentEvidenceItem'
+        signature:
+          type: object
+          additionalProperties: true
 
-    EndpointKindCatalog:
-      type: object
-      additionalProperties: false
-      required: [governanceCode, generatedAt, endpointKinds]
-      properties:
-        governanceCode:
-          $ref: '#/components/schemas/GovernanceCode'
-        generatedAt:
-          type: string
-          format: date-time
-        endpointKinds:
-          type: array
-          minItems: 3
-          items:
-            $ref: '#/components/schemas/EndpointKindEntry'
-      examples:
-        - governanceCode: eu
-          generatedAt: '2026-02-18T00:00:00Z'
-          endpointKinds:
-            - kind: scheme
-              purpose: Governance profile metadata discovery.
-              pathTemplate: /.well-known/gidas/gqts/scheme/{governanceCode}
-              operationIds: [getSchemeDescriptor, getEndpointKindCatalog]
-              primarySchema: '#/components/schemas/SchemeDescriptor'
-              consistencyModel: mutable-with-versioning
-            - kind: type
-              purpose: Service descriptor publication.
-              pathTemplate: /.well-known/gidas/gqts/type/{serviceId}
-              operationIds: [getTypeDescriptor]
-              primarySchema: '#/components/schemas/ServiceDescriptor'
-              consistencyModel: mutable-with-versioning
-            - kind: event
-              purpose: Append-only event history operations.
-              pathTemplate: /.well-known/gidas/gqts/event/{logId}
-              operationIds:
-                [
-                  getEventHeadMeta,
-                  getEventLogView,
-                  postEventIngest,
-                  getEventById,
-                ]
-              primarySchema: '#/components/schemas/EventEnvelope'
-              consistencyModel: append-only
-              asyncIngestSupported: true
-
-    ServiceDescriptor:
+    IncidentEvidenceItem:
       type: object
       additionalProperties: false
       required:
         - kind
-        - serviceId
-        - serviceType
-        - governanceCode
-        - eventLog
-        - verificationSources
+        - digest
       properties:
         kind:
-          type: string
-          const: type
-        serviceId:
-          $ref: '#/components/schemas/Identifier'
-        serviceType:
           type: string
           enum:
-            - gdis-binding
-            - gqtsp-evidence
-            - trust-registry
-            - pid-scheme
-            - other
-        governanceCode:
-          $ref: '#/components/schemas/GovernanceCode'
-        profileVersion:
+            - event-envelope
+            - head-meta
+            - receipt
+            - policy-proof
+            - audit-trace
+        digest:
           type: string
-          examples: [v1]
-        eventLog:
-          type: object
-          additionalProperties: false
-          required: [logId, headEventId, headDigest]
-          properties:
-            logId:
-              $ref: '#/components/schemas/Identifier'
-            headEventId:
-              $ref: '#/components/schemas/Identifier'
-            headDigest:
-              $ref: '#/components/schemas/DigestTuple'
-            updatedAt:
-              type: string
-              format: date-time
-        verificationSources:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/UriDigest'
-
-    EventLogView:
-      type: object
-      additionalProperties: false
-      required: [kind, logId, view, headEventId, headDigest, events]
-      properties:
-        kind:
-          type: string
-          const: event
-        logId:
-          $ref: '#/components/schemas/Identifier'
-        view:
-          type: string
-          enum: [head, events]
-        headEventId:
-          $ref: '#/components/schemas/Identifier'
-        headDigest:
-          $ref: '#/components/schemas/DigestTuple'
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventEnvelope'
-        nextFromEventId:
-          $ref: '#/components/schemas/Identifier'
-
-    EventHeadMeta:
-      type: object
-      additionalProperties: false
-      required: [kind, logId, headEventId, headDigest, eventCount, updatedAt]
-      properties:
-        kind:
-          type: string
-          const: event
-        logId:
-          $ref: '#/components/schemas/Identifier'
-        headEventId:
-          $ref: '#/components/schemas/Identifier'
-        headDigest:
-          $ref: '#/components/schemas/DigestTuple'
-        eventCount:
-          type: integer
-          minimum: 0
-        updatedAt:
-          type: string
-          format: date-time
-        recommendedPollSeconds:
-          type: integer
-          minimum: 1
-
-    EventEnvelope:
-      type: object
-      additionalProperties: false
-      required:
-        - eventId
-        - logId
-        - sequence
-        - createdAt
-        - eventType
-        - eventDigest
-        - prevEventDigests
-        - payload
-        - proofs
-      properties:
-        eventId:
-          $ref: '#/components/schemas/Identifier'
-        logId:
-          $ref: '#/components/schemas/Identifier'
-        sequence:
-          type: integer
-          minimum: 0
-        createdAt:
-          type: string
-          format: date-time
-        eventType:
-          type: string
-          examples: [publish, revoke, rotate, merge]
-        eventDigest:
-          $ref: '#/components/schemas/DigestTuple'
-        prevEventDigests:
-          type: array
-          description: Parent head commitments. Merge events usually include two or more entries.
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/DigestTuple'
-        payload:
-          type: object
-          additionalProperties: true
-        proofs:
-          type: array
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/Proof'
-
-    Proof:
-      type: object
-      additionalProperties: false
-      required: [type, verificationMethod, created, proofValue]
-      properties:
-        type:
-          type: string
-        verificationMethod:
-          type: string
-        created:
-          type: string
-          format: date-time
-        proofPurpose:
-          type: string
-          examples: [assertionMethod]
-        proofValue:
-          type: string
-
-    EventIngestRequest:
-      type: object
-      additionalProperties: false
-      required: [event]
-      properties:
-        event:
-          $ref: '#/components/schemas/EventEnvelope'
-        expectedHeadDigest:
-          $ref: '#/components/schemas/DigestTuple'
-        correlationId:
-          type: string
-          minLength: 8
-          maxLength: 128
+        uri:
+          $ref: '#/components/schemas/Uri'
 
     AsyncReceipt:
       type: object
       additionalProperties: false
-      required: [status, correlationId, logId, acceptedAt]
+      required:
+        - receiptId
+        - acceptedAt
+        - status
       properties:
-        status:
-          type: string
-          const: accepted
-        correlationId:
-          type: string
-        logId:
+        receiptId:
           $ref: '#/components/schemas/Identifier'
         acceptedAt:
+          $ref: '#/components/schemas/IsoDateTime'
+        status:
           type: string
-          format: date-time
-        queuedEventId:
-          $ref: '#/components/schemas/Identifier'
+          enum: [accepted, rejected]
 
     ProblemDetails:
       type: object
       additionalProperties: true
-      required: [type, title, status]
+      required:
+        - type
+        - title
+        - status
       properties:
         type:
           type: string
-          format: uri-reference
+          format: uri
         title:
           type: string
         status:
@@ -1022,4 +879,6 @@ components:
           type: string
         instance:
           type: string
-          format: uri-reference
+          format: uri
+        code:
+          type: string

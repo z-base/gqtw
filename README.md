@@ -1,15 +1,15 @@
-[![npm version](https://img.shields.io/npm/v/@z-base/gqts)](https://www.npmjs.com/package/@z-base/gqts)
-[![CI](https://github.com/z-base/gqts/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/z-base/gqts/actions/workflows/ci.yaml)
-[![codecov](https://codecov.io/gh/z-base/gqts/branch/master/graph/badge.svg)](https://codecov.io/gh/z-base/gqts)
-[![license](https://img.shields.io/npm/l/@z-base/gqts)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/@z-base/gqtw)](https://www.npmjs.com/package/@z-base/gqtw)
+[![CI](https://github.com/z-base/gqtw/actions/workflows/ci.yaml/badge.svg?branch=master)](https://github.com/z-base/gqtw/actions/workflows/ci.yaml)
+[![codecov](https://codecov.io/gh/z-base/gqtw/branch/master/graph/badge.svg)](https://codecov.io/gh/z-base/gqtw)
+[![license](https://img.shields.io/npm/l/@z-base/gqtw)](LICENSE)
 
 1. Title
 
-# gqts
+# gqtw
 
 2. Description
 
-Globally Qualified Trust Services
+Globally Qualified Trust Wallets
 
 what it's for
 

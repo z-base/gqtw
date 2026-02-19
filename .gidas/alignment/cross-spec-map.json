@@ -117,13 +117,78 @@
                                             ]
                             },
                             {
+                                "canonical_term":  "bad node",
+                                "canonical_owner_spec_id":  "GQTW-CORE",
+                                "canonical_anchor":  "#bad-node",
+                                "aliases":  [
+                                                "bad node"
+                                            ],
+                                "members":  [
+                                                {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "bad node",
+                                                    "anchor":  "#bad-node",
+                                                    "definition_excerpt_hash":  "6414aaee54e7e61e7470fbde9c79e760f38f4890bc8d0b94cd89b1e7dad894c6",
+                                                    "imported_from":  "GQTS-CORE#bad-node"
+                                                },
+                                                {
+                                                    "spec_id":  "GQTS-CORE",
+                                                    "term_text":  "bad node",
+                                                    "anchor":  "#bad-node",
+                                                    "definition_excerpt_hash":  "4ae351d8550f5147a6c0bb4c9acdeca92333a40d90e50f41e420a4f5bda4ad37",
+                                                    "imported_from":  null
+                                                }
+                                            ]
+                            },
+                            {
+                                "canonical_term":  "blind verification material",
+                                "canonical_owner_spec_id":  "GQTW-CORE",
+                                "canonical_anchor":  "#blind-verification-material",
+                                "aliases":  [
+                                                "blind verification material"
+                                            ],
+                                "members":  [
+                                                {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "blind verification material",
+                                                    "anchor":  "#blind-verification-material",
+                                                    "definition_excerpt_hash":  "3932c53ffaa8f647521f03a42bb0538c5fc9f69d4bb27386a4b251fac6253855",
+                                                    "imported_from":  null
+                                                }
+                                            ]
+                            },
+                            {
+                                "canonical_term":  "blind verification profile",
+                                "canonical_owner_spec_id":  "GQTW-CORE",
+                                "canonical_anchor":  "#blind-verification-profile",
+                                "aliases":  [
+                                                "blind verification profile"
+                                            ],
+                                "members":  [
+                                                {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "blind verification profile",
+                                                    "anchor":  "#blind-verification-profile",
+                                                    "definition_excerpt_hash":  "045cacce0a3c6fbe265b70bf9e37caff08cea7b28b1e765284824dd2c553c62e",
+                                                    "imported_from":  null
+                                                }
+                                            ]
+                            },
+                            {
                                 "canonical_term":  "byte sequence",
-                                "canonical_owner_spec_id":  "GDIS-CORE",
+                                "canonical_owner_spec_id":  "GQTW-CORE",
                                 "canonical_anchor":  "#byte-sequence",
                                 "aliases":  [
                                                 "byte sequence"
                                             ],
                                 "members":  [
+                                                {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "byte sequence",
+                                                    "anchor":  "#byte-sequence",
+                                                    "definition_excerpt_hash":  "e4168218475d7bb5150d637ef8229fb281b872460d9e6103d60c1f2a58437b23",
+                                                    "imported_from":  null
+                                                },
                                                 {
                                                     "spec_id":  "GDIS-CORE",
                                                     "term_text":  "byte sequence",
@@ -278,6 +343,13 @@
                                             ],
                                 "members":  [
                                                 {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "event namespace",
+                                                    "anchor":  "#event-namespace",
+                                                    "definition_excerpt_hash":  "6414aaee54e7e61e7470fbde9c79e760f38f4890bc8d0b94cd89b1e7dad894c6",
+                                                    "imported_from":  "GQTS-CORE#event-namespace"
+                                                },
+                                                {
                                                     "spec_id":  "GQTS-CORE",
                                                     "term_text":  "event namespace",
                                                     "anchor":  "#event-namespace",
@@ -329,6 +401,13 @@
                                             ],
                                 "members":  [
                                                 {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "GDIS binding credential",
+                                                    "anchor":  "#gdis-binding-credential",
+                                                    "definition_excerpt_hash":  "661371f83d29f41a85a071d9f2451cfffb0b087c7de6d2b40609b870b203d042",
+                                                    "imported_from":  "GDIS-CORE#gdis-binding-credential"
+                                                },
+                                                {
                                                     "spec_id":  "GDIS-CORE",
                                                     "term_text":  "GDIS binding credential",
                                                     "anchor":  "#gdis-binding-credential",
@@ -345,6 +424,13 @@
                                                 "GDIS subject DID"
                                             ],
                                 "members":  [
+                                                {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "GDIS subject DID",
+                                                    "anchor":  "#gdis-subject-did",
+                                                    "definition_excerpt_hash":  "661371f83d29f41a85a071d9f2451cfffb0b087c7de6d2b40609b870b203d042",
+                                                    "imported_from":  "GDIS-CORE#gdis-subject-did"
+                                                },
                                                 {
                                                     "spec_id":  "GDIS-CORE",
                                                     "term_text":  "GDIS subject DID",
@@ -448,6 +534,13 @@
                                             ],
                                 "members":  [
                                                 {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "GQTS host",
+                                                    "anchor":  "#gqts-host",
+                                                    "definition_excerpt_hash":  "6414aaee54e7e61e7470fbde9c79e760f38f4890bc8d0b94cd89b1e7dad894c6",
+                                                    "imported_from":  "GQTS-CORE#gqts-host"
+                                                },
+                                                {
                                                     "spec_id":  "GQTS-CORE",
                                                     "term_text":  "GQTS host",
                                                     "anchor":  "#gqts-host",
@@ -492,12 +585,19 @@
                             },
                             {
                                 "canonical_term":  "head token",
-                                "canonical_owner_spec_id":  "GQTS-CORE",
+                                "canonical_owner_spec_id":  "GQTW-CORE",
                                 "canonical_anchor":  "#head-token",
                                 "aliases":  [
                                                 "head token"
                                             ],
                                 "members":  [
+                                                {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "head token",
+                                                    "anchor":  "#head-token",
+                                                    "definition_excerpt_hash":  "6414aaee54e7e61e7470fbde9c79e760f38f4890bc8d0b94cd89b1e7dad894c6",
+                                                    "imported_from":  "GQTS-CORE#head-token"
+                                                },
                                                 {
                                                     "spec_id":  "GQTS-CORE",
                                                     "term_text":  "head token",
@@ -526,12 +626,19 @@
                             },
                             {
                                 "canonical_term":  "list",
-                                "canonical_owner_spec_id":  "GDIS-CORE",
+                                "canonical_owner_spec_id":  "GQTW-CORE",
                                 "canonical_anchor":  "#list",
                                 "aliases":  [
                                                 "list"
                                             ],
                                 "members":  [
+                                                {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "list",
+                                                    "anchor":  "#list",
+                                                    "definition_excerpt_hash":  "e4168218475d7bb5150d637ef8229fb281b872460d9e6103d60c1f2a58437b23",
+                                                    "imported_from":  null
+                                                },
                                                 {
                                                     "spec_id":  "GDIS-CORE",
                                                     "term_text":  "list",
@@ -577,12 +684,19 @@
                             },
                             {
                                 "canonical_term":  "mechanical validity",
-                                "canonical_owner_spec_id":  "GQTS-CORE",
+                                "canonical_owner_spec_id":  "GQTW-CORE",
                                 "canonical_anchor":  "#mechanical-validity",
                                 "aliases":  [
                                                 "mechanical validity"
                                             ],
                                 "members":  [
+                                                {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "mechanical validity",
+                                                    "anchor":  "#mechanical-validity",
+                                                    "definition_excerpt_hash":  "6414aaee54e7e61e7470fbde9c79e760f38f4890bc8d0b94cd89b1e7dad894c6",
+                                                    "imported_from":  "GQTS-CORE#mechanical-validity"
+                                                },
                                                 {
                                                     "spec_id":  "GQTS-CORE",
                                                     "term_text":  "mechanical validity",
@@ -746,13 +860,54 @@
                                             ]
                             },
                             {
+                                "canonical_term":  "portability package",
+                                "canonical_owner_spec_id":  "GQTW-CORE",
+                                "canonical_anchor":  "#portability-package",
+                                "aliases":  [
+                                                "portability package"
+                                            ],
+                                "members":  [
+                                                {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "portability package",
+                                                    "anchor":  "#portability-package",
+                                                    "definition_excerpt_hash":  "10341ea6612681f2c8de0ce6316280c3794e7369bce59b37913a456349d1f741",
+                                                    "imported_from":  null
+                                                }
+                                            ]
+                            },
+                            {
+                                "canonical_term":  "proof artifact",
+                                "canonical_owner_spec_id":  "GQTW-CORE",
+                                "canonical_anchor":  "#proof-artifact",
+                                "aliases":  [
+                                                "proof artifact"
+                                            ],
+                                "members":  [
+                                                {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "proof artifact",
+                                                    "anchor":  "#proof-artifact",
+                                                    "definition_excerpt_hash":  "0308745b1dd9fd016a1ad5da9cd679530968ab86414a2729bd110081b50764d9",
+                                                    "imported_from":  null
+                                                }
+                                            ]
+                            },
+                            {
                                 "canonical_term":  "proof object",
-                                "canonical_owner_spec_id":  "GQSCD-CORE",
+                                "canonical_owner_spec_id":  "GQTW-CORE",
                                 "canonical_anchor":  "#proof-object",
                                 "aliases":  [
                                                 "proof object"
                                             ],
                                 "members":  [
+                                                {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "proof object",
+                                                    "anchor":  "#proof-object",
+                                                    "definition_excerpt_hash":  "3b6f2f4a858e9abfb5ed30087c236203e5f9d9309be1fb0f22a578725dfdd5b4",
+                                                    "imported_from":  "GQSCD-CORE#proof-object"
+                                                },
                                                 {
                                                     "spec_id":  "GQSCD-CORE",
                                                     "term_text":  "proof object",
@@ -832,12 +987,19 @@
                             },
                             {
                                 "canonical_term":  "recognition statu",
-                                "canonical_owner_spec_id":  "GQTS-CORE",
+                                "canonical_owner_spec_id":  "GQTW-CORE",
                                 "canonical_anchor":  "#recognition-status",
                                 "aliases":  [
                                                 "recognition status"
                                             ],
                                 "members":  [
+                                                {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "recognition status",
+                                                    "anchor":  "#recognition-status",
+                                                    "definition_excerpt_hash":  "6414aaee54e7e61e7470fbde9c79e760f38f4890bc8d0b94cd89b1e7dad894c6",
+                                                    "imported_from":  "GQTS-CORE#recognition-status"
+                                                },
                                                 {
                                                     "spec_id":  "GQTS-CORE",
                                                     "term_text":  "recognition status",
@@ -917,12 +1079,19 @@
                             },
                             {
                                 "canonical_term":  "set",
-                                "canonical_owner_spec_id":  "GDIS-CORE",
+                                "canonical_owner_spec_id":  "GQTW-CORE",
                                 "canonical_anchor":  "#set",
                                 "aliases":  [
                                                 "set"
                                             ],
                                 "members":  [
+                                                {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "set",
+                                                    "anchor":  "#set",
+                                                    "definition_excerpt_hash":  "e4168218475d7bb5150d637ef8229fb281b872460d9e6103d60c1f2a58437b23",
+                                                    "imported_from":  null
+                                                },
                                                 {
                                                     "spec_id":  "GDIS-CORE",
                                                     "term_text":  "set",
@@ -975,6 +1144,13 @@
                                             ],
                                 "members":  [
                                                 {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "sole control",
+                                                    "anchor":  "#sole-control",
+                                                    "definition_excerpt_hash":  "3b6f2f4a858e9abfb5ed30087c236203e5f9d9309be1fb0f22a578725dfdd5b4",
+                                                    "imported_from":  "GQSCD-CORE#sole-control"
+                                                },
+                                                {
                                                     "spec_id":  "GQSCD-CORE",
                                                     "term_text":  "sole control",
                                                     "anchor":  "#sole-control",
@@ -1002,12 +1178,19 @@
                             },
                             {
                                 "canonical_term":  "tuple",
-                                "canonical_owner_spec_id":  "GDIS-CORE",
+                                "canonical_owner_spec_id":  "GQTW-CORE",
                                 "canonical_anchor":  "#tuple",
                                 "aliases":  [
                                                 "tuple"
                                             ],
                                 "members":  [
+                                                {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "tuple",
+                                                    "anchor":  "#tuple",
+                                                    "definition_excerpt_hash":  "e4168218475d7bb5150d637ef8229fb281b872460d9e6103d60c1f2a58437b23",
+                                                    "imported_from":  null
+                                                },
                                                 {
                                                     "spec_id":  "GDIS-CORE",
                                                     "term_text":  "tuple",
@@ -1060,10 +1243,41 @@
                                             ],
                                 "members":  [
                                                 {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "user intent ceremony",
+                                                    "anchor":  "#user-intent-ceremony",
+                                                    "definition_excerpt_hash":  "3b6f2f4a858e9abfb5ed30087c236203e5f9d9309be1fb0f22a578725dfdd5b4",
+                                                    "imported_from":  "GQSCD-CORE#user-intent-ceremony"
+                                                },
+                                                {
                                                     "spec_id":  "GQSCD-CORE",
                                                     "term_text":  "user intent ceremony",
                                                     "anchor":  "#user-intent-ceremony",
                                                     "definition_excerpt_hash":  "b15b6cc931bca2ba90c47070f2ceade6967409ef2d8f4b005723b669d9fd14c8",
+                                                    "imported_from":  null
+                                                }
+                                            ]
+                            },
+                            {
+                                "canonical_term":  "verification material",
+                                "canonical_owner_spec_id":  "GQTS-CORE",
+                                "canonical_anchor":  "#verification-material",
+                                "aliases":  [
+                                                "verification material"
+                                            ],
+                                "members":  [
+                                                {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "verification material",
+                                                    "anchor":  "#verification-material",
+                                                    "definition_excerpt_hash":  "6414aaee54e7e61e7470fbde9c79e760f38f4890bc8d0b94cd89b1e7dad894c6",
+                                                    "imported_from":  "GQTS-CORE#verification-material"
+                                                },
+                                                {
+                                                    "spec_id":  "GQTS-CORE",
+                                                    "term_text":  "verification material",
+                                                    "anchor":  "#verification-material",
+                                                    "definition_excerpt_hash":  "80debae0997981fc8ea71f06b79f15de1402a59353f19d52e040bb093ca41802",
                                                     "imported_from":  null
                                                 }
                                             ]
@@ -1081,6 +1295,23 @@
                                                     "term_text":  "verification result",
                                                     "anchor":  "#verification-result",
                                                     "definition_excerpt_hash":  "f12a1a5604e8e4a59c086babced35fdf95636f64ef8ea15d4596b74dd27104dd",
+                                                    "imported_from":  null
+                                                }
+                                            ]
+                            },
+                            {
+                                "canonical_term":  "walletprivate event log",
+                                "canonical_owner_spec_id":  "GQTW-CORE",
+                                "canonical_anchor":  "#wallet-private-event-log",
+                                "aliases":  [
+                                                "wallet-private event log"
+                                            ],
+                                "members":  [
+                                                {
+                                                    "spec_id":  "GQTW-CORE",
+                                                    "term_text":  "wallet-private event log",
+                                                    "anchor":  "#wallet-private-event-log",
+                                                    "definition_excerpt_hash":  "9f312e2c7c187b0d4d53e86367031706c908b40a331341910670fa53459e3fc3",
                                                     "imported_from":  null
                                                 }
                                             ]
@@ -1211,6 +1442,28 @@
                                                                        ]
                               },
                               {
+                                  "clause_concept":  "getWalletProfile",
+                                  "canonical_owner_spec_id":  "GQTW-CORE",
+                                  "canonical_clause_id":  "REQ-GQTW-13",
+                                  "member_clause_ids":  [
+                                                            "GQTW-CORE:REQ-GQTW-13"
+                                                        ],
+                                  "member_operation_contract_hashes":  [
+                                                                           "GQTW-CORE:35ea05e490d50152f8981280bf683f219687a6c13e51c1868f30ee9c78045983"
+                                                                       ]
+                              },
+                              {
+                                  "clause_concept":  "postErasureRequest",
+                                  "canonical_owner_spec_id":  "GQTW-CORE",
+                                  "canonical_clause_id":  "REQ-GQTW-11",
+                                  "member_clause_ids":  [
+                                                            "GQTW-CORE:REQ-GQTW-11"
+                                                        ],
+                                  "member_operation_contract_hashes":  [
+                                                                           "GQTW-CORE:b533bbc6c14117826587d1978399fba4c471a352e0d81a91d3d0fc02505b2a22"
+                                                                       ]
+                              },
+                              {
                                   "clause_concept":  "postEventIngest",
                                   "canonical_owner_spec_id":  "GQTS-CORE",
                                   "canonical_clause_id":  "REQ-GQTS-06",
@@ -1221,6 +1474,83 @@
                                   "member_operation_contract_hashes":  [
                                                                            "GDIS-CORE:715382d694607ab116a666c24451746d1a84fa8023b923819f21ac56ba65f35d",
                                                                            "GQTS-CORE:715382d694607ab116a666c24451746d1a84fa8023b923819f21ac56ba65f35d"
+                                                                       ]
+                              },
+                              {
+                                  "clause_concept":  "postGqscdInvocation",
+                                  "canonical_owner_spec_id":  "GQTW-CORE",
+                                  "canonical_clause_id":  "REQ-GQTW-09",
+                                  "member_clause_ids":  [
+                                                            "GQTW-CORE:REQ-GQTW-09"
+                                                        ],
+                                  "member_operation_contract_hashes":  [
+                                                                           "GQTW-CORE:6108181d664417e2a9f69c3eaba3e2ad83da2c666cb9f2cc6d06b3b2ac04a969"
+                                                                       ]
+                              },
+                              {
+                                  "clause_concept":  "postGqtsHeadHint",
+                                  "canonical_owner_spec_id":  "GQTW-CORE",
+                                  "canonical_clause_id":  "REQ-GQTW-08",
+                                  "member_clause_ids":  [
+                                                            "GQTW-CORE:REQ-GQTW-08"
+                                                        ],
+                                  "member_operation_contract_hashes":  [
+                                                                           "GQTW-CORE:bd02bf5de4de66381fe8dbd68b9d07ca8a2efde583c44e8c2b9964cf3c5aed1e"
+                                                                       ]
+                              },
+                              {
+                                  "clause_concept":  "postPresentationRequest",
+                                  "canonical_owner_spec_id":  "GQTW-CORE",
+                                  "canonical_clause_id":  "REQ-GQTW-07",
+                                  "member_clause_ids":  [
+                                                            "GQTW-CORE:REQ-GQTW-07"
+                                                        ],
+                                  "member_operation_contract_hashes":  [
+                                                                           "GQTW-CORE:c442574ab9a1b10cb5f267a8c3981fdaaa65a27d2de8f61deea1944d75c253f4"
+                                                                       ]
+                              },
+                              {
+                                  "clause_concept":  "postPresentationSubmission",
+                                  "canonical_owner_spec_id":  "GQTW-CORE",
+                                  "canonical_clause_id":  "REQ-GQTW-07",
+                                  "member_clause_ids":  [
+                                                            "GQTW-CORE:REQ-GQTW-07"
+                                                        ],
+                                  "member_operation_contract_hashes":  [
+                                                                           "GQTW-CORE:48065fea955d6040dc59229b527c9f25f909e9b60b82d26d0ba22b5edc365289"
+                                                                       ]
+                              },
+                              {
+                                  "clause_concept":  "postWalletExport",
+                                  "canonical_owner_spec_id":  "GQTW-CORE",
+                                  "canonical_clause_id":  "REQ-GQTW-10",
+                                  "member_clause_ids":  [
+                                                            "GQTW-CORE:REQ-GQTW-10"
+                                                        ],
+                                  "member_operation_contract_hashes":  [
+                                                                           "GQTW-CORE:331dc4179cd993e012236371f0a1e6431da10aa418c02323f9830d839ef9b25f"
+                                                                       ]
+                              },
+                              {
+                                  "clause_concept":  "postWalletImport",
+                                  "canonical_owner_spec_id":  "GQTW-CORE",
+                                  "canonical_clause_id":  "REQ-GQTW-10",
+                                  "member_clause_ids":  [
+                                                            "GQTW-CORE:REQ-GQTW-10"
+                                                        ],
+                                  "member_operation_contract_hashes":  [
+                                                                           "GQTW-CORE:221e712f57f45779ace103f8e0514c1597f628b4b6cadd634a3d0c0b7c0aadc1"
+                                                                       ]
+                              },
+                              {
+                                  "clause_concept":  "postWalletIncidentReport",
+                                  "canonical_owner_spec_id":  "GQTW-CORE",
+                                  "canonical_clause_id":  "REQ-GQTW-08",
+                                  "member_clause_ids":  [
+                                                            "GQTW-CORE:REQ-GQTW-08"
+                                                        ],
+                                  "member_operation_contract_hashes":  [
+                                                                           "GQTW-CORE:9278a5f35828ef6190069ac660d7628c35e6c7f5d7e196a0bcf83fae5b25ee88"
                                                                        ]
                               }
                           ],
@@ -1251,6 +1581,86 @@
                       }
                   ],
     "gaps":  [
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQSCD-18"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQSCD-24"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GDIS-05"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GDIS-05"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQTS-01"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQTS-07"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQSCD-18"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQSCD-26"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQTS-04"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQSCD-10"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQSCD-06"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQSCD-17"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQSCD-26"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQSCD-29"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQTW"
+                 },
+                 {
+                     "type":  "missing-requirement-anchor",
+                     "spec_id":  "GQTW-CORE",
+                     "reference":  "REQ-GQTW"
+                 },
                  {
                      "type":  "missing-requirement-anchor",
                      "spec_id":  "GDIS-CORE",

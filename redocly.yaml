@@ -2,5 +2,5 @@ extends:
   - recommended
 
 apis:
-  gqts@v1:
+  gqtw@v1:
     root: ./openapi.yaml
